@@ -12,6 +12,7 @@ $(document).ready(function(){
             },
             'excel', 'print', 'pageLength' //nombre de los botones
         ],
+        
         pageLength: [5, 10, 15, 30, 50, 100], //coloca los valores que entran en las tablas
         pageLength: 10, //paginación por defecto
         ajax: {
@@ -27,42 +28,9 @@ $(document).ready(function(){
                 type: 'column'
             }
         },
-        columnDefs: [{
-                targets: 0,
-                orderable: true,
-                className: 'control'
-            },
-            {
-                targets: 1,
-                visible: true
-            },
-            {
-                targets: 3,
-                visible: true
-            },
-            {
-                targets: 9,
-                createdCell: function(td, cellData, rowData, row, col) {
-                    if (parseFloat(rowData[9]) <= parseFloat(rowData[10])) {
-                        $(td).parent().css('background', '#FF5733')
-                        $(td).parent().css('color', '#ffffff')
-                    }
-                }
-            },
-            {
-                targets: 11,
-                visible: true
-            },
+        columnDefs: [
             {
                 targets: 12,
-                visible: true
-            },
-            {
-                targets: 13,
-                visible: true
-            },
-            {
-                targets: 1,
                 orderable: false, //No coloca la opción de ordenar
                 render: function(data, type, full, meta) { //para colocar las opciones
                     return "<center>" +

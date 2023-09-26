@@ -1,4 +1,4 @@
-<!-- Content Header (Page header) -->
+    <!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -25,22 +25,20 @@
                     <thead class="bg-info">
                         <tr style="font-size: 15px;">
                             <th></th>
-                            <th class="text-center">Opciones</th>
-                            <th>id</th>
-                            <th>Imagen</th>
-                            <th>Nombre</th>
+                            <th>Código</th>
                             <th>Categoría</th>
+                            <th>Nombre</th>
                             <th>Talla</th>
                             <th>Stock</th>
+                            <th>P.Compra</th>
+                            <th>P.Venta</th>
+                            <th>P.Alq.Estreno</th>
+                            <th>P.Alq.Normal</th>
                             <th>Estado</th>
-                            <th>#Piezas</th>
-                            <th>Incluye</th>
-                            <th>No incluye</th>
-                            <th>P. Venta</th>
-                            <th>P. Alquiler Estreno</th>
-                            <th>P. Alquiler Normal</th>
+                            <th>Fecha creación</th>
                             
                             
+                            <th class="text-center">Opciones</th>
                         </tr>
                     </thead>
                     <tbody class="text-small">

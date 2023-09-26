@@ -1,0 +1,14 @@
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+    color: white !important;
+    background: #007bff !important;
+    font-weight: bold !important;
+}
+
+table.dataTable tbody td {
+    white-space: nowrap !important;
+    font-size: 15px !important;
+}
+
+#tbl_productos thead th{
+    white-space: nowrap !important;
+}

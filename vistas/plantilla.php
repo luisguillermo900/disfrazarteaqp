@@ -57,6 +57,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css">
     <!--END ESTILOS-->
+
+    
 </head>
 
 <body class="hold-transition sidebar-mini sidebar-collapse">

@@ -158,12 +158,24 @@ $(document).ready(function(){
         }
     });
 
+    
     $("#selectEstado").change(function() {
         // Obtén el valor seleccionado en el elemento select
         var selectedValue = $(this).val();
-        
-        // Filtra la tabla basada en el valor seleccionado
-        table.column($(this).data('index')).search(selectedValue).draw();
+    
+        if (selectedValue === "") {
+            // Si no se ha seleccionado ningún valor, muestra todos los datos
+            table.column($(this).data('index')).search("").draw();
+        } else {
+            // Escapa cualquier carácter especial en el valor seleccionado
+            selectedValue = $.fn.dataTable.util.escapeRegex(selectedValue);
+    
+            // Construye una expresión regular que coincide exactamente con el valor seleccionado
+            var regex = "^" + selectedValue + "$";
+    
+            // Filtra la tabla basada en la expresión regular
+            table.column($(this).data('index')).search(regex, true, false).draw();
+        }
     });
 
     /*===================================================================*/

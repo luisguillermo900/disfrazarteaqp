@@ -114,7 +114,7 @@
 
                                     <div style="width: 20%;" class="form-floating mx-1">
                                         <select id="selectEstado" class="form-control" data-index="11">
-                                            <option value="" selected>Todas los estados</option>
+                                            <option value="" selected>Todos los estados</option>
                                             <!-- Opción para eliminar el filtro -->
                                             <option value="Disponible">Disponible</option>
                                             <option value="No disponible">No disponible</option>
@@ -184,7 +184,7 @@
             <div class="modal-content">
 
                 <!-- cabecera del modal -->
-                <div class="modal-header bg-gray py-1 align-items-center">
+                <div class="modal-header bg-gray py-1 align-items-center ">
 
                     <h5 class="modal-title">Agregar Producto</h5>
 

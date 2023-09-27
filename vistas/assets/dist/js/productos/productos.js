@@ -81,6 +81,8 @@ $(document).ready(function(){
                 render: function(data, type, full, meta) { //para colocar las opciones
                     return "<center>" +
                         "<span class='btnEditarProducto text-primary px-1' style='cursor:pointer;'>" +
+                        "<i class='fas fa-plus fs-5'></i>"+
+                        "<span class='btnEditarProducto text-primary px-1' style='cursor:pointer;'>" +
                         "<i class='fas fa-pencil-alt fs-5'></i>" +
                         "<span class='btnEliminarProducto text-danger px-1' style='cursor:pointer;'>" +
                         "<i class='fas fa-trash fs-5'></i>" +

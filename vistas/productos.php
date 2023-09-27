@@ -97,23 +97,42 @@
                                     </div>
 
                                     <div style="width: 20%;" class="form-floating mx-1">
-                                        <select id="selectEstado" class="form-control" data-index="10">
+                                        <select id="selectModalidad" class="form-control" data-index="10">
+                                            <option value="" selected>Todas las modalidades</option>
+                                            <!-- Opción para eliminar el filtro -->
+                                            <option value="Venta">Venta</option>
+                                            <option value="Alq. Estreno">Alq. Estreno</option>
+                                            <option value="Alq. Normal">Alq. Normal</option>
+                                            <option value="Venta/Alq. Estreno">Venta/Alq. Estreno</option>
+                                            <option value="Sin modalidad">Sin modalidad</option>
+                                            <!-- Agrega más opciones según sea necesario -->
+                                        </select>
+                                        <div style="display: flex; align-items: center; justify-content: center;">
+                                            <label for="iptEstado" style="margin: 0;">Modalidad</label>
+                                        </div>
+                                    </div>
+
+                                    <div style="width: 20%;" class="form-floating mx-1">
+                                        <select id="selectEstado" class="form-control" data-index="11">
                                             <option value="" selected>Todas los estados</option>
                                             <!-- Opción para eliminar el filtro -->
-                                            <option value="disponible">disponible</option>
-                                            <option value="alquilado">alquilado</option>
-                                            <option value="vendido">vendido</option>
+                                            <option value="Disponible">Disponible</option>
+                                            <option value="No disponible">No disponible</option>
                                             <!-- Agrega más opciones según sea necesario -->
                                         </select>
                                         <div style="display: flex; align-items: center; justify-content: center;">
                                             <label for="iptEstado" style="margin: 0;">Estado</label>
                                         </div>
                                     </div>
+
+
                                 </div>
 
 
 
+
                             </div>
+
                         </div> <!-- ./ end card-body -->
                     </div>
 
@@ -136,11 +155,15 @@
                                 <th>P.Venta</th>
                                 <th>P.Alq.Estreno</th>
                                 <th>P.Alq.Normal</th>
+                                <th>Modalidad</th>
                                 <th>Estado</th>
                                 <th>Fecha creación</th>
-
-
                                 <th class="text-center">Opciones</th>
+                                <th>Descripción</th>
+                                <th>Incluye</th>
+                                <th>Num. Piezas</th>
+                                <th>Precio Compra</th>
+                                <th>Marca</th>
                             </tr>
                         </thead>
                         <tbody class="text-small">

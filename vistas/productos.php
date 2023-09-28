@@ -211,14 +211,16 @@
                                 <input type="hidden" id="txtProceso" name="txtProceso" class="form-control"
                                     value="Registro">
                             </div>
-
+                            <!-- -------------------------- -->
+                            <!-- comienza todo el contenido -->
+                            <!-- -------------------------- -->
 
                             <!-- Columna para el nombre del producto -->
                             <div class="col-12 col-lg-6">
                                 <div class="form-group mb-2">
-                                    <label class="" for="iptDescripcionReg"><i class="fas fa-file-signature fs-6"></i>
+                                    <label class="" for="iptNombreReg"><i class="fas fa-file-signature fs-6"></i>
                                         <span class="small">Nombre</span><span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control form-control-sm" id="iptDescripcionReg"
+                                    <input type="text" class="form-control form-control-sm" id="iptNombreReg"
                                         placeholder="Nombre" required>
                                     <div class="invalid-feedback">Debe ingresar el nombre</div>
                                 </div>
@@ -251,11 +253,11 @@
                             <!-- Columna para registro de número de trajes según incluye -->
                             <div class="col-12  col-lg-4">
                                 <div class="form-group mb-2">
-                                    <label class="" for="iptPrecioCompraReg"><i class="fas fa-plus-circle fs-6"></i>
+                                    <label class="" for="iptNumPiezasReg"><i class="fas fa-plus-circle fs-6"></i>
                                         <span class="small">Núm.
                                             Piezas</span><span class="text-danger">*</span></label>
                                     <input type="number" min="0" class="form-control form-control-sm" step="0.01"
-                                        id="iptPrecioCompraReg" placeholder="0" required>
+                                        id="iptNumPiezasReg" placeholder="0" required>
                                     <div class="invalid-feedback">Debe ingresar el número de piezas</div>
                                 </div>
                             </div>
@@ -263,11 +265,11 @@
                             <!-- Columna para registro número de stock -->
                             <div class="col-12  col-lg-4">
                                 <div class="form-group mb-2">
-                                    <label class="" for="iptPrecioCompraReg"><i class="fas fa-plus-circle fs-6"></i>
+                                    <label class="" for="iptNumStockReg"><i class="fas fa-plus-circle fs-6"></i>
                                         <span class="small">Núm.
                                             stock</span><span class="text-danger">*</span></label>
                                     <input type="number" min="0" class="form-control form-control-sm" step="0.01"
-                                        id="iptPrecioCompraReg" placeholder="0" required>
+                                        id="iptNumStockReg" placeholder="0" required>
                                     <div class="invalid-feedback">Debe ingresar el número de stock</div>
                                 </div>
                             </div>
@@ -275,9 +277,9 @@
                             <!-- Columna para registro de talla -->
                             <div class="col-12 col-lg-4">
                                 <div class="form-group mb-2">
-                                    <label class="" for="iptDescripcionReg"><i class="fas fa-file-signature fs-6"></i>
+                                    <label class="" for="iptTallaReg"><i class="fas fa-file-signature fs-6"></i>
                                         <span class="small">Talla</span><span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control form-control-sm" id="iptDescripcionReg"
+                                    <input type="text" class="form-control form-control-sm" id="iptTallaReg"
                                         placeholder="Ejm: XL" required>
                                     <div class="invalid-feedback">Debe ingresar la talla</div>
                                 </div>
@@ -286,9 +288,9 @@
                             <!-- Columna para registro de productos que incluye -->
                             <div class="col-12">
                                 <div class="form-group mb-2">
-                                    <label class="" for="iptDescripcionReg"><i class="fas fa-file-signature fs-6"></i>
+                                    <label class="" for="iptIncluyeReg"><i class="fas fa-file-signature fs-6"></i>
                                         <span class="small">Incluye</span><span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control form-control-sm" id="iptDescripcionReg"
+                                    <input type="text" class="form-control form-control-sm" id="iptIncluyeReg"
                                         placeholder="Ejm: traje 1, traje 2" required>
                                     <div class="invalid-feedback">Debe ingresar la sección incluye</div>
                                 </div>
@@ -297,9 +299,9 @@
                             <!-- Columna para registro de productos que no incluye -->
                             <div class="col-12">
                                 <div class="form-group mb-2">
-                                    <label class="" for="iptDescripcionReg"><i class="fas fa-file-signature fs-6"></i>
+                                    <label class="" for="iptNoIncluyeReg"><i class="fas fa-file-signature fs-6"></i>
                                         <span class="small">No incluye</span></label>
-                                    <input type="text" class="form-control form-control-sm" id="iptDescripcionReg"
+                                    <input type="text" class="form-control form-control-sm" id="iptNoIncluyeReg"
                                         placeholder="Ejm: traje 1, traje 2" required>
                                     <div class="invalid-feedback">Debe ingresar la sección no incluye</div>
                                 </div>
@@ -309,9 +311,9 @@
                             <!-- Columna para registro de marca -->
                             <div class="col-12 col-lg-12">
                                 <div class="form-group mb-2">
-                                    <label class="" for="iptDescripcionReg"><i class="fas fa-file-signature fs-6"></i>
+                                    <label class="" for="iptMarcaReg"><i class="fas fa-file-signature fs-6"></i>
                                         <span class="small">Marca</span></label>
-                                    <input type="text" class="form-control form-control-sm" id="iptDescripcionReg"
+                                    <input type="text" class="form-control form-control-sm" id="iptMarcaReg"
                                         placeholder="Ejm: Marca" required>
                                     <div class="invalid-feedback">Debe ingresar la marca</div>
                                 </div>
@@ -320,11 +322,11 @@
                             <!-- Columna para registro del estado del producto -->
                             <div class="col-12  col-lg-4">
                                 <div class="form-group mb-2">
-                                    <label class="" for="selCategoriaReg"><i class="fas fa-dumpster fs-6"></i>
+                                    <label class="" for="selEstadoReg"><i class="fas fa-dumpster fs-6"></i>
                                         <span class="small">Estado</span><span class="text-danger">*</span>
                                     </label>
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example"
-                                        id="selCategoriaReg" required>
+                                        id="selEstadoReg" required>
                                         <option value="no_disponible">No disponible</option>
                                         <option value="disponible">Disponible</option>
 
@@ -379,11 +381,11 @@
                             <!-- Columna para registro del Precio alquiler estreno -->
                             <div id="divAlquilerEstreno" class="col-12 col-lg-3">
                                 <div class="form-group mb-2">
-                                    <label class="" for="iptPrecioVentaReg"><i class="fas fa-dollar-sign fs-6"></i>
+                                    <label class="" for="iptPrecioAlqEstrenoReg"><i class="fas fa-dollar-sign fs-6"></i>
                                         <span class="small">Precio
                                             Alq. Estreno</span><span class="text-danger">*</span></label>
                                     <input type="number" min="0" class="form-control form-control-sm"
-                                        id="iptPrecioVentaReg" placeholder="Precio Alq. Estreno" step="0.01" required>
+                                        id="iptPrecioAlqEstrenoReg" placeholder="Precio Alq. Estreno" step="0.01" required>
                                     <div class="invalid-feedback">Debe ingresar el precio alquiler estreno</div>
                                 </div>
                             </div>
@@ -391,11 +393,11 @@
                             <!-- Columna para registro del Precio alquiler normal -->
                             <div id="divAlquilerNormal" class="col-12 col-lg-3">
                                 <div class="form-group mb-2">
-                                    <label class="" for="iptPrecioVentaReg"><i class="fas fa-dollar-sign fs-6"></i>
+                                    <label class="" for="iptPrecioAlqNormalReg"><i class="fas fa-dollar-sign fs-6"></i>
                                         <span class="small">Precio
                                             Alq. Normal</span><span class="text-danger">*</span></label>
                                     <input type="number" min="0" class="form-control form-control-sm"
-                                        id="iptPrecioVentaReg" placeholder="Precio Alq. Normal" step="0.01" required>
+                                        id="iptPrecioAlqNormalReg" placeholder="Precio Alq. Normal" step="0.01" required>
                                     <div class="invalid-feedback">Debe ingresar el precio alquiler normal</div>
                                 </div>
                             </div>

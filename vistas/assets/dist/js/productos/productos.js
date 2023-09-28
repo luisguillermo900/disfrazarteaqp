@@ -196,7 +196,37 @@ $(document).ready(function () {
         table.search('').columns().search('').draw();
     });
     //-------------------------
-    
+    // LIMPIAR INPUTS DE MODAL CUANDO SE DA EL BOTÓN CANCELAR
     //-------------------------
+
+    $("#btnCancelarRegistro, #btnCerrarModal").on('click', function() {
+        //CORREGIR
+        $("#validate_codigo").css("display", "none");
+        $("#validate_categoria").css("display", "none");
+        $("#validate_descripcion").css("display", "none");
+        $("#validate_precio_compra").css("display", "none");
+        $("#validate_precio_venta").css("display", "none");
+        $("#validate_stock").css("display", "none");
+        $("#validate_min_stock").css("display", "none");
+        //PARA VACIAR LOS DATOS A LA HORA DE HACER CLIC EN CANCELAR
+
+        $("#iptNombreReg").val("");
+        $("#selCategoriaReg").val("");
+        $("#iptDescripcionReg").val("");
+        $("#iptNumPiezasReg").val("");
+        $("#iptNumStockReg").val("");
+        $("#iptTallaReg").val("");
+        $("#iptIncluyeReg").val("");
+        $("#iptNoIncluyeReg").val("");
+        $("#iptMarcaReg").val("");
+        $("#selEstadoReg").val("");
+        $("#selectModalidades").val("");
+        $("#iptPrecioCompraReg").val("");
+        $("#iptPrecioVentaReg").val("");
+        $("#iptPrecioAlqEstrenoReg").val("");
+        $("#iptPrecioAlqNormalReg").val("");
+        $("#iptUtilidadReg").val("");
+
+    })
 
 })

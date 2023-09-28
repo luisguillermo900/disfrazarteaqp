@@ -234,18 +234,7 @@
                                     </label>
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example"
                                         id="selCategoriaReg" required>
-                                        <option value="BEBÉ NIÑA">BEBÉ NIÑA</option>
-                                        <option value="BEBÉ NIÑO">BEBÉ NIÑO</option>
-                                        <option value="NIÑA">NIÑA</option>
-                                        <option value="NIÑO">NIÑO</option>
-                                        <option value="MUJER">MUJER</option>
-                                        <option value="HOMBRE">HOMBRE</option>
-                                        <option value="USA-CHINA: BEBÉ NIÑA">USA-CHINA: BEBÉ NIÑA</option>
-                                        <option value="Venta">USA-CHINA: BEBÉ NIÑO</option>
-                                        <option value="USA-CHINA: NIÑA">USA-CHINA: NIÑA</option>
-                                        <option value="USA-CHINA: NIÑO">USA-CHINA: NIÑO</option>
-                                        <option value="USA-CHINA: MUJER">USA-CHINA: MUJER</option>
-                                        <option value="USA-CHINA: HOMBRE">USA-CHINA: HOMBRE</option>
+                                        
 
                                     </select>
                                     <div class="invalid-feedback">Seleccione la categoría</div>
@@ -381,7 +370,7 @@
                             </div>
 
                             <!-- Columna para registro del Precio de Venta -->
-                            <div id="divPrecioVenta" class="col-12 col-lg-3">
+                            <div id="divPrecioVenta" class="col-12 col-lg-4">
                                 <div class="form-group mb-2">
                                     <label class="" for="iptPrecioVentaReg"><i class="fas fa-dollar-sign fs-6"></i>
                                         <span class="small">Precio
@@ -392,7 +381,7 @@
                                 </div>
                             </div>
                             <!-- Columna para registro del Precio alquiler estreno -->
-                            <div id="divAlquilerEstreno" class="col-12 col-lg-3">
+                            <div id="divAlquilerEstreno" class="col-12 col-lg-4">
                                 <div class="form-group mb-2">
                                     <label class="" for="iptPrecioAlqEstrenoReg"><i class="fas fa-dollar-sign fs-6"></i>
                                         <span class="small">Precio
@@ -405,7 +394,7 @@
                             </div>
 
                             <!-- Columna para registro del Precio alquiler normal -->
-                            <div id="divAlquilerNormal" class="col-12 col-lg-3">
+                            <div id="divAlquilerNormal" class="col-12 col-lg-4">
                                 <div class="form-group mb-2">
                                     <label class="" for="iptPrecioAlqNormalReg"><i class="fas fa-dollar-sign fs-6"></i>
                                         <span class="small">Precio
@@ -417,13 +406,33 @@
                                 </div>
                             </div>
 
-                            <!-- Columna para registro de la Utilidad -->
-                            <div class="col-12 col-lg-3">
+                            <!-- Columna para registro de la Utilidad venta-->
+                            <div class="col-12 col-lg-4">
                                 <div class="form-group mb-2">
-                                    <label class="" for="iptUtilidadReg"><i class="fas fa-dollar-sign fs-6"></i> <span
+                                    <label class="" for="iptUtilidadVentaReg"><i class="fas fa-dollar-sign fs-6"></i> <span
                                             class="small">Utilidad</span></label>
                                     <input type="number" min="0" class="form-control form-control-sm"
-                                        id="iptUtilidadReg" placeholder="Utilidad" disabled>
+                                        id="iptUtilidadVentaReg" placeholder="Utilidad venta" disabled>
+                                </div>
+                            </div>
+
+                            <!-- Columna para registro de la Utilidad precio alq. estreno-->
+                            <div class="col-12 col-lg-4">
+                                <div class="form-group mb-2">
+                                    <label class="" for="iptUtilidadAlqEstrenoReg"><i class="fas fa-dollar-sign fs-6"></i> <span
+                                            class="small">Utilidad Alq. Estreno</span></label>
+                                    <input type="number" min="0" class="form-control form-control-sm"
+                                        id="iptUtilidadAlqEstrenoReg" placeholder="Utilidad Alq. Estreno" disabled>
+                                </div>
+                            </div>
+
+                            <!-- Columna para registro de la Utilidad precio alq. normal-->
+                            <div class="col-12 col-lg-4">
+                                <div class="form-group mb-2">
+                                    <label class="" for="iptUtilidadAlqNormalReg"><i class="fas fa-dollar-sign fs-6"></i> <span
+                                            class="small">Utilidad Alq. Normal</span></label>
+                                    <input type="number" min="0" class="form-control form-control-sm"
+                                        id="iptUtilidadAlqNormalReg" placeholder="Utilidad Alq. Normal" disabled>
                                 </div>
                             </div>
 

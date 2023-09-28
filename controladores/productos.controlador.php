@@ -9,4 +9,12 @@ class ProductosControlador{
         return $productos;
     
     }
+
+    static public function ctrListarTallasProductos(){
+        
+        $listarTallasProductos = ProductosModelo::mdlListarTallasProductos();
+
+        return $listarTallasProductos;
+
+    }
 }

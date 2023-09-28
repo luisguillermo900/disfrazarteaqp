@@ -27,12 +27,25 @@ class ProductosModelo{
         return $stmt->fetch();
 
     }
+    /*===================================================================
+    LISTA LAS TALLAS DE PRODUCTOS
+    ====================================================================*/
+    static public function mdlListarTallasProductos(){
+
+        $stmt = Conexion::conectar()->prepare("SELECT talla_producto FROM productos");
+
+        $stmt -> execute();
+
+        return $stmt->fetchAll();
+    }
 
     /*===================================================================
     REGISTRAR PRODUCTOS UNO A UNO DESDE EL FORMULARIO DEL INVENTARIO
     ====================================================================*/
-    static public function mdlRegistrarProducto($codigo_producto, $id_categoria_producto,$descripcion_producto,$precio_compra_producto,
-                                                $precio_venta_producto,$utilidad,$stock_producto,$minimo_stock_producto,$ventas_producto){        
+    static public function mdlRegistrarProducto($codigo_producto, $id_categoria_producto,$nombre_producto,$incluye_producto,
+                                                $no_incluye_producto,$numero_piezas_producto,$stock_producto,$precio_compra_producto,$precio_venta_producto,
+                                                $utilidad_venta_producto,$precio_alquiler_estreno_producto,$utilidad_alquiler_estreno_producto,$precio_alquiler_simple_producto,$utilidad_alquiler_simple_producto,
+                                                $talla_producto,$marca_producto,$modalidad,$estado_producto){        
 
         try{
 
@@ -40,38 +53,66 @@ class ProductosModelo{
 
             $stmt = Conexion::conectar()->prepare("INSERT INTO PRODUCTOS(codigo_producto, 
                                                                         id_categoria_producto, 
-                                                                        descripcion_producto, 
-                                                                        precio_compra_producto, 
-                                                                        precio_venta_producto, 
-                                                                        utilidad, 
-                                                                        stock_producto, 
-                                                                        minimo_stock_producto, 
-                                                                        ventas_producto,
+                                                                        nombre_producto,
+                                                                        incluye_producto,
+                                                                        no_incluye_producto,
+                                                                        numero_piezas_producto,
+                                                                        stock_producto,
+                                                                        precio_compra_producto,
+                                                                        precio_venta_producto,
+                                                                        utilidad_venta_producto,
+                                                                        precio_alquiler_estreno_producto,
+                                                                        utilidad_alquiler_estreno_producto,
+                                                                        precio_alquiler_simple_producto,
+                                                                        utilidad_alquiler_simple_producto,
+                                                                        talla_producto,
+                                                                        marca_producto,
+                                                                        modalidad,
+                                                                        estado_producto,
                                                                         fecha_creacion_producto,
                                                                         fecha_actualizacion_producto) 
                                                 VALUES (:codigo_producto, 
                                                         :id_categoria_producto, 
-                                                        :descripcion_producto, 
-                                                        :precio_compra_producto, 
-                                                        :precio_venta_producto, 
-                                                        :utilidad, 
+                                                        :nombre_producto, 
+                                                        :incluye_producto, 
+                                                        :no_incluye_producto, 
+                                                        :numero_piezas_producto, 
                                                         :stock_producto, 
-                                                        :minimo_stock_producto, 
-                                                        :ventas_producto,
+                                                        :precio_compra_producto, 
+                                                        :precio_venta_producto,
+                                                        :utilidad_venta_producto,
+                                                        :precio_alquiler_estreno_producto,
+                                                        :utilidad_alquiler_estreno_producto,a
+                                                        :precio_alquiler_simple_producto,
+                                                        :utilidad_alquiler_simple_producto,
+                                                        :talla_producto,
+                                                        :marca_producto,
+                                                        :modalidad,
+                                                        :estado_producto,
                                                         :fecha_creacion_producto,
                                                         :fecha_actualizacion_producto)");      
                                                         
             $stmt -> bindParam(":codigo_producto", $codigo_producto , PDO::PARAM_STR);
             $stmt -> bindParam(":id_categoria_producto", $id_categoria_producto , PDO::PARAM_STR);
-            $stmt -> bindParam(":descripcion_producto", $descripcion_producto , PDO::PARAM_STR);
-            $stmt -> bindParam(":precio_compra_producto", $precio_compra_producto , PDO::PARAM_STR);
-            $stmt -> bindParam(":precio_venta_producto", $precio_venta_producto , PDO::PARAM_STR);
-            $stmt -> bindParam(":utilidad", $utilidad , PDO::PARAM_STR);
+            $stmt -> bindParam(":nombre_producto", $nombre_producto , PDO::PARAM_STR);
+            $stmt -> bindParam(":incluye_producto", $incluye_producto , PDO::PARAM_STR);
+            $stmt -> bindParam(":no_incluye_producto", $no_incluye_producto , PDO::PARAM_STR);
+            $stmt -> bindParam(":numero_piezas_producto", $numero_piezas_producto , PDO::PARAM_STR);
             $stmt -> bindParam(":stock_producto", $stock_producto , PDO::PARAM_STR);
-            $stmt -> bindParam(":minimo_stock_producto", $minimo_stock_producto , PDO::PARAM_STR);
-            $stmt -> bindParam(":ventas_producto", $ventas_producto , PDO::PARAM_STR);                                                    
+            $stmt -> bindParam(":precio_compra_producto", $precio_compra_producto , PDO::PARAM_STR);
+            $stmt -> bindParam(":precio_venta_producto", $precio_venta_producto , PDO::PARAM_STR);                                                    
+            $stmt -> bindParam(":utilidad_venta_producto", $utilidad_venta_producto , PDO::PARAM_STR);
+            $stmt -> bindParam(":precio_alquiler_estreno_producto", $precio_alquiler_estreno_producto , PDO::PARAM_STR);
+            $stmt -> bindParam(":utilidad_alquiler_estreno_producto", $utilidad_alquiler_estreno_producto , PDO::PARAM_STR);
+            $stmt -> bindParam(":precio_alquiler_simple_producto", $precio_alquiler_simple_producto , PDO::PARAM_STR);
+            $stmt -> bindParam(":utilidad_alquiler_simple_producto", $utilidad_alquiler_simple_producto , PDO::PARAM_STR);
+            $stmt -> bindParam(":talla_producto", $talla_producto , PDO::PARAM_STR);
+            $stmt -> bindParam(":marca_producto", $marca_producto , PDO::PARAM_STR);
+            $stmt -> bindParam(":modalidad", $modalidad , PDO::PARAM_STR);
+            $stmt -> bindParam(":estado_producto", $estado_producto , PDO::PARAM_STR);
             $stmt -> bindParam(":fecha_creacion_producto", $fecha , PDO::PARAM_STR);
             $stmt -> bindParam(":fecha_actualizacion_producto", $fecha , PDO::PARAM_STR);
+
         
             if($stmt -> execute()){
                 $resultado = "ok";

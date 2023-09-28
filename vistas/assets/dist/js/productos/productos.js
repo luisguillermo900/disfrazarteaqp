@@ -1,4 +1,7 @@
 var table;
+var accion;
+var operacion_stock = 0;
+
 $(document).ready(function () {
 
     table = $("#tbl_productos").DataTable({
@@ -228,5 +231,50 @@ $(document).ready(function () {
         $("#iptUtilidadReg").val("");
 
     })
+    /*===================================================================*/
+    //SOLICITUD AJAX PARA CARGAR SELECT DE CATEGORIAS
+    /*===================================================================*/
+    $.ajax({
+        url: "ajax/categorias.ajax.php",
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: 'json',
+        success: function(respuesta) {
 
+            var options = '<option selected value="">Seleccione una categoría</option>';
+
+            for (let index = 0; index < respuesta.length; index++) {
+                options = options + '<option value=' + respuesta[index][0] + '>' + respuesta[index][
+                    1
+                ] + '</option>';
+            }
+
+            $("#selCategoriaReg").append(options);
+        }
+    });
+    /*===================================================================*/
+    //SOLICITUD AJAX PARA CARGAR SELECT DE TALLAS
+    /*===================================================================*/
+    $.ajax({
+        url: "ajax/productos.ajax.php",
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: 'json',
+        data: {
+            'accion': 2 //20: LISTAR TALLAS
+        },
+        success: function(respuesta) {
+
+            var options = '<option selected value="">Seleccione una talla</option>';
+
+            for (let index = 0; index < respuesta.length; index++) {
+                options = options + '<option value=' + respuesta[index][0] + '</option>';
+                
+            }
+
+            $("#selectTalla").append(options);
+        }
+    });
 })

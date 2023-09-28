@@ -234,6 +234,19 @@
                                     </label>
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example"
                                         id="selCategoriaReg" required>
+                                        <option value="BEBÉ NIÑA">BEBÉ NIÑA</option>
+                                        <option value="BEBÉ NIÑO">BEBÉ NIÑO</option>
+                                        <option value="NIÑA">NIÑA</option>
+                                        <option value="NIÑO">NIÑO</option>
+                                        <option value="MUJER">MUJER</option>
+                                        <option value="HOMBRE">HOMBRE</option>
+                                        <option value="USA-CHINA: BEBÉ NIÑA">USA-CHINA: BEBÉ NIÑA</option>
+                                        <option value="Venta">USA-CHINA: BEBÉ NIÑO</option>
+                                        <option value="USA-CHINA: NIÑA">USA-CHINA: NIÑA</option>
+                                        <option value="USA-CHINA: NIÑO">USA-CHINA: NIÑO</option>
+                                        <option value="USA-CHINA: MUJER">USA-CHINA: MUJER</option>
+                                        <option value="USA-CHINA: HOMBRE">USA-CHINA: HOMBRE</option>
+
                                     </select>
                                     <div class="invalid-feedback">Seleccione la categoría</div>
                                 </div>
@@ -385,7 +398,8 @@
                                         <span class="small">Precio
                                             Alq. Estreno</span><span class="text-danger">*</span></label>
                                     <input type="number" min="0" class="form-control form-control-sm"
-                                        id="iptPrecioAlqEstrenoReg" placeholder="Precio Alq. Estreno" step="0.01" required>
+                                        id="iptPrecioAlqEstrenoReg" placeholder="Precio Alq. Estreno" step="0.01"
+                                        required>
                                     <div class="invalid-feedback">Debe ingresar el precio alquiler estreno</div>
                                 </div>
                             </div>
@@ -397,7 +411,8 @@
                                         <span class="small">Precio
                                             Alq. Normal</span><span class="text-danger">*</span></label>
                                     <input type="number" min="0" class="form-control form-control-sm"
-                                        id="iptPrecioAlqNormalReg" placeholder="Precio Alq. Normal" step="0.01" required>
+                                        id="iptPrecioAlqNormalReg" placeholder="Precio Alq. Normal" step="0.01"
+                                        required>
                                     <div class="invalid-feedback">Debe ingresar el precio alquiler normal</div>
                                 </div>
                             </div>

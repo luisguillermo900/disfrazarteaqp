@@ -202,15 +202,26 @@
                         <!-- Abrimos una fila -->
                         <div class="row">
 
+                            <div class="alert alert-info alert-styled-left text-blue-800 content-group"
+                                style="width: 100%; margin-left: 0; margin-right: 0;">
+                                <span class="text-semibold">Estimado usuario,</span>
+                                los campos remarcados con <span class="text-danger">*</span> son necesarios.
+
+                                <input type="hidden" id="txtID" name="txtID" class="form-control" value="">
+                                <input type="hidden" id="txtProceso" name="txtProceso" class="form-control"
+                                    value="Registro">
+                            </div>
+
+
                             <!-- Columna para registro del codigo de barras -->
                             <div class="col-12 col-lg-6">
                                 <div class="form-group mb-2">
                                     <label class="" for="iptCodigoReg"><i class="fas fa-barcode fs-6"></i>
-                                        <span class="small">Código de Barras</span><span class="text-danger">*</span>
+                                        <span class="small">Código</span><span class="text-danger">*</span>
                                     </label>
                                     <input type="text" class="form-control form-control-sm" id="iptCodigoReg"
-                                        name="iptCodigoReg" placeholder="Código de Barras" required>
-                                    <div class="invalid-feedback">Debe ingresar el codigo de barras</div>
+                                        name="iptCodigoReg" placeholder="Código" required>
+                                    <div class="invalid-feedback">Debe ingresar el codigo</div>
                                 </div>
                             </div>
 
@@ -224,6 +235,17 @@
                                         id="selCategoriaReg" required>
                                     </select>
                                     <div class="invalid-feedback">Seleccione la categoría</div>
+                                </div>
+                            </div>
+
+                            <!-- Columna para registro de la descripción del producto -->
+                            <div class="col-12">
+                                <div class="form-group mb-2">
+                                    <label class="" for="iptDescripcionReg"><i class="fas fa-file-signature fs-6"></i>
+                                        <span class="small">Nombre</span><span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control form-control-sm" id="iptDescripcionReg"
+                                        placeholder="Descripción" required>
+                                    <div class="invalid-feedback">Debe ingresar el nombre</div>
                                 </div>
                             </div>
 

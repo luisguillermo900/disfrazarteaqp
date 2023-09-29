@@ -234,7 +234,7 @@
                                     </label>
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example"
                                         id="selCategoriaReg" required>
-                                        
+
 
                                     </select>
                                     <div class="invalid-feedback">Seleccione la categoría</div>
@@ -248,7 +248,7 @@
                                         <span class="small">Descripción</span></label>
                                     <input type="text" class="form-control form-control-sm" id="iptDescripcionReg"
                                         placeholder="Descripción">
-                                    
+
                                 </div>
                             </div>
 
@@ -305,7 +305,7 @@
                                         <span class="small">No incluye</span></label>
                                     <input type="text" class="form-control form-control-sm" id="iptNoIncluyeReg"
                                         placeholder="Ejm: traje 1, traje 2">
-                                    
+
                                 </div>
                             </div>
 
@@ -317,7 +317,7 @@
                                         <span class="small">Marca</span></label>
                                     <input type="text" class="form-control form-control-sm" id="iptMarcaReg"
                                         placeholder="Ejm: Marca">
-                                    
+
                                 </div>
                             </div>
 
@@ -325,12 +325,12 @@
                             <div class="col-12  col-lg-4">
                                 <div class="form-group mb-2">
                                     <label class="" for="selEstadoReg"><i class="fas fa-dumpster fs-6"></i>
-                                        <span class="small">Estado</span><span class="text-danger">*</span>
+                                        <span class="small">Estado</span>
                                     </label>
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example"
-                                        id="selEstadoReg" required>
-                                        <option value="No disponible">No disponible</option>
-                                        <option value="Disponible">Disponible</option>
+                                        id="selEstadoReg" disabled>
+                                        <option value="No disponible">Disponible/No disponible</option>
+
 
                                     </select>
                                     <div class="invalid-feedback">Seleccione el estado</div>
@@ -409,8 +409,8 @@
                             <!-- Columna para registro de la Utilidad venta-->
                             <div class="col-12 col-lg-4">
                                 <div class="form-group mb-2">
-                                    <label class="" for="iptUtilidadVentaReg"><i class="fas fa-dollar-sign fs-6"></i> <span
-                                            class="small">Utilidad</span></label>
+                                    <label class="" for="iptUtilidadVentaReg"><i class="fas fa-dollar-sign fs-6"></i>
+                                        <span class="small">Utilidad</span></label>
                                     <input type="number" min="0" class="form-control form-control-sm"
                                         id="iptUtilidadVentaReg" placeholder="Utilidad venta" disabled>
                                 </div>
@@ -419,8 +419,9 @@
                             <!-- Columna para registro de la Utilidad precio alq. estreno-->
                             <div class="col-12 col-lg-4">
                                 <div class="form-group mb-2">
-                                    <label class="" for="iptUtilidadAlqEstrenoReg"><i class="fas fa-dollar-sign fs-6"></i> <span
-                                            class="small">Utilidad Alq. Estreno</span></label>
+                                    <label class="" for="iptUtilidadAlqEstrenoReg"><i
+                                            class="fas fa-dollar-sign fs-6"></i> <span class="small">Utilidad Alq.
+                                            Estreno</span></label>
                                     <input type="number" min="0" class="form-control form-control-sm"
                                         id="iptUtilidadAlqEstrenoReg" placeholder="Utilidad Alq. Estreno" disabled>
                                 </div>
@@ -429,8 +430,9 @@
                             <!-- Columna para registro de la Utilidad precio alq. normal-->
                             <div class="col-12 col-lg-4">
                                 <div class="form-group mb-2">
-                                    <label class="" for="iptUtilidadAlqNormalReg"><i class="fas fa-dollar-sign fs-6"></i> <span
-                                            class="small">Utilidad Alq. Normal</span></label>
+                                    <label class="" for="iptUtilidadAlqNormalReg"><i
+                                            class="fas fa-dollar-sign fs-6"></i> <span class="small">Utilidad Alq.
+                                            Normal</span></label>
                                     <input type="number" min="0" class="form-control form-control-sm"
                                         id="iptUtilidadAlqNormalReg" placeholder="Utilidad Alq. Normal" disabled>
                                 </div>
@@ -462,4 +464,62 @@
 
     </div>
     <!-- /. End Ventana Modal para ingreso de Productos -->
+
+    <!-- Modal para ver más información -->
+
+    <div class="modal fade" id="mdlGestionarStock" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header bg-gray py-2">
+                    <h6 class="modal-title" id="titulo_modal_stock">Adicionar Stock</h6>
+                    <button type="button" class="btn-close text-white fs-6" data-bs-dismiss="modal" aria-label="Close"
+                        id="btnCerrarModalStock">
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="row">
+
+                        <div class="col-12 mb-3">
+                            <label for="" class="form-label text-primary d-block">Codigo: <span
+                                    id="stock_codigoProducto" class="text-secondary"></span></label>
+                            <label for="" class="form-label text-primary d-block">Producto: <span id="stock_Producto"
+                                    class="text-secondary"></span></label>
+                            <label for="" class="form-label text-primary d-block">Stock: <span id="stock_Stock"
+                                    class="text-secondary"></span></label>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-group mb-2">
+                                <label class="" for="iptStockSumar">
+                                    <i class="fas fa-plus-circle fs-6"></i> <span class="small"
+                                        id="titulo_modal_label">Agregar al Stock</span>
+                                </label>
+                                <input type="number" min="0" class="form-control form-control-sm" id="iptStockSumar"
+                                    placeholder="Ingrese cantidad a agregar al Stock">
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="" class="form-label text-danger">Nuevo Stock: <span id="stock_NuevoStock"
+                                    class="text-secondary"></span></label><br>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"
+                        id="btnCancelarRegistroStock">Cancelar</button>
+                    <button type="button" class="btn btn-primary btn-sm" id="btnGuardarNuevorStock">Guardar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+     <!-- /. End ver más información -->
+
     <script src="vistas/assets/dist/js/productos/productos.js"></script>

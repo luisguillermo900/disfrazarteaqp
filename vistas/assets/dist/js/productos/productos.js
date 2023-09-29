@@ -93,7 +93,7 @@ $(document).ready(function () {
             orderable: false, //No coloca la opción de ordenar
             render: function (data, type, full, meta) { //para colocar las opciones
                 return "<center>" +
-                    "<span class='btnEditarProducto text-primary px-1' style='cursor:pointer;'>" +
+                    "<span class='btnAumentarStock text-primary px-1' style='cursor:pointer;'>" +
                     "<i class='fas fa-plus fs-5'></i>" +
                     "<span class='btnEditarProducto text-primary px-1' style='cursor:pointer;'>" +
                     "<i class='fas fa-pencil-alt fs-5'></i>" +
@@ -339,7 +339,7 @@ $(document).ready(function () {
 
                         if (accion == 2) {
                             var titulo_msj = "El producto se registró correctamente"
-                           
+
                         }
 
                         if (accion == 4) {
@@ -362,7 +362,7 @@ $(document).ready(function () {
                                         icon: 'success',
                                         title: 'El producto se registró correctamente'
                                     });
-                                    
+
                                     table.ajax.reload();
 
                                     $("#mdlGestionarProducto").modal('hide');
@@ -404,5 +404,28 @@ $(document).ready(function () {
 
         });
     });
+    /* ======================================================================================
+    EVENTO AL DAR CLICK EN EL BOTON AUMENTAR STOCK
+    =========================================================================================*/
+    $('#tbl_productos tbody').on('click', '.btnAumentarStock', function () {
+
+        operacion_stock = 1; //sumar stock
+        accion = 3;
+
+        $("#mdlGestionarStock").modal('show'); //MOSTRAR VENTANA MODAL
+
+        $("#titulo_modal_stock").html('Aumentar Stock'); // CAMBIAR EL TITULO DE LA VENTANA MODAL
+        $("#titulo_modal_label").html('Agregar al Stock'); // CAMBIAR EL TEXTO DEL LABEL DEL INPUT PARA INGRESO DE STOCK
+        $("#iptStockSumar").attr("placeholder", "Ingrese cantidad a agregar al Stock"); //CAMBIAR EL PLACEHOLDER 
+
+        var data = table.row($(this).parents('tr')).data(); //OBTENER EL ARRAY CON LOS DATOS DE CADA COLUMNA DEL DATATABLE
+
+        $("#stock_codigoProducto").html(data[2])	//CODIGO DEL PRODUCTO DEL DATATABLE
+        $("#stock_Producto").html(data[5]) 			//NOMBRE DEL PRODUCTO DEL DATATABLE
+        $("#stock_Stock").html(data[9])				//STOCK ACTUAL DEL PRODUCTO DEL DATATABLE
+
+        $("#stock_NuevoStock").html(parseFloat($("#stock_Stock").html()));
+
+    })
 
 })

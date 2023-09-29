@@ -247,8 +247,8 @@
                                     <label class="" for="iptDescripcionReg"><i class="fas fa-file-signature fs-6"></i>
                                         <span class="small">Descripción</span></label>
                                     <input type="text" class="form-control form-control-sm" id="iptDescripcionReg"
-                                        placeholder="Descripción" required>
-                                    <div class="invalid-feedback">Debe ingresar la descripción</div>
+                                        placeholder="Descripción">
+                                    
                                 </div>
                             </div>
 
@@ -304,8 +304,8 @@
                                     <label class="" for="iptNoIncluyeReg"><i class="fas fa-file-signature fs-6"></i>
                                         <span class="small">No incluye</span></label>
                                     <input type="text" class="form-control form-control-sm" id="iptNoIncluyeReg"
-                                        placeholder="Ejm: traje 1, traje 2" required>
-                                    <div class="invalid-feedback">Debe ingresar la sección no incluye</div>
+                                        placeholder="Ejm: traje 1, traje 2">
+                                    
                                 </div>
                             </div>
 
@@ -316,8 +316,8 @@
                                     <label class="" for="iptMarcaReg"><i class="fas fa-file-signature fs-6"></i>
                                         <span class="small">Marca</span></label>
                                     <input type="text" class="form-control form-control-sm" id="iptMarcaReg"
-                                        placeholder="Ejm: Marca" required>
-                                    <div class="invalid-feedback">Debe ingresar la marca</div>
+                                        placeholder="Ejm: Marca">
+                                    
                                 </div>
                             </div>
 
@@ -329,8 +329,8 @@
                                     </label>
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example"
                                         id="selEstadoReg" required>
-                                        <option value="no_disponible">No disponible</option>
-                                        <option value="disponible">Disponible</option>
+                                        <option value="No disponible">No disponible</option>
+                                        <option value="Disponible">Disponible</option>
 
                                     </select>
                                     <div class="invalid-feedback">Seleccione el estado</div>

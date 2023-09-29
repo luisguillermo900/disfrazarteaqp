@@ -72,6 +72,7 @@ if (isset($_POST['accion']) && $_POST['accion'] == 1) { // parametro para listar
 
     $productos = new ajaxProductos();
     $productos->ajaxListarProductos();
+    
 } else if (isset($_POST['accion']) && $_POST['accion'] == 2) { // parametro para registrar productos
 
     $registrarProducto = new AjaxProductos();

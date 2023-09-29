@@ -51,9 +51,12 @@ class ProductosModelo{
 
             $fecha = date('Y-m-d');
 
-
-            $stmt = Conexion::conectar()->prepare("SET @codigo_disponible = obtener_y_marcar_codigo_disponible(:id_categoria_producto);
+                
+            $stmt = Conexion::conectar()->prepare("
+            SET @genero_disponible = (SELECT categorias.genero_categoria FROM categorias WHERE categorias.id_categoria = :id_categoria_producto);
+            SET @codigo_disponible = obtener_y_marcar_codigo_disponible(@genero_disponible);
                                                 INSERT INTO PRODUCTOS(
+                                                                        codigo_producto,
                                                                         id_categoria_producto, 
                                                                         nombre_producto,
                                                                         incluye_producto,
@@ -74,6 +77,7 @@ class ProductosModelo{
                                                                         fecha_creacion_producto,
                                                                         fecha_actualizacion_producto) 
                                                 VALUES ( 
+                                                        @codigo_disponible,
                                                         :id_categoria_producto, 
                                                         :nombre_producto, 
                                                         :incluye_producto, 
@@ -84,7 +88,7 @@ class ProductosModelo{
                                                         :precio_venta_producto,
                                                         :utilidad_venta_producto,
                                                         :precio_alquiler_estreno_producto,
-                                                        :utilidad_alquiler_estreno_producto,a
+                                                        :utilidad_alquiler_estreno_producto,
                                                         :precio_alquiler_simple_producto,
                                                         :utilidad_alquiler_simple_producto,
                                                         :talla_producto,

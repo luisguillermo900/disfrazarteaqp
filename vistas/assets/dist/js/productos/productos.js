@@ -256,7 +256,7 @@ $(document).ready(function () {
     /*===================================================================*/
     //SOLICITUD AJAX PARA CARGAR SELECT DE TALLAS
     /*===================================================================*/
-    $.ajax({
+    /*$.ajax({
         url: "ajax/productos.ajax.php",
         cache: false,
         contentType: false,
@@ -276,7 +276,7 @@ $(document).ready(function () {
 
             $("#selectTalla").append(options);
         }
-    });
+    });/*
     /*===================================================================*/
     //EVENTO QUE GUARDA LOS DATOS DEL PRODUCTO, PREVIA VALIDACION DEL INGRESO DE LOS DATOS OBLIGATORIOS
     /*===================================================================*/
@@ -315,7 +315,7 @@ $(document).ready(function () {
                         datos.append("stock_producto", $("#iptNumStockReg").val()); //stock_producto
                         datos.append("precio_compra_producto", $("#iptPrecioCompraReg").val()); //minimo_stock_producto  
                         datos.append("precio_venta_producto", $("#iptPrecioVentaReg").val()); //ventas_producto
-                        
+
                         datos.append("utilidad_venta_producto", $("#iptUtilidadVentaReg").val()); //ventas_producto
                         datos.append("precio_alquiler_estreno_producto", $("#iptPrecioAlqEstrenoReg").val()); //ventas_producto
                         datos.append("utilidad_alquiler_estreno_producto", $("#iptUtilidadAlqEstrenoReg").val()); //ventas_producto

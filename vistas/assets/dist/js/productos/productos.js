@@ -2,6 +2,16 @@ var table;
 var accion;
 var operacion_stock = 0;
 
+/*===================================================================*/
+//INICIALIZAMOS EL MENSAJE DE TIPO TOAST (EMERGENTE EN LA PARTE SUPERIOR)
+/*===================================================================*/
+var Toast = Swal.mixin({
+    toast: true,
+    position: 'top',
+    showConfirmButton: false,
+    timer: 6000
+});
+
 $(document).ready(function () {
 
     table = $("#tbl_productos").DataTable({
@@ -292,13 +302,13 @@ $(document).ready(function () {
                 console.log("Listo para registrar el producto")
 
                 Swal.fire({
-                    title: 'Está seguro de registrar el producto?',
+                    title: '¿Está seguro de registrar el producto?',
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Si, deseo registrarlo!',
-                    cancelButtonText: 'Cancelar',
+                    confirmButtonText: '¡Sí, deseo registrarlo!',
+                    cancelButtonText: '¡Cancelar!',
                 }).then((result) => {
 
                     if (result.isConfirmed) {
@@ -329,6 +339,7 @@ $(document).ready(function () {
 
                         if (accion == 2) {
                             var titulo_msj = "El producto se registró correctamente"
+                           
                         }
 
                         if (accion == 4) {
@@ -349,21 +360,29 @@ $(document).ready(function () {
 
                                     Toast.fire({
                                         icon: 'success',
-                                        title: titulo_msj
+                                        title: 'El producto se registró correctamente'
                                     });
-
+                                    
                                     table.ajax.reload();
 
                                     $("#mdlGestionarProducto").modal('hide');
 
-                                    $("#iptCodigoReg").val("");
-                                    $("#selCategoriaReg").val(0);
+                                    $("#iptNombreReg").val("");
+                                    $("#selCategoriaReg").val("");
                                     $("#iptDescripcionReg").val("");
+                                    $("#iptNumPiezasReg").val("");
+                                    $("#iptNumStockReg").val("");
+                                    $("#iptTallaReg").val("");
+                                    $("#iptIncluyeReg").val("");
+                                    $("#iptNoIncluyeReg").val("");
+                                    $("#iptMarcaReg").val("");
+                                    $("#selEstadoReg").val("");
+                                    $("#selectModalidades").val("");
                                     $("#iptPrecioCompraReg").val("");
                                     $("#iptPrecioVentaReg").val("");
+                                    $("#iptPrecioAlqEstrenoReg").val("");
+                                    $("#iptPrecioAlqNormalReg").val("");
                                     $("#iptUtilidadReg").val("");
-                                    $("#iptStockReg").val("");
-                                    $("#iptMinimoStockReg").val("");
 
                                 } else {
                                     Toast.fire({
@@ -378,7 +397,7 @@ $(document).ready(function () {
                     }
                 })
             } else {
-                console.log("No paso la validacion")
+                console.log("No pasó la validación")
             }
 
             form.classList.add('was-validated');

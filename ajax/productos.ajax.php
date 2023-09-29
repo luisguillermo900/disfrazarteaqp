@@ -72,7 +72,7 @@ if (isset($_POST['accion']) && $_POST['accion'] == 1) { // parametro para listar
 
     $productos = new ajaxProductos();
     $productos->ajaxListarProductos();
-    
+
 } else if (isset($_POST['accion']) && $_POST['accion'] == 2) { // parametro para registrar productos
 
     $registrarProducto = new AjaxProductos();
@@ -98,6 +98,7 @@ if (isset($_POST['accion']) && $_POST['accion'] == 1) { // parametro para listar
     $registrarProducto->estado_producto = $_POST["estado_producto"];
 
     $registrarProducto->ajaxRegistrarProducto();
+    
 } else if (isset($_POST['accion']) && $_POST['accion'] == 3) { // parametro para listar tallas
     $productosTallas = new ajaxProductos();
     $productosTallas->ajaxListarTallasProductos();

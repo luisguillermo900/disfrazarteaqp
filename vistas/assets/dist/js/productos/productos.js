@@ -202,7 +202,7 @@ $(document).ready(function () {
     // LIMPIAR INPUTS DE MODAL CUANDO SE DA EL BOTÓN CANCELAR
     //-------------------------
 
-    $("#btnCancelarRegistro, #btnCerrarModal").on('click', function() {
+    $("#btnCancelarRegistro, #btnCerrarModal").on('click', function () {
         //CORREGIR
         $("#validate_codigo").css("display", "none");
         $("#validate_categoria").css("display", "none");
@@ -240,7 +240,7 @@ $(document).ready(function () {
         contentType: false,
         processData: false,
         dataType: 'json',
-        success: function(respuesta) {
+        success: function (respuesta) {
 
             var options = '<option selected value="">Seleccione una categoría</option>';
 
@@ -263,18 +263,127 @@ $(document).ready(function () {
         processData: false,
         dataType: 'json',
         data: {
-            'accion': 2 //20: LISTAR TALLAS
+            'accion': 3 //20: LISTAR TALLAS
         },
-        success: function(respuesta) {
+        success: function (respuesta) {
 
             var options = '<option selected value="">Seleccione una talla</option>';
 
             for (let index = 0; index < respuesta.length; index++) {
-                options = options + '<option value=' + respuesta[index][0] + '</option>';
-                
+                options = options + '<option value=' + respuesta[index] + '</option>';
+
             }
 
             $("#selectTalla").append(options);
         }
     });
+    /*===================================================================*/
+    //EVENTO QUE GUARDA LOS DATOS DEL PRODUCTO, PREVIA VALIDACION DEL INGRESO DE LOS DATOS OBLIGATORIOS
+    /*===================================================================*/
+    document.getElementById("btnGuardarProducto").addEventListener("click", function () {
+
+        // Get the forms we want to add validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function (form) {
+
+            if (form.checkValidity() === true) {
+
+                console.log("Listo para registrar el producto")
+
+                Swal.fire({
+                    title: 'Está seguro de registrar el producto?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si, deseo registrarlo!',
+                    cancelButtonText: 'Cancelar',
+                }).then((result) => {
+
+                    if (result.isConfirmed) {
+
+                        var datos = new FormData();
+
+                        datos.append("accion", accion);
+                        //datos.append("codigo_producto", $("#iptCodigoReg").val()); //codigo_producto
+                        datos.append("id_categoria_producto", $("#selCategoriaReg").val()); //id_categoria_producto
+                        datos.append("nombre_producto", $("#iptNombreReg").val()); //descripcion_producto
+                        datos.append("incluye_producto", $("#iptIncluyeReg").val()); //precio_compra_producto
+                        datos.append("no_incluye_producto", $("#iptNoIncluyeReg").val()); //precio_venta_producto
+                        datos.append("numero_piezas_producto", $("#iptNumPiezasReg").val()); //utilidad
+                        datos.append("stock_producto", $("#iptNumStockReg").val()); //stock_producto
+                        datos.append("precio_compra_producto", $("#iptPrecioCompraReg").val()); //minimo_stock_producto  
+                        datos.append("precio_venta_producto", $("#iptPrecioVentaReg").val()); //ventas_producto
+                        
+                        datos.append("utilidad_venta_producto", $("#iptUtilidadVentaReg").val()); //ventas_producto
+                        datos.append("precio_alquiler_estreno_producto", $("#iptPrecioAlqEstrenoReg").val()); //ventas_producto
+                        datos.append("utilidad_alquiler_estreno_producto", $("#iptUtilidadAlqEstrenoReg").val()); //ventas_producto
+                        datos.append("precio_alquiler_simple_producto", $("#iptPrecioAlqNormalReg").val()); //ventas_producto
+                        datos.append("utilidad_alquiler_simple_producto", $("#iptUtilidadAlqNormalReg").val()); //ventas_producto
+                        datos.append("talla_producto", $("#iptTallaReg").val()); //ventas_producto
+                        datos.append("marca_producto", $("#iptMarcaReg").val()); //ventas_producto
+                        datos.append("modalidad", $("#selectModalidades").val()); //ventas_producto
+                        datos.append("estado_producto", $("#selEstadoReg").val()); //ventas_producto
+
+
+                        if (accion == 2) {
+                            var titulo_msj = "El producto se registró correctamente"
+                        }
+
+                        if (accion == 4) {
+                            var titulo_msj = "El producto se actualizó correctamente"
+                        }
+
+                        $.ajax({
+                            url: "ajax/productos.ajax.php",
+                            method: "POST",
+                            data: datos,
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            dataType: 'json',
+                            success: function (respuesta) {
+
+                                if (respuesta == "ok") {
+
+                                    Toast.fire({
+                                        icon: 'success',
+                                        title: titulo_msj
+                                    });
+
+                                    table.ajax.reload();
+
+                                    $("#mdlGestionarProducto").modal('hide');
+
+                                    $("#iptCodigoReg").val("");
+                                    $("#selCategoriaReg").val(0);
+                                    $("#iptDescripcionReg").val("");
+                                    $("#iptPrecioCompraReg").val("");
+                                    $("#iptPrecioVentaReg").val("");
+                                    $("#iptUtilidadReg").val("");
+                                    $("#iptStockReg").val("");
+                                    $("#iptMinimoStockReg").val("");
+
+                                } else {
+                                    Toast.fire({
+                                        icon: 'error',
+                                        title: 'El producto no se pudo registrar'
+                                    });
+                                }
+
+                            }
+                        });
+
+                    }
+                })
+            } else {
+                console.log("No paso la validacion")
+            }
+
+            form.classList.add('was-validated');
+
+        });
+    });
+
 })

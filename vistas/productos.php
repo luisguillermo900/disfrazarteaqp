@@ -252,7 +252,7 @@
                                 </div>
                             </div>
 
-                            <!-- Columna para registro de número de trajes según incluye -->
+                            <!-- Columna para registro de número de piezas -->
                             <div class="col-12  col-lg-4">
                                 <div class="form-group mb-2">
                                     <label class="" for="iptNumPiezasReg"><i class="fas fa-plus-circle fs-6"></i>

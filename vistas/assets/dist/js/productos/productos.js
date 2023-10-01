@@ -94,6 +94,23 @@ $(document).ready(function () {
             visible: false
         },
         {
+            targets: 19,
+            visible: false
+        },
+        {
+            targets: 20,
+            visible: false
+        },
+        {
+            targets: 21,
+            visible: false
+        },
+        {
+            targets: 22,
+            visible: false
+        },
+        
+        {
             targets: 13,
             orderable: false, //No coloca la opción de ordenar
             render: function (data, type, full, meta) { //para colocar las opciones
@@ -243,9 +260,13 @@ $(document).ready(function () {
         $("#selectModalidades").val("");
         $("#iptPrecioCompraReg").val("");
         $("#iptPrecioVentaReg").val("");
+        $("#iptUtilidadVentaReg").val("");
+
         $("#iptPrecioAlqEstrenoReg").val("");
+        $("#iptUtilidadAlqEstrenoReg").val("");
+        
         $("#iptPrecioAlqNormalReg").val("");
-        $("#iptUtilidadReg").val("");
+        $("#iptUtilidadAlqNormalReg").val("");
 
     })
     /*===================================================================*/
@@ -326,6 +347,7 @@ $(document).ready(function () {
                         //datos.append("codigo_producto", $("#iptCodigoReg").val()); //codigo_producto
                         datos.append("id_categoria_producto", $("#selCategoriaReg").val()); //id_categoria_producto
                         datos.append("nombre_producto", $("#iptNombreReg").val()); //descripcion_producto
+                        datos.append("descripcion_producto", $("#iptDescripcionReg").val()); //descripcion_producto
                         datos.append("incluye_producto", $("#iptIncluyeReg").val()); //precio_compra_producto
                         datos.append("no_incluye_producto", $("#iptNoIncluyeReg").val()); //precio_venta_producto
                         datos.append("numero_piezas_producto", $("#iptNumPiezasReg").val()); //utilidad
@@ -367,7 +389,7 @@ $(document).ready(function () {
 
                                     Toast.fire({
                                         icon: 'success',
-                                        title: 'El producto se registró correctamente'
+                                        title: titulo_msj
                                     });
 
                                     table.ajax.reload();
@@ -387,9 +409,13 @@ $(document).ready(function () {
                                     $("#selectModalidades").val("");
                                     $("#iptPrecioCompraReg").val("");
                                     $("#iptPrecioVentaReg").val("");
+                                    $("#iptUtilidadVentaReg").val("");
+
                                     $("#iptPrecioAlqEstrenoReg").val("");
+                                    $("#iptUtilidadAlqEstrenoReg").val("");
+                                    
                                     $("#iptPrecioAlqNormalReg").val("");
-                                    $("#iptUtilidadReg").val("");
+                                    $("#iptUtilidadAlqNormalReg").val("");
                                     //MODAL PARA MOSTRAR EL CÓDIGO
                                     //$("#mdlGestionarStock").modal('show'); //MOSTRAR VENTANA MODAL
                                     //$("#titulo_modal_info").html('¡CÓDIGO NUEVO!'); // CAMBIAR EL TITULO DE LA VENTANA MODAL
@@ -399,7 +425,7 @@ $(document).ready(function () {
                                 } else {
                                     Toast.fire({
                                         icon: 'error',
-                                        title: 'El producto no se pudo registrar'
+                                        title: titulo_msj
                                     });
                                 }
 
@@ -425,30 +451,16 @@ $(document).ready(function () {
         $("#titulo_modal_info").html('Información Adicional'); // CAMBIAR EL TITULO DE LA VENTANA MODAL
 
         var rowData = table.row($(this).parents('tr')).data();
-        //console.log("🚀 ~ file: productos.php ~ line 751 ~ $ ~ data", rowData)
-        // Verificar si rowData es válido antes de acceder a sus propiedades
-        //if (rowData && rowData.length >= 19) {
-            //var rowData = table.row( this ).data();
-            $("#codigoProductoInfo").html(rowData[1]); // CODIGO DEL PRODUCTO DEL DATATABLE
+        
+            $("#codigoProductoInfo").html(rowData[1]); 
             
-            $("#nombreProductoInfo").html(rowData[3]); // NOMBRE DEL PRODUCTO DEL DATATABLE
-            $("#preCompraProductoInfo").html(rowData[6]); // STOCK ACTUAL DEL PRODUCTO DEL DATATABLE
+            $("#nombreProductoInfo").html(rowData[3]); 
+            $("#preCompraProductoInfo").html(rowData[6]); 
             $("#categoriaProductoInfo").html(rowData[2]);
             $("#descripcionProductoInfo").html(rowData[14]);
             $("#incluyeProductoInfo").html(rowData[15]);
             $("#numPiezasProductoInfo").html(rowData[16]);
             $("#marcaproductoInfo").html(rowData[18]);
-        //} else {
-            // Manejar el caso en que rowData no sea válido
-            //console.log("Los datos de la fila no son válidos.",rowData.length);
-            //console.log("rowData:", rowData);
-            //console.log("🚀 ~ file: productos.php ~ line 751 ~ $ ~ data", rowData)
-        //}
-        /*console.log(this); // Verifica qué es "this"
-        console.log($(this).parents('tr')); // Verifica si encuentra la fila
-        console.log(table.row($(this).parents('tr'))); // Verifica si table.row() devuelve algo
-        console.log(table.row($(this).parents('tr')).data()); // Verifica si .data() devuelve algo*/
-
     });
 
     /* ======================================================================================
@@ -464,13 +476,26 @@ $(document).ready(function () {
         console.log("🚀 ~ file: productos.php ~ line 751 ~ $ ~ data", data)
 
         $("#iptCodigoReg").val(data["codigo_producto"]);
-        $("#selCategoriaReg").val(data[3]);
-        $("#iptDescripcionReg").val(data[5]);
-        $("#iptPrecioCompraReg").val(data[6]);
-        $("#iptPrecioVentaReg").val(data[7]);
-        $("#iptUtilidadReg").val(data[8]);
-        $("#iptStockReg").val(data[9].replace(' Und(s)', '').replace(' Kg(s)', ''));
-        $("#iptMinimoStockReg").val(data[10].replace(' Und(s)', '').replace(' Kg(s)', ''));
+        $("#iptNombreReg").val(data["nombre_producto"]);
+        $("#selCategoriaReg").val(data["nombre_categoria"]);
+        $("#iptDescripcionReg").val(data["descripcion_producto"]);
+        $("#iptNumPiezasReg").val(data["numero_piezas_producto"]);
+        $("#iptNumStockReg").val(data["stock_producto"]);
+        $("#iptTallaReg").val(data["talla_producto"]);
+        $("#iptIncluyeReg").val(data["incluye_producto"]);
+        $("#iptNoIncluyeReg").val(data["no_incluye_producto"]);
+        $("#iptMarcaReg").val(data["marca_producto"]);
+        $("#selEstadoReg").val(data["estado_producto"]);
+        $("#selectModalidades").val(data["modalidad"]);
+        $("#iptPrecioCompraReg").val(data["precio_compra_producto"]);
+        $("#iptPrecioVentaReg").val(data["precio_venta_producto"]);
+        $("#iptUtilidadVentaReg").val(data["utilidad_venta_producto"]);
+
+        $("#iptPrecioAlqEstrenoReg").val(data["precio_alquiler_estreno_producto"]);
+        $("#iptUtilidadAlqEstrenoReg").val(data["utilidad_alquiler_estreno_producto"]);
+        
+        $("#iptPrecioAlqNormalReg").val(data["precio_alquiler_simple_producto"]);
+        $("#iptUtilidadAlqNormalReg").val(data["utilidad_alquiler_simple_producto"]);
 
     })
 

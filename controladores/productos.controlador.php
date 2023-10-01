@@ -22,6 +22,7 @@ class ProductosControlador
     static public function ctrRegistrarProducto(
         $id_categoria_producto,
         $nombre_producto,
+        $descripcion_producto,
         $incluye_producto,
         $no_incluye_producto,
         $numero_piezas_producto,
@@ -43,6 +44,7 @@ class ProductosControlador
            
             $id_categoria_producto,
             $nombre_producto,
+            $descripcion_producto,
             $incluye_producto,
             $no_incluye_producto,
             $numero_piezas_producto,
@@ -61,5 +63,49 @@ class ProductosControlador
         );
 
         return $registroProducto;
+    }
+
+    static public function ctrActualizarProducto(
+        $codigo_producto,
+        $id_categoria_producto,
+        $nombre_producto,
+        $descripcion_producto,
+        $incluye_producto,
+        $no_incluye_producto,
+        $numero_piezas_producto,
+        $stock_producto,
+        $precio_compra_producto,
+        $precio_venta_producto,
+        $utilidad_venta_producto,
+        $precio_alquiler_estreno_producto,
+        $utilidad_alquiler_estreno_producto,
+        $precio_alquiler_simple_producto,
+        $utilidad_alquiler_simple_producto,
+        $talla_producto,
+        $marca_producto,
+        $modalidad
+    ){ //CONTROLADOR ACTUALIZAR PRODUCTO
+        
+        $actualizarProducto = ProductosModelo::mdlActualizarInformacion(
+            $codigo_producto,
+            $id_categoria_producto,
+            $nombre_producto,
+            $descripcion_producto,
+            $incluye_producto,
+            $no_incluye_producto,
+            $numero_piezas_producto,
+            $stock_producto,
+            $precio_compra_producto,
+            $precio_venta_producto,
+            $utilidad_venta_producto,
+            $precio_alquiler_estreno_producto,
+            $utilidad_alquiler_estreno_producto,
+            $precio_alquiler_simple_producto,
+            $utilidad_alquiler_simple_producto,
+            $talla_producto,
+            $marca_producto,
+            $modalidad
+        );
+        return $actualizarProducto;
     }
 }

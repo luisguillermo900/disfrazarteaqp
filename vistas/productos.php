@@ -410,7 +410,7 @@
                             <div class="col-12 col-lg-4">
                                 <div class="form-group mb-2">
                                     <label class="" for="iptUtilidadVentaReg"><i class="fas fa-dollar-sign fs-6"></i>
-                                        <span class="small">Utilidad</span></label>
+                                        <span class="small">Utilidad Venta</span></label>
                                     <input type="number" min="0" class="form-control form-control-sm"
                                         id="iptUtilidadVentaReg" placeholder="Utilidad venta" disabled>
                                 </div>

@@ -56,8 +56,13 @@ $(document).ready(function () {
             className: 'control'
         },
         {
-            targets: 10,
+            targets: 6,
             orderable: false, //No coloca la opción de ordenar
+            visible: false
+        },
+        {
+            targets: 10,
+            orderable: false //No coloca la opción de ordenar
         },
         {
             targets: 11, // Columna de estado
@@ -93,10 +98,12 @@ $(document).ready(function () {
             orderable: false, //No coloca la opción de ordenar
             render: function (data, type, full, meta) { //para colocar las opciones
                 return "<center>" +
-                    "<span class='btnAumentarStock text-primary px-1' style='cursor:pointer;'>" +
-                    "<i class='fas fa-plus fs-5'></i>" +
+                    "<span class='btnMasInformacion text-success px-1' style='cursor:pointer;'>" +
+                    "<i class='fas fa-plus-circle fs-5'></i>" +
+                    "</span>" +
                     "<span class='btnEditarProducto text-primary px-1' style='cursor:pointer;'>" +
                     "<i class='fas fa-pencil-alt fs-5'></i>" +
+                    "</span>" +
                     "<span class='btnEliminarProducto text-danger px-1' style='cursor:pointer;'>" +
                     "<i class='fas fa-trash fs-5'></i>" +
                     "</span>" +
@@ -383,7 +390,12 @@ $(document).ready(function () {
                                     $("#iptPrecioAlqEstrenoReg").val("");
                                     $("#iptPrecioAlqNormalReg").val("");
                                     $("#iptUtilidadReg").val("");
+                                    //MODAL PARA MOSTRAR EL CÓDIGO
+                                    //$("#mdlGestionarStock").modal('show'); //MOSTRAR VENTANA MODAL
+                                    //$("#titulo_modal_info").html('¡CÓDIGO NUEVO!'); // CAMBIAR EL TITULO DE LA VENTANA MODAL
 
+                                    //var data = table.row($(this).parents('tr')).data(); //OBTENER EL ARRAY CON LOS DATOS DE CADA COLUMNA DEL DATATABLE
+                                    //$("#codigoProductoInfo").html(data[1])	//CODIGO DEL PRODUCTO DEL DATATABLEsssss
                                 } else {
                                     Toast.fire({
                                         icon: 'error',
@@ -405,27 +417,122 @@ $(document).ready(function () {
         });
     });
     /* ======================================================================================
-    EVENTO AL DAR CLICK EN EL BOTON AUMENTAR STOCK
+    EVENTO AL DAR CLICK EN EL BOTON VER MÁS INFORMACIÓN
     =========================================================================================*/
-    $('#tbl_productos tbody').on('click', '.btnAumentarStock', function () {
+    $('#tbl_productos tbody').on('click', '.btnMasInformacion', function () {
+        //accion = 1;
+        $("#mdlGestionarStock").modal('show'); // MOSTRAR VENTANA MODAL
+        $("#titulo_modal_info").html('Información Adicional'); // CAMBIAR EL TITULO DE LA VENTANA MODAL
 
-        operacion_stock = 1; //sumar stock
-        accion = 3;
+        var rowData = table.row($(this).parents('tr')).data();
+        //console.log("🚀 ~ file: productos.php ~ line 751 ~ $ ~ data", rowData)
+        // Verificar si rowData es válido antes de acceder a sus propiedades
+        //if (rowData && rowData.length >= 19) {
+            //var rowData = table.row( this ).data();
+            $("#codigoProductoInfo").html(rowData[1]); // CODIGO DEL PRODUCTO DEL DATATABLE
+            
+            $("#nombreProductoInfo").html(rowData[3]); // NOMBRE DEL PRODUCTO DEL DATATABLE
+            $("#preCompraProductoInfo").html(rowData[6]); // STOCK ACTUAL DEL PRODUCTO DEL DATATABLE
+            $("#categoriaProductoInfo").html(rowData[2]);
+            $("#descripcionProductoInfo").html(rowData[14]);
+            $("#incluyeProductoInfo").html(rowData[15]);
+            $("#numPiezasProductoInfo").html(rowData[16]);
+            $("#marcaproductoInfo").html(rowData[18]);
+        //} else {
+            // Manejar el caso en que rowData no sea válido
+            //console.log("Los datos de la fila no son válidos.",rowData.length);
+            //console.log("rowData:", rowData);
+            //console.log("🚀 ~ file: productos.php ~ line 751 ~ $ ~ data", rowData)
+        //}
+        /*console.log(this); // Verifica qué es "this"
+        console.log($(this).parents('tr')); // Verifica si encuentra la fila
+        console.log(table.row($(this).parents('tr'))); // Verifica si table.row() devuelve algo
+        console.log(table.row($(this).parents('tr')).data()); // Verifica si .data() devuelve algo*/
 
-        $("#mdlGestionarStock").modal('show'); //MOSTRAR VENTANA MODAL
+    });
 
-        $("#titulo_modal_stock").html('Aumentar Stock'); // CAMBIAR EL TITULO DE LA VENTANA MODAL
-        $("#titulo_modal_label").html('Agregar al Stock'); // CAMBIAR EL TEXTO DEL LABEL DEL INPUT PARA INGRESO DE STOCK
-        $("#iptStockSumar").attr("placeholder", "Ingrese cantidad a agregar al Stock"); //CAMBIAR EL PLACEHOLDER 
+    /* ======================================================================================
+    EVENTO AL DAR CLICK EN EL BOTON EDITAR PRODUCTO
+    =========================================================================================*/
+    $('#tbl_productos tbody').on('click', '.btnEditarProducto', function() {
 
-        var data = table.row($(this).parents('tr')).data(); //OBTENER EL ARRAY CON LOS DATOS DE CADA COLUMNA DEL DATATABLE
+        accion = 4; //seteamos la accion para editar
 
-        $("#stock_codigoProducto").html(data[2])	//CODIGO DEL PRODUCTO DEL DATATABLE
-        $("#stock_Producto").html(data[5]) 			//NOMBRE DEL PRODUCTO DEL DATATABLE
-        $("#stock_Stock").html(data[9])				//STOCK ACTUAL DEL PRODUCTO DEL DATATABLE
+        $("#mdlGestionarProducto").modal('show');
 
-        $("#stock_NuevoStock").html(parseFloat($("#stock_Stock").html()));
+        var data = table.row($(this).parents('tr')).data();
+        console.log("🚀 ~ file: productos.php ~ line 751 ~ $ ~ data", data)
 
+        $("#iptCodigoReg").val(data["codigo_producto"]);
+        $("#selCategoriaReg").val(data[3]);
+        $("#iptDescripcionReg").val(data[5]);
+        $("#iptPrecioCompraReg").val(data[6]);
+        $("#iptPrecioVentaReg").val(data[7]);
+        $("#iptUtilidadReg").val(data[8]);
+        $("#iptStockReg").val(data[9].replace(' Und(s)', '').replace(' Kg(s)', ''));
+        $("#iptMinimoStockReg").val(data[10].replace(' Und(s)', '').replace(' Kg(s)', ''));
+
+    })
+
+    /* ======================================================================================
+    EVENTO AL DAR CLICK EN EL BOTON ELIMINAR PRODUCTO
+    =========================================================================================*/
+    $('#tbl_productos tbody').on('click', '.btnEliminarProducto', function () {
+
+        accion = 5; //seteamos la accion para editar
+
+        var data = table.row($(this).parents('tr')).data();
+
+        var codigo_producto = data["codigo_producto"];
+
+        Swal.fire({
+            title: 'Está seguro de eliminar el producto?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, deseo eliminarlo!',
+            cancelButtonText: 'Cancelar',
+        }).then((result) => {
+
+            if (result.isConfirmed) {
+
+                var datos = new FormData();
+
+                datos.append("accion", accion);
+                datos.append("codigo_producto", codigo_producto); //codigo_producto               
+
+                $.ajax({
+                    url: "ajax/productos.ajax.php",
+                    method: "POST",
+                    data: datos,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    dataType: 'json',
+                    success: function (respuesta) {
+
+                        if (respuesta == "ok") {
+
+                            Toast.fire({
+                                icon: 'success',
+                                title: 'El producto se eliminó correctamente'
+                            });
+
+                            table.ajax.reload();
+
+                        } else {
+                            Toast.fire({
+                                icon: 'error',
+                                title: 'El producto no se pudo eliminar'
+                            });
+                        }
+
+                    }
+                });
+
+            }
+        })
     })
 
 })

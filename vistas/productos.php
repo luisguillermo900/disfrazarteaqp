@@ -229,7 +229,7 @@
                             <!-- Columna para registro de la categoría del producto -->
                             <div class="col-12  col-lg-6">
                                 <div class="form-group mb-2">
-                                    <label class="" for="selCategoriaReg"><i class="fas fa-dumpster fs-6"></i>
+                                    <label class="d-block" for="selCategoriaReg"><i class="fas fa-dumpster fs-6"></i>
                                         <span class="small">Categoría</span><span class="text-danger">*</span>
                                     </label>
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example"
@@ -324,7 +324,7 @@
                             <!-- Columna para registro del estado del producto -->
                             <div class="col-12  col-lg-4">
                                 <div class="form-group mb-2">
-                                    <label class="" for="selEstadoReg"><i class="fas fa-dumpster fs-6"></i>
+                                    <label class="d-block" for="selEstadoReg"><i class="fas fa-dumpster fs-6"></i>
                                         <span class="small">Estado</span>
                                     </label>
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example"
@@ -339,7 +339,7 @@
 
                             <div class="col-12 col-lg-4">
                                 <div class="form-group mb-2">
-                                    <label class="" for="selectModalidades"><i class="fas fa-dumpster fs-6"></i>
+                                    <label class="d-block" for="selectModalidades"><i class="fas fa-dumpster fs-6"></i>
                                         <span class="small">Modalidad</span><span class="text-danger">*</span>
                                     </label>
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example"
@@ -472,7 +472,7 @@
             <div class="modal-content">
 
                 <div class="modal-header bg-gray py-2">
-                    <h6 class="modal-title" id="titulo_modal_stock">Adicionar Stock</h6>
+                    <h6 class="modal-title" id="titulo_modal_info">Información adicional</h6>
                     <button type="button" class="btn-close text-white fs-6" data-bs-dismiss="modal" aria-label="Close"
                         id="btnCerrarModalStock">
                     </button>
@@ -483,28 +483,23 @@
                     <div class="row">
 
                         <div class="col-12 mb-3">
-                            <label for="" class="form-label text-primary d-block">Codigo: <span
-                                    id="stock_codigoProducto" class="text-secondary"></span></label>
-                            <label for="" class="form-label text-primary d-block">Producto: <span id="stock_Producto"
+                            <label for="" class="form-label text-primary d-block">Código: <span id="codigoProductoInfo"
                                     class="text-secondary"></span></label>
-                            <label for="" class="form-label text-primary d-block">Stock: <span id="stock_Stock"
+                            <label for="" class="form-label text-primary d-block">Nombre: <span id="nombreProductoInfo"
                                     class="text-secondary"></span></label>
-                        </div>
+                            <label for="" class="form-label text-primary d-block">P. Compra: <span
+                                    id="preCompraProductoInfo" class="text-secondary"></span></label>
+                            <label for="" class="form-label text-primary d-block">Categoría: <span
+                                    id="categoriaProductoInfo" class="text-secondary"></span></label>
+                            <label for="" class="form-label text-primary d-block">Descripción: <span
+                                    id="descripcionProductoInfo" class="text-secondary"></span></label>
+                            <label for="" class="form-label text-primary d-block">Incluye: <span
+                                    id="incluyeProductoInfo" class="text-secondary"></span></label>
+                            <label for="" class="form-label text-primary d-block">Num. Piezas: <span
+                                    id="numPiezasProductoInfo" class="text-secondary"></span></label>
+                            <label for="" class="form-label text-primary d-block">Marca: <span id="marcaproductoInfo"
+                                    class="text-secondary"></span></label>
 
-                        <div class="col-12">
-                            <div class="form-group mb-2">
-                                <label class="" for="iptStockSumar">
-                                    <i class="fas fa-plus-circle fs-6"></i> <span class="small"
-                                        id="titulo_modal_label">Agregar al Stock</span>
-                                </label>
-                                <input type="number" min="0" class="form-control form-control-sm" id="iptStockSumar"
-                                    placeholder="Ingrese cantidad a agregar al Stock">
-                            </div>
-                        </div>
-
-                        <div class="col-12">
-                            <label for="" class="form-label text-danger">Nuevo Stock: <span id="stock_NuevoStock"
-                                    class="text-secondary"></span></label><br>
                         </div>
 
                     </div>
@@ -513,13 +508,13 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"
-                        id="btnCancelarRegistroStock">Cancelar</button>
-                    <button type="button" class="btn btn-primary btn-sm" id="btnGuardarNuevorStock">Guardar</button>
+                        id="btnCancelarRegistroStock">¡OK!</button>
+
                 </div>
 
             </div>
         </div>
     </div>
-     <!-- /. End ver más información -->
+    <!-- /. End ver más información -->
 
     <script src="vistas/assets/dist/js/productos/productos.js"></script>

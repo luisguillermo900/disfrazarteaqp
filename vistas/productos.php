@@ -47,7 +47,7 @@
                                         <input type="text" id="iptCodigo" class="form-control" data-index="1"
                                             placeholder="Código">
                                         <div style="display: flex; align-items: center; justify-content: center;">
-                                            <label for="iptEstado" style="margin: 0;">Código</label>
+                                            <label for="iptCodigo" style="margin: 0;">Código</label>
                                         </div>
                                     </div>
 
@@ -70,7 +70,7 @@
                                             <!-- Agrega más opciones según sea necesario -->
                                         </select>
                                         <div style="display: flex; align-items: center; justify-content: center;">
-                                            <label for="iptEstado" style="margin: 0;">Categoría</label>
+                                            <label for="selectCategoria" style="margin: 0;">Categoría</label>
                                         </div>
                                     </div>
 
@@ -78,7 +78,7 @@
                                         <input type="text" id="iptNombre" class="form-control" data-index="3"
                                             placeholder="Nombre">
                                         <div style="display: flex; align-items: center; justify-content: center;">
-                                            <label for="iptEstado" style="margin: 0;">Nombre</label>
+                                            <label for="iptNombre" style="margin: 0;">Nombre</label>
                                         </div>
                                     </div>
 
@@ -92,7 +92,7 @@
                                             <!-- Agrega más opciones según sea necesario -->
                                         </select>
                                         <div style="display: flex; align-items: center; justify-content: center;">
-                                            <label for="iptEstado" style="margin: 0;">Talla</label>
+                                            <label for="selectTalla" style="margin: 0;">Talla</label>
                                         </div>
                                     </div>
 
@@ -108,7 +108,7 @@
                                             <!-- Agrega más opciones según sea necesario -->
                                         </select>
                                         <div style="display: flex; align-items: center; justify-content: center;">
-                                            <label for="iptEstado" style="margin: 0;">Modalidad</label>
+                                            <label for="selectModalidad" style="margin: 0;">Modalidad</label>
                                         </div>
                                     </div>
 
@@ -121,7 +121,7 @@
                                             <!-- Agrega más opciones según sea necesario -->
                                         </select>
                                         <div style="display: flex; align-items: center; justify-content: center;">
-                                            <label for="iptEstado" style="margin: 0;">Estado</label>
+                                            <label for="selectEstado" style="margin: 0;">Estado</label>
                                         </div>
                                     </div>
 
@@ -483,24 +483,24 @@
                     <div class="row">
 
                         <div class="col-12 mb-3">
-                            <label for="" class="form-label text-primary d-block">Código: <span id="codigoProductoInfo"
-                                    class="text-secondary"></span></label>
-                            <label for="" class="form-label text-primary d-block">Nombre: <span id="nombreProductoInfo"
-                                    class="text-secondary"></span></label>
-                            <label for="" class="form-label text-primary d-block">P. Compra: <span
-                                    id="preCompraProductoInfo" class="text-secondary"></span></label>
-                            <label for="" class="form-label text-primary d-block">Categoría: <span
-                                    id="categoriaProductoInfo" class="text-secondary"></span></label>
-                            <label for="" class="form-label text-primary d-block">Descripción: <span
-                                    id="descripcionProductoInfo" class="text-secondary"></span></label>
-                            <label for="" class="form-label text-primary d-block">Incluye: <span
-                                    id="incluyeProductoInfo" class="text-secondary"></span></label>
-                            <label for="" class="form-label text-primary d-block">Num. Piezas: <span
-                                    id="numPiezasProductoInfo" class="text-secondary"></span></label>
-                            <label for="" class="form-label text-primary d-block">Marca: <span id="marcaproductoInfo"
-                                    class="text-secondary"></span></label>
-
+                            <p class="form-text text-primary">Código: <span id="codigoProductoInfo"
+                                    class="text-secondary"></span></p>
+                            <p class="form-text text-primary">Nombre: <span id="nombreProductoInfo"
+                                    class="text-secondary"></span></p>
+                            <p class="form-text text-primary">P. Compra: <span id="preCompraProductoInfo"
+                                    class="text-secondary"></span></p>
+                            <p class="form-text text-primary">Categoría: <span id="categoriaProductoInfo"
+                                    class="text-secondary"></span></p>
+                            <p class="form-text text-primary">Descripción: <span id="descripcionProductoInfo"
+                                    class="text-secondary"></span></p>
+                            <p class="form-text text-primary">Incluye: <span id="incluyeProductoInfo"
+                                    class="text-secondary"></span></p>
+                            <p class="form-text text-primary">Num. Piezas: <span id="numPiezasProductoInfo"
+                                    class="text-secondary"></span></p>
+                            <p class="form-text text-primary">Marca: <span id="marcaproductoInfo"
+                                    class="text-secondary"></span></p>
                         </div>
+
 
                     </div>
 

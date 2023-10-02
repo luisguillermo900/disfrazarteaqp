@@ -108,4 +108,10 @@ class ProductosControlador
         );
         return $actualizarProducto;
     }
+    static public function ctrEliminarProducto($codigo_producto)
+    {
+        $respuesta = ProductosModelo::mdlEliminarInformacion($codigo_producto);
+        
+        return $respuesta;
+    }
 }

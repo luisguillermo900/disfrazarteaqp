@@ -196,11 +196,11 @@ class ProductosModelo
             modalidad = :modalidad,
             fecha_actualizacion_producto = NOW()
             WHERE codigo_producto = :codigo_producto";
-    
+
         try {
             // Preparar la consulta
             $stmt = Conexion::conectar()->prepare($sql);
-    
+
             // Vincular los valores de los parámetros
             $stmt->bindParam(":codigo_producto", $codigo_producto, PDO::PARAM_STR);
             $stmt->bindParam(":id_categoria_producto", $id_categoria_producto, PDO::PARAM_INT);
@@ -220,7 +220,7 @@ class ProductosModelo
             $stmt->bindParam(":talla_producto", $talla_producto, PDO::PARAM_STR);
             $stmt->bindParam(":marca_producto", $marca_producto, PDO::PARAM_STR);
             $stmt->bindParam(":modalidad", $modalidad, PDO::PARAM_STR);
-    
+
             // Ejecutar la consulta
             if ($stmt->execute()) {
                 return "ok";
@@ -231,5 +231,25 @@ class ProductosModelo
             return "Error en la actualización: " . $e->getMessage();
         }
     }
-    
+
+    /*=============================================
+    Peticion DELETE para eliminar datos
+    =============================================*/
+
+    static public function mdlEliminarInformacion($codigo_producto)
+    {
+
+        $stmt = Conexion::conectar()->prepare("DELETE FROM productos WHERE codigo_producto = :codigo_producto");
+
+        $stmt->bindParam(":codigo_producto", $codigo_producto, PDO::PARAM_STR);
+
+
+        if ($stmt->execute()) {
+
+            return "ok";;
+        } else {
+
+            return Conexion::conectar()->errorInfo();
+        }
+    }
 }

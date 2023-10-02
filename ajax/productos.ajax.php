@@ -101,6 +101,12 @@ class ajaxProductos
 
         echo json_encode($respuesta);
     }
+    public function ajaxEliminarProducto(){
+
+        $respuesta = ProductosControlador::ctrEliminarProducto($this->codigo_producto);
+
+        echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);
+    }
 }
 
 if (isset($_POST['accion']) && $_POST['accion'] == 1) { // parametro para listar productos
@@ -160,4 +166,9 @@ if (isset($_POST['accion']) && $_POST['accion'] == 1) { // parametro para listar
     );
 
     $actualizarProducto->ajaxActualizarProducto($data);
+}else if(isset($_POST['accion']) && $_POST['accion'] == 5){// ACCION PARA ELIMINAR UN PRODUCTO
+
+    $eliminarProducto = new ajaxProductos();
+    $eliminarProducto->codigo_producto=$_POST["codigo_producto"];
+    $eliminarProducto -> ajaxEliminarProducto();
 }

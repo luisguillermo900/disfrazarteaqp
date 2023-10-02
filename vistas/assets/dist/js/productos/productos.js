@@ -342,7 +342,7 @@ $(document).ready(function () {
                     if (result.isConfirmed) {
 
                         var datos = new FormData();
-
+                        //ESTOS DATOS SON ENVÍADOS MEDIANTE EL MÉTODO POST
                         datos.append("accion", accion);
                         //datos.append("codigo_producto", $("#iptCodigoReg").val()); //codigo_producto
                         datos.append("id_categoria_producto", $("#selCategoriaReg").val()); //id_categoria_producto
@@ -474,8 +474,8 @@ $(document).ready(function () {
 
         var data = table.row($(this).parents('tr')).data();
         console.log("🚀 ~ file: productos.php ~ line 751 ~ $ ~ data", data)
-
-        $("#iptCodigoReg").val(data["codigo_producto"]);
+        alert(data["precio_venta_producto"]);
+        /*$("#iptCodigoReg").val(data["codigo_producto"]);
         $("#iptNombreReg").val(data["nombre_producto"]);
         $("#selCategoriaReg").val(data["nombre_categoria"]);
         $("#iptDescripcionReg").val(data["descripcion_producto"]);
@@ -495,7 +495,7 @@ $(document).ready(function () {
         $("#iptUtilidadAlqEstrenoReg").val(data["utilidad_alquiler_estreno_producto"]);
         
         $("#iptPrecioAlqNormalReg").val(data["precio_alquiler_simple_producto"]);
-        $("#iptUtilidadAlqNormalReg").val(data["utilidad_alquiler_simple_producto"]);
+        $("#iptUtilidadAlqNormalReg").val(data["utilidad_alquiler_simple_producto"]);*/
 
     })
 
@@ -507,9 +507,10 @@ $(document).ready(function () {
         accion = 5; //seteamos la accion para editar
 
         var data = table.row($(this).parents('tr')).data();
-
-        var codigo_producto = data["codigo_producto"];
-
+        console.log(data);
+        alert(data["codigo_producto"]);
+        //ar codigo_producto = data["codigo_producto"];
+        //alert(data["codigo_producto"]);
         Swal.fire({
             title: 'Está seguro de eliminar el producto?',
             icon: 'warning',
@@ -523,9 +524,9 @@ $(document).ready(function () {
             if (result.isConfirmed) {
 
                 var datos = new FormData();
-
+                
                 datos.append("accion", accion);
-                datos.append("codigo_producto", codigo_producto); //codigo_producto               
+                datos.append("codigo_producto", data["codigo_producto"]); //codigo_producto               
 
                 $.ajax({
                     url: "ajax/productos.ajax.php",

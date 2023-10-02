@@ -68,38 +68,34 @@ class ajaxProductos
 
         echo json_encode($producto);
     }
-    public function ajaxActualizarProducto($data)
+    public function ajaxActualizarProducto()
     {
-        // Nombre de la tabla y nombre del campo ID
-        $table = "productos";
-        $nameId = "codigo_producto"; // Cambiar a "id_producto" si el campo es "id_producto"
 
-        // ID del producto a actualizar
-        $id = $_POST["codigo_producto"];
-
-        // Llama al controlador para actualizar el producto
-        $respuesta = ProductosControlador::ctrActualizarProducto(
-            $id, // Debes pasar el ID del producto como primer parámetro
-            $data["id_categoria_producto"],
-            $data["nombre_producto"],
-            $data["descripcion_producto"],
-            $data["incluye_producto"],
-            $data["no_incluye_producto"],
-            $data["numero_piezas_producto"],
-            $data["stock_producto"],
-            $data["precio_compra_producto"],
-            $data["precio_venta_producto"],
-            $data["utilidad_venta_producto"],
-            $data["precio_alquiler_estreno_producto"],
-            $data["utilidad_alquiler_estreno_producto"],
-            $data["precio_alquiler_simple_producto"],
-            $data["utilidad_alquiler_simple_producto"],
-            $data["talla_producto"],
-            $data["marca_producto"],
-            $data["modalidad"]
+        $producto = ProductosControlador::ctrActualizarProducto(
+            $this->codigo_producto,
+            $this->nombre_producto,
+            $this->id_categoria_producto,
+            $this->descripcion_producto,
+            $this->numero_piezas_producto,
+            $this->stock_producto,
+            $this->talla_producto,
+            $this->incluye_producto,
+            $this->no_incluye_producto,
+            $this->marca_producto,
+            $this->estado_producto,
+            $this->modalidad,
+            
+            $this->precio_compra_producto,
+            $this->precio_venta_producto,
+            $this->utilidad_venta_producto,
+            $this->precio_alquiler_estreno_producto,
+            $this->utilidad_alquiler_estreno_producto,
+            $this->precio_alquiler_simple_producto,
+            $this->utilidad_alquiler_simple_producto
+        
         );
 
-        echo json_encode($respuesta);
+        echo json_encode($producto, JSON_UNESCAPED_UNICODE);
     }
     public function ajaxEliminarProducto(){
 
@@ -143,29 +139,31 @@ if (isset($_POST['accion']) && $_POST['accion'] == 1) { // parametro para listar
     $productosTallas = new ajaxProductos();
     $productosTallas->ajaxListarTallasProductos();
 } else if (isset($_POST['accion']) && $_POST['accion'] == 4) { // ACTUALIZAR UN PRODUCTO
+    
     $actualizarProducto = new ajaxProductos();
 
-    $data = array(
-        "id_categoria_producto" => $_POST["id_categoria_producto"],
-        "nombre_producto" => $_POST["nombre_producto"],
-        "descripcion_producto" => $_POST["descripcion_producto"],
-        "incluye_producto" => $_POST["incluye_producto"],
-        "no_incluye_producto" => $_POST["no_incluye_producto"],
-        "numero_piezas_producto" => $_POST["numero_piezas_producto"],
-        "stock_producto" => $_POST["stock_producto"],
-        "precio_compra_producto" => $_POST["precio_compra_producto"],
-        "precio_venta_producto" => $_POST["precio_venta_producto"],
-        "utilidad_venta_producto" => $_POST["utilidad_venta_producto"],
-        "precio_alquiler_estreno_producto" => $_POST["precio_alquiler_estreno_producto"],
-        "utilidad_alquiler_estreno_producto" => $_POST["utilidad_alquiler_estreno_producto"],
-        "precio_alquiler_simple_producto" => $_POST["precio_alquiler_simple_producto"],
-        "utilidad_alquiler_simple_producto" => $_POST["utilidad_alquiler_simple_producto"],
-        "talla_producto" => $_POST["talla_producto"],
-        "marca_producto" => $_POST["marca_producto"],
-        "modalidad" => $_POST["modalidad"]
-    );
+    //$actualizarProducto->codigo_producto=$_POST["codigo_producto"];
+    $actualizarProducto->nombre_producto=$_POST["nombre_producto"];
+    $actualizarProducto->id_categoria_producto=$_POST["id_categoria_producto"];
+    $actualizarProducto->descripcion_producto=$_POST["descripcion_producto"];
+    $actualizarProducto->numero_piezas_producto=$_POST["numero_piezas_producto"];
+    $actualizarProducto->stock_producto=$_POST["stock_producto"];
+    $actualizarProducto->talla_producto=$_POST["talla_producto"];
+    $actualizarProducto->incluye_producto=$_POST["incluye_producto"];
+    $actualizarProducto->no_incluye_producto=$_POST["no_incluye_producto"];
+    $actualizarProducto->marca_producto=$_POST["marca_producto"];
+    $actualizarProducto->estado_producto=$_POST["estado_producto"];
+    $actualizarProducto->modalidad=$_POST["modalidad"];
+    $actualizarProducto->precio_compra_producto=$_POST["precio_compra_producto"];
+    $actualizarProducto->precio_venta_producto=$_POST["precio_venta_producto"];
+    $actualizarProducto->utilidad_venta_producto=$_POST["utilidad_venta_producto"];
+    $actualizarProducto->precio_alquiler_estreno_producto=$_POST["precio_alquiler_estreno_producto"];
+    $actualizarProducto->utilidad_alquiler_estreno_producto=$_POST["utilidad_alquiler_estreno_producto"];
+    $actualizarProducto->precio_alquiler_simple_producto=$_POST["precio_alquiler_simple_producto"];
+    $actualizarProducto->utilidad_alquiler_simple_producto=$_POST["utilidad_alquiler_simple_producto"];
 
-    $actualizarProducto->ajaxActualizarProducto($data);
+    $actualizarProducto -> ajaxActualizarProducto();
+
 }else if(isset($_POST['accion']) && $_POST['accion'] == 5){// ACCION PARA ELIMINAR UN PRODUCTO
 
     $eliminarProducto = new ajaxProductos();

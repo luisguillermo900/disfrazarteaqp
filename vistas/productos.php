@@ -214,9 +214,19 @@
                             <!-- -------------------------- -->
                             <!-- comienza todo el contenido -->
                             <!-- -------------------------- -->
+                            <!-- Columna para poner el código -->
+                            <div class="col-12 col-lg-4">
+                                <div class="form-group mb-2">
+                                    <label class="" for="iptCodigoReg"><i class="fas fa-file-signature fs-6"></i>
+                                        <span class="small">Código</span></label>
+                                    <input type="text" class="form-control form-control-sm" id="iptCodigoReg"
+                                        placeholder="Definido cuando se guarde" disabled>
+                                    
+                                </div>
+                            </div>
 
                             <!-- Columna para el nombre del producto -->
-                            <div class="col-12 col-lg-6">
+                            <div class="col-12 col-lg-4">
                                 <div class="form-group mb-2">
                                     <label class="" for="iptNombreReg"><i class="fas fa-file-signature fs-6"></i>
                                         <span class="small">Nombre</span><span class="text-danger">*</span></label>
@@ -227,14 +237,26 @@
                             </div>
 
                             <!-- Columna para registro de la categoría del producto -->
-                            <div class="col-12  col-lg-6">
+                            <div class="col-12  col-lg-4">
                                 <div class="form-group mb-2">
                                     <label class="d-block" for="selCategoriaReg"><i class="fas fa-dumpster fs-6"></i>
                                         <span class="small">Categoría</span><span class="text-danger">*</span>
                                     </label>
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example"
                                         id="selCategoriaReg" required>
-
+                                        <option selected value="">Seleccione una categoría</option>
+                                        <option value="1">BEBÉ NIÑA</option>
+                                        <option value="2">BEBÉ NIÑO</option>
+                                        <option value="3">NIÑA</option>
+                                        <option value="4">NIÑO</option>
+                                        <option value="5">MUJER</option>
+                                        <option value="6">HOMBRE</option>
+                                        <option value="7">USA-CHINA: BEBÉ NIÑA</option>
+                                        <option value="8">USA-CHINA: BEBÉ NIÑO</option>
+                                        <option value="9">USA-CHINA: NIÑA</option>
+                                        <option value="10">USA-CHINA: NIÑO</option>
+                                        <option value="11">USA-CHINA: MUJER</option>
+                                        <option value="12">USA-CHINA: HOMBRE</option>
 
                                     </select>
                                     <div class="invalid-feedback">Seleccione la categoría</div>
@@ -329,8 +351,9 @@
                                     </label>
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example"
                                         id="selEstadoReg" disabled>
-                                        <option value="No disponible">Disponible/No disponible</option>
-
+                                        <option selected value="">Estado según el stock</option>
+                                        <option value="Disponible">Disponible</option>
+                                        <option value="No disponible">No disponible</option>
 
                                     </select>
                                     <div class="invalid-feedback">Seleccione el estado</div>
@@ -344,6 +367,7 @@
                                     </label>
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm example"
                                         id="selectModalidades" required>
+                                        <option selected value="">Seleccione la modalidad</option>
                                         <option value="Sin modalidad">Sin modalidad</option>
                                         <option value="Venta">Venta</option>
                                         <option value="Alq. Estreno">Alq. Estreno</option>

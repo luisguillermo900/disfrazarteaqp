@@ -158,58 +158,61 @@ class ProductosModelo
 
     static public function mdlActualizarInformacion(
         $codigo_producto,
-        $id_categoria_producto,
         $nombre_producto,
+        $id_categoria_producto,
         $descripcion_producto,
-        $incluye_producto,
-        $no_incluye_producto,
         $numero_piezas_producto,
         $stock_producto,
+        $talla_producto,
+        $incluye_producto,
+        $no_incluye_producto,
+        $marca_producto,
+        $estado_producto,
+        $modalidad,
         $precio_compra_producto,
         $precio_venta_producto,
         $utilidad_venta_producto,
         $precio_alquiler_estreno_producto,
         $utilidad_alquiler_estreno_producto,
         $precio_alquiler_simple_producto,
-        $utilidad_alquiler_simple_producto,
-        $talla_producto,
-        $marca_producto,
-        $modalidad
+        $utilidad_alquiler_simple_producto
     ) {
-        $sql = "UPDATE productos SET
-            id_categoria_producto = :id_categoria_producto,
+        $stmt = Conexion::conectar()->prepare("UPDATE productos SET
+            codigo_producto = :codigo_producto,
             nombre_producto = :nombre_producto,
+            id_categoria_producto = :id_categoria_producto,
             descripcion_producto = :descripcion_producto,
-            incluye_producto = :incluye_producto,
-            no_incluye_producto = :no_incluye_producto,
             numero_piezas_producto = :numero_piezas_producto,
             stock_producto = :stock_producto,
+            talla_producto = :talla_producto,
+            incluye_producto = :incluye_producto,
+            no_incluye_producto = :no_incluye_producto,
+            marca_producto = :marca_producto,
+            estado_producto = :estado_producto,
+            modalidad = :modalidad,
             precio_compra_producto = :precio_compra_producto,
             precio_venta_producto = :precio_venta_producto,
             utilidad_venta_producto = :utilidad_venta_producto,
             precio_alquiler_estreno_producto = :precio_alquiler_estreno_producto,
             utilidad_alquiler_estreno_producto = :utilidad_alquiler_estreno_producto,
             precio_alquiler_simple_producto = :precio_alquiler_simple_producto,
-            utilidad_alquiler_simple_producto = :utilidad_alquiler_simple_producto,
-            talla_producto = :talla_producto,
-            marca_producto = :marca_producto,
-            modalidad = :modalidad,
-            fecha_actualizacion_producto = NOW()
-            WHERE codigo_producto = :codigo_producto";
-
-        try {
-            // Preparar la consulta
-            $stmt = Conexion::conectar()->prepare($sql);
+            utilidad_alquiler_simple_producto = :utilidad_alquiler_simple_producto
+            WHERE codigo_producto = :codigo_producto");
 
             // Vincular los valores de los parámetros
             $stmt->bindParam(":codigo_producto", $codigo_producto, PDO::PARAM_STR);
-            $stmt->bindParam(":id_categoria_producto", $id_categoria_producto, PDO::PARAM_INT);
             $stmt->bindParam(":nombre_producto", $nombre_producto, PDO::PARAM_STR);
+            $stmt->bindParam(":id_categoria_producto", $id_categoria_producto, PDO::PARAM_INT);
             $stmt->bindParam(":descripcion_producto", $descripcion_producto, PDO::PARAM_STR);
+            $stmt->bindParam(":numero_piezas_producto", $numero_piezas_producto, PDO::PARAM_INT);
+            $stmt->bindParam(":stock_producto", $stock_producto, PDO::PARAM_STR);
+            $stmt->bindParam(":talla_producto", $talla_producto, PDO::PARAM_STR);
             $stmt->bindParam(":incluye_producto", $incluye_producto, PDO::PARAM_STR);
             $stmt->bindParam(":no_incluye_producto", $no_incluye_producto, PDO::PARAM_STR);
-            $stmt->bindParam(":numero_piezas_producto", $numero_piezas_producto, PDO::PARAM_INT);
-            $stmt->bindParam(":stock_producto", $stock_producto, PDO::PARAM_INT);
+            $stmt->bindParam(":marca_producto", $marca_producto, PDO::PARAM_STR);
+            $stmt->bindParam(":estado_producto", $estado_producto, PDO::PARAM_STR);
+            $stmt->bindParam(":modalidad", $modalidad, PDO::PARAM_STR);
+            
             $stmt->bindParam(":precio_compra_producto", $precio_compra_producto, PDO::PARAM_STR);
             $stmt->bindParam(":precio_venta_producto", $precio_venta_producto, PDO::PARAM_STR);
             $stmt->bindParam(":utilidad_venta_producto", $utilidad_venta_producto, PDO::PARAM_STR);
@@ -217,19 +220,13 @@ class ProductosModelo
             $stmt->bindParam(":utilidad_alquiler_estreno_producto", $utilidad_alquiler_estreno_producto, PDO::PARAM_STR);
             $stmt->bindParam(":precio_alquiler_simple_producto", $precio_alquiler_simple_producto, PDO::PARAM_STR);
             $stmt->bindParam(":utilidad_alquiler_simple_producto", $utilidad_alquiler_simple_producto, PDO::PARAM_STR);
-            $stmt->bindParam(":talla_producto", $talla_producto, PDO::PARAM_STR);
-            $stmt->bindParam(":marca_producto", $marca_producto, PDO::PARAM_STR);
-            $stmt->bindParam(":modalidad", $modalidad, PDO::PARAM_STR);
-
+            
             // Ejecutar la consulta
             if ($stmt->execute()) {
                 return "ok";
             } else {
                 return Conexion::conectar()->errorInfo();
             }
-        } catch (PDOException $e) {
-            return "Error en la actualización: " . $e->getMessage();
-        }
     }
 
     /*=============================================

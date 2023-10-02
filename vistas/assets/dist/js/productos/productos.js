@@ -53,7 +53,8 @@ $(document).ready(function () {
         columnDefs: [{
             targets: 0,
             orderable: false,
-            className: 'control'
+            className: 'control',
+            visible: false
         },
         {
             targets: 6,
@@ -109,7 +110,7 @@ $(document).ready(function () {
             targets: 22,
             visible: false
         },
-        
+
         {
             targets: 13,
             orderable: false, //No coloca la opción de ordenar
@@ -264,7 +265,7 @@ $(document).ready(function () {
 
         $("#iptPrecioAlqEstrenoReg").val("");
         $("#iptUtilidadAlqEstrenoReg").val("");
-        
+
         $("#iptPrecioAlqNormalReg").val("");
         $("#iptUtilidadAlqNormalReg").val("");
 
@@ -272,7 +273,7 @@ $(document).ready(function () {
     /*===================================================================*/
     //SOLICITUD AJAX PARA CARGAR SELECT DE CATEGORIAS
     /*===================================================================*/
-    $.ajax({
+    /*$.ajax({
         url: "ajax/categorias.ajax.php",
         cache: false,
         contentType: false,
@@ -290,7 +291,7 @@ $(document).ready(function () {
 
             $("#selCategoriaReg").append(options);
         }
-    });
+    });*/
     /*===================================================================*/
     //SOLICITUD AJAX PARA CARGAR SELECT DE TALLAS
     /*===================================================================*/
@@ -344,7 +345,7 @@ $(document).ready(function () {
                         var datos = new FormData();
                         //ESTOS DATOS SON ENVÍADOS MEDIANTE EL MÉTODO POST
                         datos.append("accion", accion);
-                        //datos.append("codigo_producto", $("#iptCodigoReg").val()); //codigo_producto
+                        datos.append("codigo_producto", $("#iptCodigoReg").val()); //codigo_producto
                         datos.append("id_categoria_producto", $("#selCategoriaReg").val()); //id_categoria_producto
                         datos.append("nombre_producto", $("#iptNombreReg").val()); //descripcion_producto
                         datos.append("descripcion_producto", $("#iptDescripcionReg").val()); //descripcion_producto
@@ -413,7 +414,7 @@ $(document).ready(function () {
 
                                     $("#iptPrecioAlqEstrenoReg").val("");
                                     $("#iptUtilidadAlqEstrenoReg").val("");
-                                    
+
                                     $("#iptPrecioAlqNormalReg").val("");
                                     $("#iptUtilidadAlqNormalReg").val("");
                                     //MODAL PARA MOSTRAR EL CÓDIGO
@@ -451,33 +452,37 @@ $(document).ready(function () {
         $("#titulo_modal_info").html('Información Adicional'); // CAMBIAR EL TITULO DE LA VENTANA MODAL
 
         var rowData = table.row($(this).parents('tr')).data();
-        
-            $("#codigoProductoInfo").html(rowData[1]); 
-            
-            $("#nombreProductoInfo").html(rowData[3]); 
-            $("#preCompraProductoInfo").html(rowData[6]); 
-            $("#categoriaProductoInfo").html(rowData[2]);
-            $("#descripcionProductoInfo").html(rowData[14]);
-            $("#incluyeProductoInfo").html(rowData[15]);
-            $("#numPiezasProductoInfo").html(rowData[16]);
-            $("#marcaproductoInfo").html(rowData[18]);
+
+        $("#codigoProductoInfo").html(rowData[1]);
+
+        $("#nombreProductoInfo").html(rowData[3]);
+        $("#preCompraProductoInfo").html(rowData[6]);
+        $("#categoriaProductoInfo").html(rowData[2]);
+        $("#descripcionProductoInfo").html(rowData[14]);
+        $("#incluyeProductoInfo").html(rowData[15]);
+        $("#numPiezasProductoInfo").html(rowData[16]);
+        $("#marcaproductoInfo").html(rowData[18]);
     });
 
     /* ======================================================================================
     EVENTO AL DAR CLICK EN EL BOTON EDITAR PRODUCTO
     =========================================================================================*/
-    $('#tbl_productos tbody').on('click', '.btnEditarProducto', function() {
+    $('#tbl_productos tbody').on('click', '.btnEditarProducto', function () {
 
         accion = 4; //seteamos la accion para editar
 
         $("#mdlGestionarProducto").modal('show');
 
         var data = table.row($(this).parents('tr')).data();
-        console.log("🚀 ~ file: productos.php ~ line 751 ~ $ ~ data", data)
-        alert(data["precio_venta_producto"]);
-        /*$("#iptCodigoReg").val(data["codigo_producto"]);
+        //console.log("🚀 ~ file: productos.php ~ line 751 ~ $ ~ data", data)
+        alert(data["codigo_producto"]);
+
+        $("#iptCodigoReg").val(data["codigo_producto"]);
         $("#iptNombreReg").val(data["nombre_producto"]);
-        $("#selCategoriaReg").val(data["nombre_categoria"]);
+        var categoriaTexto = data["nombre_categoria"];
+        $("#selCategoriaReg option").filter(function () {
+            return $(this).text() === categoriaTexto;
+        }).prop("selected", true);
         $("#iptDescripcionReg").val(data["descripcion_producto"]);
         $("#iptNumPiezasReg").val(data["numero_piezas_producto"]);
         $("#iptNumStockReg").val(data["stock_producto"]);
@@ -493,11 +498,72 @@ $(document).ready(function () {
 
         $("#iptPrecioAlqEstrenoReg").val(data["precio_alquiler_estreno_producto"]);
         $("#iptUtilidadAlqEstrenoReg").val(data["utilidad_alquiler_estreno_producto"]);
-        
+
         $("#iptPrecioAlqNormalReg").val(data["precio_alquiler_simple_producto"]);
-        $("#iptUtilidadAlqNormalReg").val(data["utilidad_alquiler_simple_producto"]);*/
+        $("#iptUtilidadAlqNormalReg").val(data["utilidad_alquiler_simple_producto"]);
 
     })
+
+    /* ======================================================================================
+    EVENTO AL DAR CLICK EN EL BOTON EDITAR PRODUCTO
+    =========================================================================================
+    $('#tbl_productos tbody').on('click', '.btnEditarProducto', function() {
+        
+        accion = 4; //seteamos la accion para editar
+        
+        var data = table.row($(this).parents('tr')).data();
+
+        var codigo_producto = data["codigo_producto"];
+
+        Swal.fire({
+            title: '¿Está seguro de editar el producto?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '¡Si, deseo editarlo!',
+            cancelButtonText: 'Cancelar',
+        }).then((result) => {
+
+            if (result.isConfirmed) {
+
+                var datos = new FormData();
+
+                datos.append("accion", accion);
+                datos.append("codigo_producto", codigo_producto); //codigo_producto               
+
+                $.ajax({
+                    url: "ajax/productos.ajax.php",
+                    method: "POST",
+                    data: datos,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    dataType: 'json',
+                    success: function(respuesta) {
+
+                        if (respuesta == "ok") {
+
+                            Toast.fire({
+                                icon: 'success',
+                                title: 'El producto se editó correctamente'
+                            });
+
+                            table.ajax.reload();
+
+                        } else {
+                            Toast.fire({
+                                icon: 'error',
+                                title: 'El producto no se puedo editar'
+                            });
+                        }
+
+                    }
+                });
+
+            }
+        })
+    })*/
 
     /* ======================================================================================
     EVENTO AL DAR CLICK EN EL BOTON ELIMINAR PRODUCTO
@@ -524,7 +590,7 @@ $(document).ready(function () {
             if (result.isConfirmed) {
 
                 var datos = new FormData();
-                
+
                 datos.append("accion", accion);
                 datos.append("codigo_producto", data["codigo_producto"]); //codigo_producto               
 

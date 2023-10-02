@@ -426,7 +426,7 @@ $(document).ready(function () {
                                 } else {
                                     Toast.fire({
                                         icon: 'error',
-                                        title: titulo_msj
+                                        title: 'error'
                                     });
                                 }
 

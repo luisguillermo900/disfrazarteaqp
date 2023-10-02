@@ -177,6 +177,7 @@ class ProductosModelo
         $precio_alquiler_simple_producto,
         $utilidad_alquiler_simple_producto
     ) {
+        try {
         $stmt = Conexion::conectar()->prepare("UPDATE productos SET
             codigo_producto = :codigo_producto,
             nombre_producto = :nombre_producto,
@@ -221,12 +222,14 @@ class ProductosModelo
             $stmt->bindParam(":precio_alquiler_simple_producto", $precio_alquiler_simple_producto, PDO::PARAM_STR);
             $stmt->bindParam(":utilidad_alquiler_simple_producto", $utilidad_alquiler_simple_producto, PDO::PARAM_STR);
             
-            // Ejecutar la consulta
             if ($stmt->execute()) {
-                return "ok";
+                $resultado = "ok";
             } else {
-                return Conexion::conectar()->errorInfo();
+                $resultado = "error";
             }
+        } catch (Exception $e) {
+            echo 'Excepción capturada: ' . $e->getMessage() . "\n";
+        }
     }
 
     /*=============================================

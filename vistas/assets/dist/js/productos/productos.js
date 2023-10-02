@@ -396,7 +396,7 @@ $(document).ready(function () {
                                     table.ajax.reload();
 
                                     $("#mdlGestionarProducto").modal('hide');
-
+                                    $("#iptCodigoReg").val("");
                                     $("#iptNombreReg").val("");
                                     $("#selCategoriaReg").val("");
                                     $("#iptDescripcionReg").val("");

@@ -178,8 +178,7 @@ class ProductosModelo
         $utilidad_alquiler_simple_producto
     ) {
         try {
-        $stmt = Conexion::conectar()->prepare("UPDATE productos SET
-            codigo_producto = :codigo_producto,
+            $stmt = Conexion::conectar()->prepare("UPDATE productos SET
             nombre_producto = :nombre_producto,
             id_categoria_producto = :id_categoria_producto,
             descripcion_producto = :descripcion_producto,
@@ -213,7 +212,7 @@ class ProductosModelo
             $stmt->bindParam(":marca_producto", $marca_producto, PDO::PARAM_STR);
             $stmt->bindParam(":estado_producto", $estado_producto, PDO::PARAM_STR);
             $stmt->bindParam(":modalidad", $modalidad, PDO::PARAM_STR);
-            
+
             $stmt->bindParam(":precio_compra_producto", $precio_compra_producto, PDO::PARAM_STR);
             $stmt->bindParam(":precio_venta_producto", $precio_venta_producto, PDO::PARAM_STR);
             $stmt->bindParam(":utilidad_venta_producto", $utilidad_venta_producto, PDO::PARAM_STR);
@@ -221,7 +220,7 @@ class ProductosModelo
             $stmt->bindParam(":utilidad_alquiler_estreno_producto", $utilidad_alquiler_estreno_producto, PDO::PARAM_STR);
             $stmt->bindParam(":precio_alquiler_simple_producto", $precio_alquiler_simple_producto, PDO::PARAM_STR);
             $stmt->bindParam(":utilidad_alquiler_simple_producto", $utilidad_alquiler_simple_producto, PDO::PARAM_STR);
-            
+
             if ($stmt->execute()) {
                 $resultado = "ok";
             } else {
@@ -230,6 +229,9 @@ class ProductosModelo
         } catch (Exception $e) {
             echo 'Excepción capturada: ' . $e->getMessage() . "\n";
         }
+        return $resultado;
+
+        $stmt = null;
     }
 
     /*=============================================

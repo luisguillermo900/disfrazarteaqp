@@ -142,7 +142,7 @@ if (isset($_POST['accion']) && $_POST['accion'] == 1) { // parametro para listar
     
     $actualizarProducto = new ajaxProductos();
 
-    //$actualizarProducto->codigo_producto=$_POST["codigo_producto"];
+    $actualizarProducto->codigo_producto=$_POST["codigo_producto"];
     $actualizarProducto->nombre_producto=$_POST["nombre_producto"];
     $actualizarProducto->id_categoria_producto=$_POST["id_categoria_producto"];
     $actualizarProducto->descripcion_producto=$_POST["descripcion_producto"];

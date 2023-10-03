@@ -64,18 +64,17 @@
                         <table id="lstProductosVenta" class="display nowrap table-striped w-100 shadow ">
                             <thead class="bg-info text-left fs-6">
                                 <tr>
-                                    <th>Item</th>
                                     <th>Codigo</th>
-                                    <th>Id Categoria</th>
                                     <th>Categoria</th>
-                                    <th>Producto</th>
+                                    <th>Nombre</th>
+                                    <th>Talla</th>
                                     <th>Cantidad</th>
-                                    <th>Precio</th>
+                                    <th>P.Venta</th>
+                                    <th>P.Alq.Estreno</th>
+                                    <th>P.Alq.Normal</th>
                                     <th>Total</th>
                                     <th class="text-center">Opciones</th>
-                                    <th>Aplica Peso</th>
-                                    <th>Precio Por Mayor</th>
-                                    <th>Precio Oferta</th>
+                                    <th>Modalidad</th>
                                 </tr>
                             </thead>
                             <tbody class="small text-left fs-6">
@@ -102,13 +101,13 @@
                         <!-- SELECCIONAR TIPO DE DOCUMENTO -->
                         <div class="form-group mb-2">
 
-                            <label class="col-form-label" for="selDocumentoVenta">
+                            <label class="col-form-label d-block" for="selDocumentoVenta">
                                 <i class="fas fa-file-alt fs-6"></i>
                                 <span class="small">Documento</span><span class="text-danger">*</span>
                             </label>
 
                             <select class="form-select form-select-sm" aria-label=".form-select-sm example"
-                                id="selDocumentoVenta" disabled>
+                                id="selDocumentoVenta">
                                 <option value="0">Seleccione Documento</option>
                                 <option value="1" selected="true">Boleta</option>
                                 <option value="2">Factura</option>
@@ -124,13 +123,13 @@
                         <!-- SELECCIONAR TIPO DE PAGO -->
                         <div class="form-group mb-2">
 
-                            <label class="col-form-label" for="selTipoPago">
+                            <label class="col-form-label d-block" for="selTipoPago">
                                 <i class="fas fa-money-bill-alt fs-6"></i>
                                 <span class="small">Tipo Pago</span><span class="text-danger">*</span>
                             </label>
 
-                            <select class="form-select form-select-sm" aria-label=".form-select-sm example"
-                                id="selTipoPago" disabled>
+                            <select class="form-select form-select-sm d-block" aria-label=".form-select-sm example"
+                                id="selTipoPago">
                                 <option value="0">Seleccione Tipo Pago</option>
                                 <option value="1" selected="true">Efectivo</option>
                                 <option value="2">Tarjeta</option>

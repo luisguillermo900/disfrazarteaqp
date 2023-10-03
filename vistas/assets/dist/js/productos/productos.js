@@ -55,83 +55,83 @@ $(document).ready(function () {
             orderable: false,
             className: 'control',
             visible: false
-            },
-            {
-                targets: 6,
-                orderable: false, //No coloca la opción de ordenar
-                visible: false
-            },
-            {
-                targets: 10,
-                orderable: false //No coloca la opción de ordenar
-            },
-            {
-                targets: 11, // Columna de estado
-                orderable: false, //No coloca la opción de ordenar
-                render: function (data, type, full, meta) {
-                    var colorClass = data === 'Disponible' ? 'bg-success text-white' : 'bg-danger text-white';
-                    return '<div class="' + colorClass + '" style="border-radius: 3px; padding: 2px 4px; display: inline-block; font-size: 12px;">' + data + '</div>';
-                }
+        },
+        {
+            targets: 6,
+            orderable: false, //No coloca la opción de ordenar
+            visible: false
+        },
+        {
+            targets: 10,
+            orderable: false //No coloca la opción de ordenar
+        },
+        {
+            targets: 11, // Columna de estado
+            orderable: false, //No coloca la opción de ordenar
+            render: function (data, type, full, meta) {
+                var colorClass = data === 'Disponible' ? 'bg-success text-white' : 'bg-danger text-white';
+                return '<div class="' + colorClass + '" style="border-radius: 3px; padding: 2px 4px; display: inline-block; font-size: 12px;">' + data + '</div>';
             }
-                ,
-            {
-                targets: 14,
-                visible: false
-            },
-            {
-                targets: 15,
-                visible: false
-            },
-            {
-                targets: 16,
-                visible: false
-            },
-            {
-                targets: 17,
-                visible: false
-            },
-            {
-                targets: 18,
-                visible: false
-            },
-            {
-                targets: 19,
-                visible: false
-            },
-            {
-                targets: 20,
-                visible: false
-            },
-            {
-                targets: 21,
-                visible: false
-            },
-            {
-                targets: 22,
-                visible: false
-            },
+        }
+            ,
+        {
+            targets: 14,
+            visible: false
+        },
+        {
+            targets: 15,
+            visible: false
+        },
+        {
+            targets: 16,
+            visible: false
+        },
+        {
+            targets: 17,
+            visible: false
+        },
+        {
+            targets: 18,
+            visible: false
+        },
+        {
+            targets: 19,
+            visible: false
+        },
+        {
+            targets: 20,
+            visible: false
+        },
+        {
+            targets: 21,
+            visible: false
+        },
+        {
+            targets: 22,
+            visible: false
+        },
 
-            {
-                targets: 13,
-                orderable: false, //No coloca la opción de ordenar
-                render: function (data, type, full, meta) { //para colocar las opciones
-                    return "<center>" +
-                        "<span class='btnMasInformacion text-success px-1' style='cursor:pointer;'>" +
-                        "<i class='fas fa-plus-circle fs-5'></i>" +
-                        "</span>" +
-                        "<span class='btnEditarProducto text-primary px-1' style='cursor:pointer;'>" +
-                        "<i class='fas fa-pencil-alt fs-5'></i>" +
-                        "</span>" +
-                        "<span class='btnEliminarProducto text-danger px-1' style='cursor:pointer;'>" +
-                        "<i class='fas fa-trash fs-5'></i>" +
-                        "</span>" +
-                        "</center>"
-                }
-            },
-            {
-                targets: "_all", // Aplicar a todas las columnas
-                className: "text-center", // Establecer la clase para centrar texto
-            },
+        {
+            targets: 13,
+            orderable: false, //No coloca la opción de ordenar
+            render: function (data, type, full, meta) { //para colocar las opciones
+                return "<center>" +
+                    "<span class='btnMasInformacion text-success px-1' style='cursor:pointer;'>" +
+                    "<i class='fas fa-plus-circle fs-5'></i>" +
+                    "</span>" +
+                    "<span class='btnEditarProducto text-primary px-1' style='cursor:pointer;'>" +
+                    "<i class='fas fa-pencil-alt fs-5'></i>" +
+                    "</span>" +
+                    "<span class='btnEliminarProducto text-danger px-1' style='cursor:pointer;'>" +
+                    "<i class='fas fa-trash fs-5'></i>" +
+                    "</span>" +
+                    "</center>"
+            }
+        },
+        {
+            targets: "_all", // Aplicar a todas las columnas
+            className: "text-center", // Establecer la clase para centrar texto
+        },
         ],
         language: {
             url: "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
@@ -624,5 +624,42 @@ $(document).ready(function () {
             }
         })
     })
+    /* ======================================================================================
+    // Manejar el evento de cambio en el select "Modalidad"
+    =========================================================================================*/
+    $('#selectModalidades').change(function () {
+        var modalidadSeleccionada = $(this).val();
+
+        // Deshabilitar todos los campos al principio
+        $('#iptPrecioVentaReg').prop('disabled', true);
+        $('#iptPrecioAlqEstrenoReg').prop('disabled', true);
+        $('#iptPrecioAlqNormalReg').prop('disabled', true);
+
+        // Habilitar los campos según la elección
+        if (modalidadSeleccionada === 'Venta') {
+            $('#iptPrecioVentaReg').prop('disabled', false);
+            $("#iptPrecioAlqEstrenoReg").val("");
+            $("#iptPrecioAlqNormalReg").val("");
+        } else if (modalidadSeleccionada === 'Venta/Alq. Estreno') {
+            $('#iptPrecioVentaReg').prop('disabled', false);
+            $('#iptPrecioAlqEstrenoReg').prop('disabled', false);
+            $("#iptPrecioAlqNormalReg").val("");
+        } else if (modalidadSeleccionada === 'Alq. Normal') {
+            $('#iptPrecioAlqNormalReg').prop('disabled', false);
+            $("#iptPrecioVentaReg").val("");
+            $("#iptPrecioAlqEstrenoReg").val("");
+        }else if (modalidadSeleccionada === 'Sin modalidad') {
+            $("#iptPrecioVentaReg").val("");
+            $("#iptPrecioAlqEstrenoReg").val("");
+            $("#iptPrecioAlqNormalReg").val("");
+        }else{
+            $("#iptPrecioVentaReg").val("");
+            $("#iptPrecioAlqEstrenoReg").val("");
+            $("#iptPrecioAlqNormalReg").val("");
+        }
+        // Puedes agregar más condiciones para otras modalidades aquí
+
+    });
+
 
 })

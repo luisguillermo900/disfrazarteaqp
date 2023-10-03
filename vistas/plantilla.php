@@ -23,7 +23,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="vistas/assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 
     <!-- Jquery CSS -->
-    <link rel="stylesheet" href="vistas/assets/plugins/jquery-ui/jquery-ui.css">
+    <link rel="stylesheet" href="vistas/assets/plugins/jquery-ui/css/jquery-ui.css">
 
     <!-- Theme style -->
     <link rel="stylesheet" href="vistas/assets/dist/css/adminlte.min.css">
@@ -44,7 +44,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="vistas/assets/plugins/sweetalert2/sweetalert2.min.js"></script>
 
     <!-- jquery UI -->
-    <script src="vistas/assets/plugins/jquery-ui/jquery-ui.js"></script>
+    <script src="vistas/assets/plugins/jquery-ui/js/jquery-ui.js"></script>
 
     <!-- JS Bootstrap 5 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>

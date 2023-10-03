@@ -64,13 +64,13 @@
                                 <p>Inventario</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a style="cursor: pointer;" class="nav-link"
                                 onclick="cargarContenido('vistas/carga_masiva_productos.php', 'content-wrapper')">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Carga Masiva</p>
                             </a>
-                        </li>
+                        </li>-->
                         <li class="nav-item">
                             <a style="cursor: pointer;" class="nav-link"
                                 onclick="cargarContenido('vistas/categorias.php', 'content-wrapper')">

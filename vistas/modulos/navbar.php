@@ -12,10 +12,10 @@
         <a style="cursor: pointer;" class="nav-link"
                                 onclick="cargarContenido('vistas/productos.php', 'content-wrapper')">Inventario</a>
         </li>
-        <li class="nav-item d-none d-sm-inline-block">
+        <!--<li class="nav-item d-none d-sm-inline-block">
         <a style="cursor: pointer;" class="nav-link"
                                 onclick="cargarContenido('vistas/carga_masiva_productos.php', 'content-wrapper')">CargaMasiva</a>
-        </li>
+        </li>-->
         <li class="nav-item d-none d-sm-inline-block">
         <a style="cursor: pointer;" class="nav-link"
                                 onclick="cargarContenido('vistas/ventas.php', 'content-wrapper')">Ventas</a>

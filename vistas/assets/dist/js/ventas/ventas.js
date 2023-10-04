@@ -19,7 +19,7 @@ $(document).ready(function () {
             { "data": "nombre_categoria" },
             { "data": "nombre_producto" },
             { "data": "talla_producto" },
-            
+
             { "data": "precio_venta_producto" },
             { "data": "precio_alquiler_estreno_producto" },
             { "data": "precio_alquiler_simple_producto" },
@@ -102,7 +102,7 @@ $(document).ready(function () {
                 source: items,
                 select: function (event, ui) {
                     console.log(ui);
-                    CargarProductos(ui.item.value);                                                            
+                    CargarProductos(ui.item.value);
 
                     $("#iptCodigoVenta").val("");
 
@@ -132,12 +132,12 @@ $(document).ready(function () {
         /*===================================================================*/
         // AUMENTAMOS LA CANTIDAD SI EL PRODUCTO YA EXISTE EN EL LISTADO
         /*===================================================================*/
-        /*table.rows().eq(0).each(function (index) {
+        table.rows().eq(0).each(function (index) {
 
             var row = table.row(index);
             var data = row.data();
 
-            if (parseInt(codigo_producto) == data['codigo_producto']) {
+            if (codigo_producto == data['codigo_producto']) {
 
                 producto_repetido = 1;
 
@@ -157,7 +157,7 @@ $(document).ready(function () {
 
                             Toast.fire({
                                 icon: 'error',
-                                title: ' El producto ' + data['descripcion_producto'] + ' ya no tiene stock'
+                                title: ' El producto ' + data['codigo_producto'] + ' ya no tiene stock'
                             })
 
                             $("#iptCodigoVenta").val("");
@@ -167,12 +167,12 @@ $(document).ready(function () {
                         } else {
 
                             // AUMENTAR EN 1 EL VALOR DE LA CANTIDAD
-                            table.cell(index, 5).data(parseFloat(data['cantidad']) + 1 + ' Und(s)').draw();
+                            table.cell(index, 7).data(parseFloat(data['cantidad']) + 1).draw();
 
                             // ACTUALIZAR EL NUEVO PRECIO DEL ITEM DEL LISTADO DE VENTA
-                            NuevoPrecio = (parseInt(data['cantidad']) * data['precio_venta_producto'].replace("S./ ", "")).toFixed(2);
+                            NuevoPrecio = (parseInt(data['cantidad']) * data['precio_unitario'].replace("S./ ", "")).toFixed(2);
                             NuevoPrecio = "S./ " + NuevoPrecio;
-                            table.cell(index, 7).data(NuevoPrecio).draw();
+                            table.cell(index, 9).data(NuevoPrecio).draw();
 
                             // RECALCULAMOS TOTALES
                             recalcularTotales();
@@ -181,11 +181,11 @@ $(document).ready(function () {
                 });
 
             }
-        });*/
+        });
 
-        /*if (producto_repetido == 1) {
+        if (producto_repetido == 1) {
             return;
-        }*/
+        }
 
         $.ajax({
             url: "ajax/productos.ajax.php",
@@ -207,12 +207,12 @@ $(document).ready(function () {
                     if (respuesta['modalidad'] == 'Venta') {
 
                         table.row.add({
-                            
+
                             'codigo_producto': respuesta['codigo_producto'],
                             'nombre_categoria': respuesta['nombre_categoria'],
                             'nombre_producto': respuesta['nombre_producto'],
                             'talla_producto': respuesta['talla_producto'],
-                            
+
                             'precio_venta_producto': respuesta['precio_venta_producto'],
                             'precio_alquiler_estreno_producto': '-',
                             'precio_alquiler_simple_producto': '-',
@@ -233,16 +233,16 @@ $(document).ready(function () {
                                 "</center>",
                             'modalidad': respuesta['modalidad']
                         }).draw();
-                        
 
-                    } else if(respuesta['modalidad'] == 'Venta/Alq. Estreno'){
+
+                    } else if (respuesta['modalidad'] == 'Venta/Alq. Estreno') {
 
                         table.row.add({
                             'codigo_producto': respuesta['codigo_producto'],
                             'nombre_categoria': respuesta['nombre_categoria'],
                             'nombre_producto': respuesta['nombre_producto'],
                             'talla_producto': respuesta['talla_producto'],
-                            
+
                             'precio_venta_producto': respuesta['precio_venta_producto'],
                             'precio_alquiler_estreno_producto': respuesta['precio_alquiler_estreno_producto'],
                             'precio_alquiler_simple_producto': '-',
@@ -260,29 +260,29 @@ $(document).ready(function () {
                                 "<i class='fas fa-trash fs-5'> </i> " +
                                 "</span>" +
                                 "<div class='btn-group'>" +
-                                    "<button type='button' class=' p-0 btn transparentbar btn-sm' data-bs-toggle='dropdown' aria-expanded='false'>" +
-                                    "<i class='fas fa-cog text-primary fs-5'></i> <i class='fas fa-chevron-down text-primary'></i>" +
-                                    "</button>" +
+                                "<button type='button' class=' p-0 btn transparentbar btn-sm' data-bs-toggle='dropdown' aria-expanded='false'>" +
+                                "<i class='fas fa-cog text-primary fs-5'></i> <i class='fas fa-chevron-down text-primary'></i>" +
+                                "</button>" +
 
-                                    "<ul class='dropdown-menu'>" +
-                                    "<li><a class='dropdown-item' codigo = '" + respuesta['codigo_producto'] + "' precio=' " + respuesta['precio_venta_producto'] + "' style='cursor:pointer; font-size:14px;'>P.Venta (" + respuesta['precio_venta_producto'] + ")</a></li>" +
-                                    "<li><a class='dropdown-item' codigo = '" + respuesta['codigo_producto'] + "' precio=' " + respuesta['precio_alquiler_estreno_producto'] + "' style='cursor:pointer; font-size:14px;'>P.Alq.Estreno (" + respuesta['precio_alquiler_estreno_producto']+ ")</a></li>" +
-                                    
-                                    "</ul>" +
+                                "<ul class='dropdown-menu'>" +
+                                "<li><a class='dropdown-item' codigo = '" + respuesta['codigo_producto'] + "' precio=' " + respuesta['precio_venta_producto'] + "' style='cursor:pointer; font-size:14px;'>P.Venta (" + respuesta['precio_venta_producto'] + ")</a></li>" +
+                                "<li><a class='dropdown-item' codigo = '" + respuesta['codigo_producto'] + "' precio=' " + respuesta['precio_alquiler_estreno_producto'] + "' style='cursor:pointer; font-size:14px;'>P.Alq.Estreno (" + respuesta['precio_alquiler_estreno_producto'] + ")</a></li>" +
+
+                                "</ul>" +
                                 "</div>" +
                                 "</center>",
                             'modalidad': respuesta['modalidad']
                         }).draw();
-                        
-                        
-                    }else if(respuesta['modalidad'] == 'Alq. Normal'){
+
+
+                    } else if (respuesta['modalidad'] == 'Alq. Normal') {
 
                         table.row.add({
                             'codigo_producto': respuesta['codigo_producto'],
                             'nombre_categoria': respuesta['nombre_categoria'],
                             'nombre_producto': respuesta['nombre_producto'],
                             'talla_producto': respuesta['talla_producto'],
-                            
+
                             'precio_venta_producto': '-',
                             'precio_alquiler_estreno_producto': '-',
                             'precio_alquiler_simple_producto': respuesta['precio_alquiler_simple_producto'],
@@ -304,7 +304,7 @@ $(document).ready(function () {
                             'modalidad': respuesta['modalidad']
                         }).draw();
 
-                       
+
                     }
 
                     //  Recalculamos el total de la venta
@@ -331,11 +331,11 @@ $(document).ready(function () {
     /*===================================================================*/
     //FUNCION PARA RECALCULAR LOS TOTALES DE VENTA
     /*===================================================================*/
-    function recalcularTotales(){
+    function recalcularTotales() {
 
         var TotalVenta = 0.00;
 
-        table.rows().eq(0).each(function(index) {
+        table.rows().eq(0).each(function (index) {
 
             var row = table.row(index);
             var data = row.data();
@@ -370,26 +370,26 @@ $(document).ready(function () {
     /* ======================================================================================
     EVENTO PARA MODIFICAR EL PRECIO DE VENTA DEL PRODUCTO
     ======================================================================================*/
-    $('#lstProductosVenta tbody').on('click', '.dropdown-item', function() { 
-        
+    $('#lstProductosVenta tbody').on('click', '.dropdown-item', function () {
+
         codigo_producto = $(this).attr("codigo");
-        precio_venta = parseFloat($(this).attr("precio").replaceAll("S./ ","")).toFixed(2);
+        precio_venta = parseFloat($(this).attr("precio").replaceAll("S./ ", "")).toFixed(2);
         console.log("Código: " + codigo_producto);
         console.log("Precio String: " + precio_venta);
-        recalcularMontos(codigo_producto,precio_venta);
+        recalcularMontos(codigo_producto, precio_venta);
     });
 
 
-    function recalcularMontos(codigo_producto, precio_venta){
+    function recalcularMontos(codigo_producto, precio_venta) {
 
-        table.rows().eq(0).each(function(index) {
+        table.rows().eq(0).each(function (index) {
 
             var row = table.row(index);
 
             var data = row.data();
 
             if (data['codigo_producto'] == codigo_producto) {
-            
+
                 // AUMENTAR EN 1 EL VALOR DE LA CANTIDAD
                 table.cell(index, 8).data("S./ " + parseFloat(precio_venta).toFixed(2)).draw();
 
@@ -407,7 +407,7 @@ $(document).ready(function () {
     /* ======================================================================================
     EVENTO PARA AUMENTAR LA CANTIDAD DE UN PRODUCTO DEL LISTADO
     ====================================================================================== */
-    $('#lstProductosVenta tbody').on('click', '.btnAumentarCantidad', function() {
+    $('#lstProductosVenta tbody').on('click', '.btnAumentarCantidad', function () {
 
         var data = table.row($(this).parents('tr')).data(); //Recuperar los datos de la fila
 
@@ -427,7 +427,7 @@ $(document).ready(function () {
             },
 
             dataType: 'json',
-            success: function(respuesta) {
+            success: function (respuesta) {
 
                 if (parseInt(respuesta['existe']) == 0) {
 
@@ -447,7 +447,7 @@ $(document).ready(function () {
 
                     NuevoPrecio = (parseInt(data['cantidad']) * data['precio_unitario'].replace("S./ ", "")).toFixed(2);
                     NuevoPrecio = "S./ " + NuevoPrecio;
-                    
+
                     table.cell(idx, 9).data(NuevoPrecio).draw();
 
                     recalcularTotales();
@@ -456,4 +456,160 @@ $(document).ready(function () {
         });
 
     });
+    /* ======================================================================================
+    EVENTO PARA DESMINUIR LA CANTIDAD DE UN PRODUCTO DEL LISTADO
+    ======================================================================================*/
+    $('#lstProductosVenta tbody').on('click', '.btnDisminuirCantidad', function () {
+
+        var data = table.row($(this).parents('tr')).data();
+
+        if (data['cantidad'] >= 2) {
+
+            cantidad = parseInt(data['cantidad']) - 1;
+
+            var idx = table.row($(this).parents('tr')).index();
+
+            table.cell(idx, 7).data(cantidad).draw();
+
+            NuevoPrecio = (parseInt(data['cantidad']) * data['precio_unitario'].replace("S./ ", "")).toFixed(2);
+            NuevoPrecio = "S./ " + NuevoPrecio;
+
+            table.cell(idx, 9).data(NuevoPrecio).draw();
+
+        }
+
+        recalcularTotales();
+    });
+    /* ======================================================================================
+    EVENTO PARA ELIMINAR UN PRODUCTO DEL LISTADO
+    ======================================================================================*/
+    $('#lstProductosVenta tbody').on('click', '.btnEliminarproducto', function () {
+        table.row($(this).parents('tr')).remove().draw();
+        recalcularTotales();
+    });
+    /* ======================================================================================
+    EVENTO PARA VACIAR EL CARRITO DE COMPRAS
+    =========================================================================================*/
+    $("#btnVaciarListado").on('click', function () {
+        vaciarListado();
+    })
+    /*===================================================================*/
+    //FUNCION PARA LIMPIAR TOTALMENTE EL CARRITO DE VENTAS
+    /*===================================================================*/
+    function vaciarListado() {
+        table.clear().draw();
+        LimpiarInputs();
+    }
+    /*===================================================================*/
+    //FUNCION PARA LIMPIAR LOS INPUTS DE LA BOLETA Y LABELS QUE TIENEN DATOS
+    /*===================================================================*/
+    function LimpiarInputs() {
+        $("#totalVenta").html("0.00");
+        $("#totalVentaRegistrar").html("0.00");
+        $("#boleta_total").html("0.00");
+        $("#iptEfectivoRecibido").val("");
+        $("#EfectivoEntregado").html("0.00");
+        $("#Vuelto").html("0.00");
+        $("#chkEfectivoExacto").prop('checked', false);
+        $("#boleta_subtotal").html("0.00");
+        $("#boleta_igv").html("0.00")
+    }/* FIN LimpiarInputs */
+
+    /* ======================================================================================
+    EVENTO PARA INICIAR EL REGISTRO DE LA VENTA
+    ====================================================================================== */
+    $("#btnIniciarVenta").on('click', function () {
+        realizarVenta();
+    })
+    /*===================================================================*/
+    //REALIZAR LA VENTA
+    /*===================================================================*/
+    function realizarVenta() {
+
+        var count = 0;
+        var totalVenta = $("#totalVenta").html();
+        var nro_boleta = $("#iptNroVenta").val();
+
+        table.rows().eq(0).each(function (index) {
+            count = count + 1;
+        });
+
+        if (count > 0) {
+
+            if ($("#iptEfectivoRecibido").val() > 0 && $("#iptEfectivoRecibido").val() != "") {
+
+                if ($("#iptEfectivoRecibido").val() < parseFloat(totalVenta)) {
+
+                    Toast.fire({
+                        icon: 'warning',
+                        title: 'El efectivo es menor al costo total de la venta'
+                    });
+
+                    return false;
+                }
+
+                var formData = new FormData();
+                var arr = [];
+
+                table.rows().eq(0).each(function (index) {
+
+                    var row = table.row(index);
+
+                    var data = row.data();
+
+                    arr[index] = data['codigo_producto'] + "," + parseFloat(data['cantidad']) + "," + data['total'].replace("S./ ", "");
+
+                    formData.append('arr[]', arr[index]);
+
+                });
+
+                formData.append('nro_boleta', nro_boleta);
+                formData.append('descripcion_venta', 'Venta realizada con Nro Boleta: ' + nro_boleta);
+                formData.append('total_venta', parseFloat(totalVenta));
+
+                $.ajax({
+                    url: "ajax/ventas.ajax.php",
+                    method: "POST",
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (respuesta) {
+
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: respuesta,
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+
+                        table.clear().draw();
+
+                        LimpiarInputs();
+
+                        CargarNroBoleta();
+
+                    }
+                });
+            } else {
+
+                Toast.fire({
+                    icon: 'warning',
+                    title: 'Ingrese el monto en efectivo'
+                });
+            }
+
+        } else {
+
+            Toast.fire({
+                icon: 'warning',
+                title: 'No hay productos en el listado.'
+            });
+
+        }
+
+        $("#iptCodigoVenta").focus();
+
+    }/* FIN realizarVenta */
 });

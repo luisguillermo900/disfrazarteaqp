@@ -87,21 +87,12 @@
                         onclick="cargarContenido('vistas/ventas.php', 'content-wrapper')">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
-                            Ventas
+                            Venta/Alquiler
 
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a style="cursor: pointer;" class="nav-link"
-                        onclick="cargarContenido('vistas/alquiler.php', 'content-wrapper')">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Alquileres
-
-                        </p>
-                    </a>
-                </li>
+                
                 <li class="nav-item">
                     <a style="cursor: pointer;" class="nav-link"
                         onclick="cargarContenido('vistas/compras.php', 'content-wrapper')">

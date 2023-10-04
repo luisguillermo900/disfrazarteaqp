@@ -18,12 +18,9 @@
         </li>-->
         <li class="nav-item d-none d-sm-inline-block">
         <a style="cursor: pointer;" class="nav-link"
-                                onclick="cargarContenido('vistas/ventas.php', 'content-wrapper')">Ventas</a>
+                                onclick="cargarContenido('vistas/ventas.php', 'content-wrapper')">Venta/Alquiler</a>
         </li>
-        <li class="nav-item d-none d-sm-inline-block">
-        <a style="cursor: pointer;" class="nav-link"
-                                onclick="cargarContenido('vistas/alquiler.php', 'content-wrapper')">Alquileres</a>
-        </li>
+        
         <li class="nav-item d-none d-sm-inline-block">
         <a style="cursor: pointer;" class="nav-link"
                                 onclick="cargarContenido('vistas/compras.php', 'content-wrapper')">Compras</a>

@@ -204,9 +204,9 @@ $(document).ready(function() {
             for (let i = 0; i < respuesta.length; i++) {
                 filas = '<tr>'+
                             '<td>'+ respuesta[i]["codigo_producto"] + '</td>'+
-                            '<td>'+ respuesta[i]["descripcion_producto"] + '</td>'+
+                            '<td>'+ respuesta[i]["nombre_categoria"] + '</td>'+
+                            '<td>'+ respuesta[i]["nombre_producto"] + '</td>'+
                             '<td>'+ respuesta[i]["stock_producto"] + '</td>'+
-                            '<td> S./ ' + respuesta[i]["minimo_stock_producto"] + '</td>'+
                         '</tr>'
                 $("#tbl_productos_poco_stock tbody").append(filas);
             }

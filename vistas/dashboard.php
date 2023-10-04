@@ -223,10 +223,10 @@
                             <table class="table" id="tbl_productos_poco_stock">
                                 <thead>
                                     <tr class="text-danger">
-                                        <th>Cod. producto</th>
-                                        <th>Producto</th>
-                                        <th>Stock Actual</th>
-                                        <th>Mín. Stock</th>
+                                        <th>Código</th>
+                                        <th>Categoría</th>
+                                        <th>Nombre</th>
+                                        <th>Stock</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>

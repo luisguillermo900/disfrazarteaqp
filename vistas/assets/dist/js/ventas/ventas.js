@@ -23,6 +23,7 @@ $(document).ready(function () {
             { "data": "precio_venta_producto" },
             { "data": "precio_alquiler_estreno_producto" },
             { "data": "precio_alquiler_simple_producto" },
+            { "data": "precio_unitario" },
             { "data": "total" },
             { "data": "acciones" },
             { "data": "modalidad" }
@@ -59,6 +60,11 @@ $(document).ready(function () {
         },
         {
             targets: 10,
+            visible: true,
+            orderable: false
+        },
+        {
+            targets: 11,
             visible: false
         },
         {
@@ -210,7 +216,7 @@ $(document).ready(function () {
                             'precio_alquiler_estreno_producto': '-',
                             'precio_alquiler_simple_producto': '-',
 
-
+                            'precio_unitario': respuesta['precio_unitario'],
                             'total': respuesta['total'],
 
                             'acciones': "<center>" +
@@ -240,8 +246,8 @@ $(document).ready(function () {
                             'precio_alquiler_estreno_producto': respuesta['precio_alquiler_estreno_producto'],
                             'precio_alquiler_simple_producto': '-',
 
+                            'precio_unitario': respuesta['precio_unitario'],
                             'total': respuesta['total'],
-
                             'acciones': "<center>" +
                                 "<span class='btnAumentarCantidad text-success px-1' style='cursor:pointer;' data-bs-toggle='tooltip' data-bs-placement='top' title='Aumentar Stock'> " +
                                 "<i class='fas fa-cart-plus fs-5'></i> " +
@@ -280,8 +286,7 @@ $(document).ready(function () {
                             'precio_alquiler_estreno_producto': '-',
                             'precio_alquiler_simple_producto': respuesta['precio_alquiler_simple_producto'],
 
-                            
-
+                            'precio_unitario': respuesta['precio_unitario'],
                             'total': respuesta['total'],
 
                             'acciones': "<center>" +

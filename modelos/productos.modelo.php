@@ -293,11 +293,10 @@ class ProductosModelo
                     talla_producto,
                     '1' as cantidad,
                     CONCAT('S./ ', CONVERT(ROUND(precio_venta_producto, 2), CHAR)) as precio_venta_producto,
-                    
                     CONCAT('S./ ', CONVERT(ROUND(precio_alquiler_estreno_producto, 2), CHAR)) as precio_alquiler_estreno_producto,
-                    
                     CONCAT('S./ ', CONVERT(ROUND(precio_alquiler_simple_producto, 2), CHAR)) as precio_alquiler_simple_producto,
-                    CONCAT('S./ ', CONVERT(ROUND(1 * precio_alquiler_simple_producto, 2), CHAR)) as total,
+                    'S./ 0.00' as precio_unitario,
+                    'S./ 0.00' as total,
                     '' as acciones,
                     p.modalidad
                 FROM productos p 

@@ -72,6 +72,7 @@
                                     <th>P.Venta</th>
                                     <th>P.Alq.Estreno</th>
                                     <th>P.Alq.Normal</th>
+                                    <th>Pre.Unit</th>
                                     <th>Total</th>
                                     <th class="text-center">Opciones</th>
                                     <th>Modalidad</th>

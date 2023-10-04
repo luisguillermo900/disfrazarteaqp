@@ -19,10 +19,11 @@ $(document).ready(function () {
             { "data": "nombre_categoria" },
             { "data": "nombre_producto" },
             { "data": "talla_producto" },
-            { "data": "cantidad" },
+            
             { "data": "precio_venta_producto" },
             { "data": "precio_alquiler_estreno_producto" },
             { "data": "precio_alquiler_simple_producto" },
+            { "data": "cantidad" },
             { "data": "precio_unitario" },
             { "data": "total" },
             { "data": "acciones" },
@@ -211,12 +212,12 @@ $(document).ready(function () {
                             'nombre_categoria': respuesta['nombre_categoria'],
                             'nombre_producto': respuesta['nombre_producto'],
                             'talla_producto': respuesta['talla_producto'],
-                            'cantidad': respuesta['cantidad'],
+                            
                             'precio_venta_producto': respuesta['precio_venta_producto'],
                             'precio_alquiler_estreno_producto': '-',
                             'precio_alquiler_simple_producto': '-',
-
-                            'precio_unitario': respuesta['precio_unitario'],
+                            'cantidad': respuesta['cantidad'],
+                            'precio_unitario': respuesta['precio_venta_producto'],
                             'total': respuesta['total'],
 
                             'acciones': "<center>" +
@@ -241,11 +242,11 @@ $(document).ready(function () {
                             'nombre_categoria': respuesta['nombre_categoria'],
                             'nombre_producto': respuesta['nombre_producto'],
                             'talla_producto': respuesta['talla_producto'],
-                            'cantidad': respuesta['cantidad'],
+                            
                             'precio_venta_producto': respuesta['precio_venta_producto'],
                             'precio_alquiler_estreno_producto': respuesta['precio_alquiler_estreno_producto'],
                             'precio_alquiler_simple_producto': '-',
-
+                            'cantidad': respuesta['cantidad'],
                             'precio_unitario': respuesta['precio_unitario'],
                             'total': respuesta['total'],
                             'acciones': "<center>" +
@@ -281,12 +282,12 @@ $(document).ready(function () {
                             'nombre_categoria': respuesta['nombre_categoria'],
                             'nombre_producto': respuesta['nombre_producto'],
                             'talla_producto': respuesta['talla_producto'],
-                            'cantidad': respuesta['cantidad'],
+                            
                             'precio_venta_producto': '-',
                             'precio_alquiler_estreno_producto': '-',
                             'precio_alquiler_simple_producto': respuesta['precio_alquiler_simple_producto'],
-
-                            'precio_unitario': respuesta['precio_unitario'],
+                            'cantidad': respuesta['cantidad'],
+                            'precio_unitario': respuesta['precio_alquiler_simple_producto'],
                             'total': respuesta['total'],
 
                             'acciones': "<center>" +
@@ -307,7 +308,7 @@ $(document).ready(function () {
                     }
 
                     //  Recalculamos el total de la venta
-                    //recalcularTotales();
+                    recalcularTotales();
 
                     /*===================================================================*/
                     //SI LA RESPUESTA ES FALSO, NO TRAE ALGUN DATO
@@ -326,4 +327,81 @@ $(document).ready(function () {
         });
 
     }/* FIN CargarProductos */
+
+    /*===================================================================*/
+    //FUNCION PARA RECALCULAR LOS TOTALES DE VENTA
+    /*===================================================================*/
+    function recalcularTotales(){
+
+        var TotalVenta = 0.00;
+
+        table.rows().eq(0).each(function(index) {
+
+            var row = table.row(index);
+            var data = row.data();
+
+            TotalVenta = parseFloat(TotalVenta) + parseFloat(data['total'].replace("S./ ", ""));
+
+        });
+
+        $("#totalVenta").html("");
+        $("#totalVenta").html(TotalVenta.toFixed(2));//DERECHA
+
+        var totalVenta = $("#totalVenta").html();
+        var igv = parseFloat(totalVenta) * 0.18//IGV
+        var subtotal = parseFloat(totalVenta) - parseFloat(igv);
+
+        $("#totalVentaRegistrar").html(totalVenta);
+
+        $("#boleta_subtotal").html(parseFloat(subtotal).toFixed(2));
+        $("#boleta_igv").html(parseFloat(igv).toFixed(2));
+        $("#boleta_total").html(parseFloat(totalVenta).toFixed(2));
+
+        //limpiamos el input de efectivo exacto; desmarcamos el check de efectivo exacto
+        //borramos los datos de efectivo entregado y vuelto
+        $("#iptEfectivoRecibido").val("");
+        $("#chkEfectivoExacto").prop('checked', false);
+        $("#EfectivoEntregado").html("0.00");
+        $("#Vuelto").html("0.00");
+
+        $("#iptCodigoVenta").val("");
+        $("#iptCodigoVenta").focus();
+    }
+    /* ======================================================================================
+    EVENTO PARA MODIFICAR EL PRECIO DE VENTA DEL PRODUCTO
+    ======================================================================================*/
+    $('#lstProductosVenta tbody').on('click', '.dropdown-item', function() { 
+        
+        codigo_producto = $(this).attr("codigo");
+        precio_venta = parseFloat($(this).attr("precio").replaceAll("S./ ","")).toFixed(2);
+        console.log("Código: " + codigo_producto);
+        console.log("Precio String: " + precio_venta);
+        recalcularMontos(codigo_producto,precio_venta);
+    });
+
+
+    function recalcularMontos(codigo_producto, precio_venta){
+
+        table.rows().eq(0).each(function(index) {
+
+            var row = table.row(index);
+
+            var data = row.data();
+
+            if (data['codigo_producto'] == codigo_producto) {
+            
+                // AUMENTAR EN 1 EL VALOR DE LA CANTIDAD
+                table.cell(index, 8).data("S./ " + parseFloat(precio_venta).toFixed(2)).draw();
+
+                // ACTUALIZAR EL NUEVO PRECIO DEL ITEM DEL LISTADO DE VENTA
+                NuevoPrecio = (parseFloat(data['cantidad']) * data['precio_unitario'].replaceAll("S./ ", "")).toFixed(2);
+                NuevoPrecio = "S./ " + NuevoPrecio;
+                table.cell(index, 9).data(NuevoPrecio).draw();
+            }
+        });
+
+        // RECALCULAMOS TOTALES
+        recalcularTotales();
+
+    }
 });

@@ -45,7 +45,7 @@
 
                     <!-- ETIQUETA QUE MUESTRA LA SUMA TOTAL DE LOS PRODUCTOS AGREGADOS AL LISTADO -->
                     <div class="col-md-6 mb-3">
-                        <h3>Total de venta: S./ <span id="totalVenta">0.00</span></h3>
+                        <h3>Total de venta: S./ <span id="totalVenta">0.00</span></h3> <!--IZQUIERDA-->
                     </div>
 
                     <!-- BOTONES PARA VACIAR LISTADO Y COMPLETAR LA VENTA -->
@@ -64,14 +64,14 @@
                         <table id="lstProductosVenta" class="display nowrap table-striped w-100 shadow ">
                             <thead class="bg-info text-left fs-6">
                                 <tr>
-                                    <th>Codigo</th>
-                                    <th>Categoria</th>
+                                    <th>Código</th>
+                                    <th>Categoría</th>
                                     <th>Nombre</th>
                                     <th>Talla</th>
-                                    <th>Cantidad</th>
                                     <th>P.Venta</th>
                                     <th>P.Alq.Estreno</th>
                                     <th>P.Alq.Normal</th>
+                                    <th>Cantidad</th>
                                     <th>Pre.Unit</th>
                                     <th>Total</th>
                                     <th class="text-center">Opciones</th>
@@ -94,7 +94,7 @@
                 <div class="card shadow">
 
                     <h5 class="card-header py-1 bg-primary text-white text-center">
-                        Total Venta: S./ <span id="totalVentaRegistrar">0.00</span>
+                        Total de venta: S./ <span id="totalVentaRegistrar">0.00</span> <!--DERECHA-->
                     </h5>
 
                     <div class="card-body p-2">

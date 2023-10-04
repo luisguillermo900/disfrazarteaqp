@@ -257,15 +257,17 @@ class ProductosModelo
 
     /*===================================================================
     LISTAR NOMBRE DE PRODUCTOS PARA INPUT DE AUTO COMPLETADO
+    SELECT Concat(codigo_producto , ' - ' ,c.nombre_categoria,' - ',nombre_producto
+                                                , ' - S./ ' , p.precio_venta_producto
+                                                , ' - S./ ' , p.precio_alquiler_estreno_producto
+                                                , ' - S./ ' , p.precio_alquiler_simple_producto)  as descripcion_producto
+                                                FROM productos p inner join categorias c on p.id_categoria_producto = c.id_categoria
     ====================================================================*/
     static public function mdlListarNombreProductos()
     {
 
-        $stmt = Conexion::conectar()->prepare("SELECT Concat(codigo_producto , ' - ' ,c.nombre_categoria,' - ',nombre_producto
-                                                , ' - S./ ' , p.precio_venta_producto
-                                                , ' - S./ ' , p.precio_alquiler_estreno_producto
-                                                , ' - S./ ' , p.precio_alquiler_simple_producto)  as descripcion_producto
-                                                FROM productos p inner join categorias c on p.id_categoria_producto = c.id_categoria");
+        $stmt = Conexion::conectar()->prepare("SELECT codigo_producto as descripcion_producto
+                                                FROM productos");
 
         $stmt->execute();
 
@@ -274,29 +276,36 @@ class ProductosModelo
 
     /*===================================================================
     BUSCAR PRODUCTO POR SU CODIGO DE BARRAS
+    CONCAT('S./ ', CONVERT(ROUND(precio_alquiler_estreno_producto, 2), CHAR)) as precio_alquiler_estreno_producto,
+    CONCAT('S./ ', CONVERT(ROUND(1 * precio_alquiler_estreno_producto, 2), CHAR)) as total_alquiler_estreno_producto,
+    CONCAT('S./ ', CONVERT(ROUND(precio_alquiler_simple_producto, 2), CHAR)) as precio_alquiler_simple_producto,
+    CONCAT('S./ ', CONVERT(ROUND(1 * precio_alquiler_simple_producto, 2), CHAR)) as total_alquiler_simple_producto,
     ====================================================================*/
     static public function mdlGetDatosProducto($codigoProducto)
     {
 
-        $stmt = Conexion::conectar()->prepare("SELECT   
-                                                    codigo_producto,                                        
-                                                    c.nombre_categoria,
-                                                    nombre_producto,
-                                                    talla_producto,
-                                                    '1' as cantidad,
-                                                    CONCAT('S./ ',CONVERT(ROUND(precio_venta_producto,2), CHAR)) as precio_venta_producto,
-                                                    CONCAT('S./ ',CONVERT(ROUND(1*precio_venta_producto,2), CHAR)) as total,
-                                                    CONCAT('S./ ',CONVERT(ROUND(precio_alquiler_estreno_producto,2), CHAR)) as precio_alquiler_estreno_producto,
-                                                    CONCAT('S./ ',CONVERT(ROUND(1*precio_alquiler_estreno_producto,2), CHAR)) as total,
-                                                    CONCAT('S./ ',CONVERT(ROUND(precio_alquiler_simple_producto,2), CHAR)) as precio_alquiler_simple_producto,
-                                                    CONCAT('S./ ',CONVERT(ROUND(1*precio_alquiler_simple_producto,2), CHAR)) as total,
-                                                    '' as acciones,
-                                                    modalidad
-                                                FROM productos p inner join categorias c on p.id_categoria_producto = c.id_categoria
-                                                WHERE codigo_producto = :codigoProducto
-                                                AND p.stock_producto > 0");
+        $stmt = Conexion::conectar()->prepare("
+        
+            SELECT   
+                    codigo_producto,                                        
+                    c.nombre_categoria,
+                    nombre_producto,
+                    talla_producto,
+                    '1' as cantidad,
+                    CONCAT('S./ ', CONVERT(ROUND(precio_venta_producto, 2), CHAR)) as precio_venta_producto,
+                    
+                    CONCAT('S./ ', CONVERT(ROUND(precio_alquiler_estreno_producto, 2), CHAR)) as precio_alquiler_estreno_producto,
+                    
+                    CONCAT('S./ ', CONVERT(ROUND(precio_alquiler_simple_producto, 2), CHAR)) as precio_alquiler_simple_producto,
+                    CONCAT('S./ ', CONVERT(ROUND(1 * precio_alquiler_simple_producto, 2), CHAR)) as total,
+                    '' as acciones,
+                    p.modalidad
+                FROM productos p 
+                INNER JOIN categorias c ON p.id_categoria_producto = c.id_categoria
+                WHERE codigo_producto = :codigoProducto
+                AND p.stock_producto > 0 AND p.modalidad != 'Sin modalidad'");
 
-        $stmt->bindParam(":codigoProducto", $codigoProducto, PDO::PARAM_INT);
+        $stmt->bindParam(":codigoProducto", $codigoProducto, PDO::PARAM_STR);
 
         $stmt->execute();
 

@@ -1,6 +1,6 @@
 var table;
 var items = []; // SE USA PARA EL INPUT DE AUTOCOMPLETE
-var itemProducto = 1;
+
 
 var Toast = Swal.mixin({
     toast: true,
@@ -25,9 +25,7 @@ $(document).ready(function () {
             { "data": "precio_alquiler_simple_producto" },
             { "data": "total" },
             { "data": "acciones" },
-            { "data": "aplica_peso" },
-            { "data": "precio_mayor_producto" },
-            { "data": "precio_oferta_producto" }
+            { "data": "modalidad" }
         ],
         columnDefs: [{
             targets: 0,
@@ -97,11 +95,11 @@ $(document).ready(function () {
                 source: items,
                 select: function (event, ui) {
                     console.log(ui);
-                    //CargarProductos(ui.item.value);                                                            
+                    CargarProductos(ui.item.value);                                                            
 
-                    //$("#iptCodigoVenta").val("");
+                    $("#iptCodigoVenta").val("");
 
-                    //$("#iptCodigoVenta").focus();
+                    $("#iptCodigoVenta").focus();
 
                     return false;
                 }
@@ -178,9 +176,9 @@ $(document).ready(function () {
             }
         });*/
 
-        if (producto_repetido == 1) {
+        /*if (producto_repetido == 1) {
             return;
-        }
+        }*/
 
         $.ajax({
             url: "ajax/productos.ajax.php",
@@ -199,54 +197,51 @@ $(document).ready(function () {
 
                     var TotalVenta = 0.00;
 
-                    if (respuesta['aplica_peso'] == 1) {
+                    if (respuesta['modalidad'] == 'Venta') {
 
                         table.row.add({
-                            'id': itemProducto,
+                            
                             'codigo_producto': respuesta['codigo_producto'],
-                            'id_categoria': respuesta['id_categoria'],
                             'nombre_categoria': respuesta['nombre_categoria'],
-                            'descripcion_producto': respuesta['descripcion_producto'],
-                            'cantidad': respuesta['cantidad'] + ' Kg(s)',
+                            'nombre_producto': respuesta['nombre_producto'],
+                            'talla_producto': respuesta['talla_producto'],
+                            'cantidad': respuesta['cantidad'],
                             'precio_venta_producto': respuesta['precio_venta_producto'],
+                            'precio_alquiler_estreno_producto': '-',
+                            'precio_alquiler_simple_producto': '-',
+
+
                             'total': respuesta['total'],
+
                             'acciones': "<center>" +
-                                "<span class='btnIngresarPeso text-success px-1' style='cursor:pointer;' data-bs-toggle='tooltip' data-bs-placement='top' title='Aumentar Stock'> " +
-                                "<i class='fas fa-balance-scale fs-5'></i> " +
+                                "<span class='btnAumentarCantidad text-success px-1' style='cursor:pointer;' data-bs-toggle='tooltip' data-bs-placement='top' title='Aumentar Stock'> " +
+                                "<i class='fas fa-cart-plus fs-5'></i> " +
+                                "</span> " +
+                                "<span class='btnDisminuirCantidad text-warning px-1' style='cursor:pointer;' data-bs-toggle='tooltip' data-bs-placement='top' title='Disminuir Stock'> " +
+                                "<i class='fas fa-cart-arrow-down fs-5'></i> " +
                                 "</span> " +
                                 "<span class='btnEliminarproducto text-danger px-1'style='cursor:pointer;' data-bs-toggle='tooltip' data-bs-placement='top' title='Eliminar producto'> " +
                                 "<i class='fas fa-trash fs-5'> </i> " +
                                 "</span>" +
-                                "<div class='btn-group'>" +
-                                "<button type='button' class=' p-0 btn btn-primary transparentbar dropdown-toggle btn-sm' data-bs-toggle='dropdown' aria-expanded='false'>" +
-                                "<i class='fas fa-cog text-primary fs-5'></i> <i class='fas fa-chevron-down text-primary'></i>" +
-                                "</button>" +
-
-                                "<ul class='dropdown-menu'>" +
-                                "<li><a class='dropdown-item' codigo = '" + respuesta['codigo_producto'] + "' precio=' " + respuesta['precio_venta_producto'] + "' style='cursor:pointer; font-size:14px;'>Normal (" + respuesta['precio_venta_producto'] + ")</a></li>" +
-                                "<li><a class='dropdown-item' codigo = '" + respuesta['codigo_producto'] + "' precio=' " + respuesta['precio_mayor_producto'] + "' style='cursor:pointer; font-size:14px;'>Por Mayor (S./ " + parseFloat(respuesta['precio_mayor_producto']).toFixed(2) + ")</a></li>" +
-                                "<li><a class='dropdown-item' codigo = '" + respuesta['codigo_producto'] + "' precio=' " + respuesta['precio_oferta_producto'] + "' style='cursor:pointer; font-size:14px;'>Oferta (S./ " + parseFloat(respuesta['precio_oferta_producto']).toFixed(2) + ")</a></li>" +
-                                "</ul>" +
-                                "</div>" +
                                 "</center>",
-                            'aplica_peso': respuesta['aplica_peso'],
-                            'precio_mayor_producto': respuesta['precio_mayor_producto'],
-                            'precio_oferta_producto': respuesta['precio_oferta_producto']
+                            'modalidad': respuesta['modalidad']
                         }).draw();
+                        
 
-                        itemProducto = itemProducto + 1;
-
-                    } else {
+                    } else if(respuesta['modalidad'] == 'Venta/Alq. Estreno'){
 
                         table.row.add({
-                            'id': itemProducto,
                             'codigo_producto': respuesta['codigo_producto'],
-                            'id_categoria': respuesta['id_categoria'],
                             'nombre_categoria': respuesta['nombre_categoria'],
-                            'descripcion_producto': respuesta['descripcion_producto'],
-                            'cantidad': respuesta['cantidad'] + ' Und(s)',
+                            'nombre_producto': respuesta['nombre_producto'],
+                            'talla_producto': respuesta['talla_producto'],
+                            'cantidad': respuesta['cantidad'],
                             'precio_venta_producto': respuesta['precio_venta_producto'],
+                            'precio_alquiler_estreno_producto': respuesta['precio_alquiler_estreno_producto'],
+                            'precio_alquiler_simple_producto': '-',
+
                             'total': respuesta['total'],
+
                             'acciones': "<center>" +
                                 "<span class='btnAumentarCantidad text-success px-1' style='cursor:pointer;' data-bs-toggle='tooltip' data-bs-placement='top' title='Aumentar Stock'> " +
                                 "<i class='fas fa-cart-plus fs-5'></i> " +
@@ -258,28 +253,56 @@ $(document).ready(function () {
                                 "<i class='fas fa-trash fs-5'> </i> " +
                                 "</span>" +
                                 "<div class='btn-group'>" +
-                                "<button type='button' class=' p-0 btn btn-primary transparentbar dropdown-toggle btn-sm' data-bs-toggle='dropdown' aria-expanded='false'>" +
-                                "<i class='fas fa-cog text-primary fs-5'></i> <i class='fas fa-chevron-down text-primary'></i>" +
-                                "</button>" +
+                                    "<button type='button' class=' p-0 btn transparentbar btn-sm' data-bs-toggle='dropdown' aria-expanded='false'>" +
+                                    "<i class='fas fa-cog text-primary fs-5'></i> <i class='fas fa-chevron-down text-primary'></i>" +
+                                    "</button>" +
 
-                                "<ul class='dropdown-menu'>" +
-                                "<li><a class='dropdown-item' codigo = '" + respuesta['codigo_producto'] + "' precio=' " + respuesta['precio_venta_producto'] + "' style='cursor:pointer; font-size:14px;'>Normal (" + respuesta['precio_venta_producto'] + ")</a></li>" +
-                                "<li><a class='dropdown-item' codigo = '" + respuesta['codigo_producto'] + "' precio=' " + respuesta['precio_mayor_producto'] + "' style='cursor:pointer; font-size:14px;'>Por Mayor (S./ " + parseFloat(respuesta['precio_mayor_producto']).toFixed(2) + ")</a></li>" +
-                                "<li><a class='dropdown-item' codigo = '" + respuesta['codigo_producto'] + "' precio=' " + respuesta['precio_oferta_producto'] + "' style='cursor:pointer; font-size:14px;'>Oferta (S./ " + parseFloat(respuesta['precio_oferta_producto']).toFixed(2) + ")</a></li>" +
-                                "</ul>" +
+                                    "<ul class='dropdown-menu'>" +
+                                    "<li><a class='dropdown-item' codigo = '" + respuesta['codigo_producto'] + "' precio=' " + respuesta['precio_venta_producto'] + "' style='cursor:pointer; font-size:14px;'>P.Venta (" + respuesta['precio_venta_producto'] + ")</a></li>" +
+                                    "<li><a class='dropdown-item' codigo = '" + respuesta['codigo_producto'] + "' precio=' " + respuesta['precio_alquiler_estreno_producto'] + "' style='cursor:pointer; font-size:14px;'>P.Alq.Estreno (" + respuesta['precio_alquiler_estreno_producto']+ ")</a></li>" +
+                                    
+                                    "</ul>" +
                                 "</div>" +
                                 "</center>",
-                            'aplica_peso': respuesta['aplica_peso'],
-                            'precio_mayor_producto': respuesta['precio_mayor_producto'],
-                            'precio_oferta_producto': respuesta['precio_oferta_producto']
+                            'modalidad': respuesta['modalidad']
+                        }).draw();
+                        
+                        
+                    }else if(respuesta['modalidad'] == 'Alq. Normal'){
+
+                        table.row.add({
+                            'codigo_producto': respuesta['codigo_producto'],
+                            'nombre_categoria': respuesta['nombre_categoria'],
+                            'nombre_producto': respuesta['nombre_producto'],
+                            'talla_producto': respuesta['talla_producto'],
+                            'cantidad': respuesta['cantidad'],
+                            'precio_venta_producto': '-',
+                            'precio_alquiler_estreno_producto': '-',
+                            'precio_alquiler_simple_producto': respuesta['precio_alquiler_simple_producto'],
+
+                            
+
+                            'total': respuesta['total'],
+
+                            'acciones': "<center>" +
+                                "<span class='btnAumentarCantidad text-success px-1' style='cursor:pointer;' data-bs-toggle='tooltip' data-bs-placement='top' title='Aumentar Stock'> " +
+                                "<i class='fas fa-cart-plus fs-5'></i> " +
+                                "</span> " +
+                                "<span class='btnDisminuirCantidad text-warning px-1' style='cursor:pointer;' data-bs-toggle='tooltip' data-bs-placement='top' title='Disminuir Stock'> " +
+                                "<i class='fas fa-cart-arrow-down fs-5'></i> " +
+                                "</span> " +
+                                "<span class='btnEliminarproducto text-danger px-1'style='cursor:pointer;' data-bs-toggle='tooltip' data-bs-placement='top' title='Eliminar producto'> " +
+                                "<i class='fas fa-trash fs-5'> </i> " +
+                                "</span>" +
+                                "</center>",
+                            'modalidad': respuesta['modalidad']
                         }).draw();
 
-                        itemProducto = itemProducto + 1;
-
+                       
                     }
 
                     //  Recalculamos el total de la venta
-                    recalcularTotales();
+                    //recalcularTotales();
 
                     /*===================================================================*/
                     //SI LA RESPUESTA ES FALSO, NO TRAE ALGUN DATO

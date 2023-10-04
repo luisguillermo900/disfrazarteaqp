@@ -26,6 +26,7 @@ class ajaxProductos
     public $marca_producto;
     public $modalidad;
     public $estado_producto;
+    public $cantidad_a_comprar;
 
     public function ajaxListarProductos()
     {
@@ -124,6 +125,12 @@ class ajaxProductos
         echo json_encode($producto);
     }
 
+    public function ajaxVerificaStockProducto(){
+
+        $respuesta = ProductosControlador::ctrVerificaStockProducto($this->codigo_producto,$this->cantidad_a_comprar);
+   
+       echo json_encode($respuesta);
+    }
     
 }
 
@@ -204,4 +211,13 @@ if (isset($_POST['accion']) && $_POST['accion'] == 1) { // parametro para listar
     
     $listaProducto -> ajaxGetDatosProducto();
 	
+}else if(isset($_POST["accion"]) && $_POST["accion"] == 8){ // VERIFICAR STOCK DEL PRODUCTO
+
+    $verificaStock = new AjaxProductos();
+
+    $verificaStock -> codigo_producto = $_POST["codigo_producto"];
+    $verificaStock -> cantidad_a_comprar = $_POST["cantidad_a_comprar"];
+    
+    $verificaStock -> ajaxVerificaStockProducto();
+
 }

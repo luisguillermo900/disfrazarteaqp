@@ -404,4 +404,56 @@ $(document).ready(function () {
         recalcularTotales();
 
     }
+    /* ======================================================================================
+    EVENTO PARA AUMENTAR LA CANTIDAD DE UN PRODUCTO DEL LISTADO
+    ====================================================================================== */
+    $('#lstProductosVenta tbody').on('click', '.btnAumentarCantidad', function() {
+
+        var data = table.row($(this).parents('tr')).data(); //Recuperar los datos de la fila
+
+        var idx = table.row($(this).parents('tr')).index();  // Recuperar el Indice de la Fila
+
+        var codigo_producto = data['codigo_producto'];
+        var cantidad = data['cantidad'];
+
+        $.ajax({
+            async: false,
+            url: "ajax/productos.ajax.php",
+            method: "POST",
+            data: {
+                'accion': 8,
+                'codigo_producto': codigo_producto,
+                'cantidad_a_comprar': cantidad
+            },
+
+            dataType: 'json',
+            success: function(respuesta) {
+
+                if (parseInt(respuesta['existe']) == 0) {
+
+                    Toast.fire({
+                        icon: 'error',
+                        title: ' El producto ' + data['codigo_producto'] + ' ya no tiene stock'
+                    })
+
+                    $("#iptCodigoVenta").val("");
+                    $("#iptCodigoVenta").focus();
+
+                } else {
+
+                    cantidad = parseInt(data['cantidad']) + 1;
+
+                    table.cell(idx, 7).data(cantidad).draw();
+
+                    NuevoPrecio = (parseInt(data['cantidad']) * data['precio_unitario'].replace("S./ ", "")).toFixed(2);
+                    NuevoPrecio = "S./ " + NuevoPrecio;
+                    
+                    table.cell(idx, 9).data(NuevoPrecio).draw();
+
+                    recalcularTotales();
+                }
+            }
+        });
+
+    });
 });

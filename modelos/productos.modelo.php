@@ -314,4 +314,19 @@ class ProductosModelo
 
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
+
+    static public function mdlVerificaStockProducto($codigo_producto, $cantidad_a_comprar){
+
+        $stmt = Conexion::conectar()->prepare("SELECT   count(*) as existe
+                                                FROM productos p 
+                                                WHERE p.codigo_producto = :codigo_producto
+                                                AND p.stock_producto > :cantidad_a_comprar");
+    
+        $stmt -> bindParam(":codigo_producto",$codigo_producto,PDO::PARAM_STR);
+        $stmt -> bindParam(":cantidad_a_comprar",$cantidad_a_comprar,PDO::PARAM_STR);
+    
+        $stmt -> execute();
+    
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    }
 }

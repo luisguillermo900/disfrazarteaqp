@@ -9,4 +9,12 @@ class CategoriasControlador{
         return $categorias;
 
     }
+
+    static public function ctrListarCategoriasAll(){
+        
+        $categorias = CategoriasModelo::mdlListarCategoriasAll();
+
+        return $categorias;
+
+    }
 }

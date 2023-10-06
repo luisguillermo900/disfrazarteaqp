@@ -17,7 +17,8 @@
     <link rel="stylesheet" href="vistas/assets/dist/css/adminlte.min.css">
 </head>
 
-<body class="hold-transition login-page" style="background-image: url('vistas/assets/dist/img/disfrazarteAQPLogo.png'); background-size: 100%; background-repeat: no-repeat; background-position: center;">
+<body class="hold-transition login-page"
+    style="background-image: url('vistas/assets/dist/img/disfrazarteAQPLogo.png'); background-size: 100%; background-repeat: no-repeat; background-position: center;">
 
     <div class="login-box">
 

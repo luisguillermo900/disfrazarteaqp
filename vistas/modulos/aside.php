@@ -140,6 +140,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                     <a style="cursor: pointer;" class="nav-link" href="http://localhost/disfrazarteaqp?cerrar_sesion=1">
+                         <i class="nav-icon fas fa-sign-out-alt"></i>
+                         <p>
+                             Cerrar Sesión
+                         </p>
+                     </a>
+                 </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

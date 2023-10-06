@@ -2,6 +2,9 @@
 
 require_once "controladores/plantilla.controlador.php";
 
-$plantilla = new plantillaControlador();
+require_once "controladores/usuario.controlador.php";
+require_once "modelos/usuario.modelo.php";
 
-$plantilla->cargarPlantilla(); 
+
+$plantilla = new PlantillaControlador();
+$plantilla -> CargarPlantilla();

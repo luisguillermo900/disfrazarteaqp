@@ -1,3 +1,20 @@
+<?php
+
+session_start();
+
+
+if (isset($_GET["cerrar_sesion"]) && $_GET["cerrar_sesion"] == 1) {
+
+    session_destroy();
+
+    echo '
+            <script>
+                window.location = "http://localhost/disfrazarteaqp";
+            </script>        
+        ';
+}
+?>
+
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -42,7 +59,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- InputMask -->
     <script src="vistas/assets/plugins/moment/moment.min.js"></script>
     <script src="vistas/assets/plugins/inputmask/jquery.inputmask.min.js"></script>
-    
+
     <!-- SweetAlert2 -->
     <script src="vistas/assets/plugins/sweetalert2/sweetalert2.min.js"></script>
 
@@ -84,32 +101,41 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!--END ESTILOS-->
 </head>
 
-<body class="hold-transition sidebar-mini sidebar-collapse">
-    <div class="wrapper">
-        <?php 
-        //<!-- Navbar -->
-           
-            include "modulos/navbar.php";
-            
-        //<!-- /.navbar -->
+<?php if (isset($_SESSION["usuario"])) : ?>
 
-        //<!-- Main Sidebar Container -->
-            include "modulos/aside.php";
+<body class="hold-transition sidebar-mini sidebar-collapse">
+
+    <div class="wrapper">
+
+        <?php
+        //include "modulos/navbar.php";
+        include "modulos/aside.php";
         ?>
-        <!-- Content Wrapper. Contains page content -->
+
+
         <div class="content-wrapper">
 
-            <?php include "vistas/dashboard.php"; ?>
+            <?php include "vistas/" . $_SESSION["usuario"]->vista ?>
 
         </div>
-        <!-- /.content-wrapper -->
-        <?php
-        //<!-- Main Footer -->
-            include "modulos/footer.php";      
-        ?>
     </div>
-    <!-- ./wrapper -->
+
+    <script>
+        function CargarContenido(pagina_php, contenedor) {
+            $("." + contenedor).load(pagina_php);
+        }
+    </script>
 
 </body>
+
+<?php else : ?>
+
+<body>
+
+    <?php include "vistas/login.php"; ?>
+
+</body>
+
+<?php endif; ?>
 
 </html>

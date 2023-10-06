@@ -17,5 +17,10 @@ class VentasControlador{
         return $productos;
 
     }
+    static public function ctrListarVentas($fechaDesde, $fechaHasta){
 
+        $ventas = VentasModelo::mdlListarVentas($fechaDesde,$fechaHasta);
+
+        return $ventas;
+    }
 }

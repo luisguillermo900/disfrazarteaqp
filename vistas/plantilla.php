@@ -39,7 +39,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="vistas/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- ChartJS -->
     <script src="vistas/assets/plugins/chart.js/Chart.min.js"></script>
-
+    <!-- InputMask -->
+    <script src="vistas/assets/plugins/moment/moment.min.js"></script>
+    <script src="vistas/assets/plugins/inputmask/jquery.inputmask.min.js"></script>
+    
     <!-- SweetAlert2 -->
     <script src="vistas/assets/plugins/sweetalert2/sweetalert2.min.js"></script>
 

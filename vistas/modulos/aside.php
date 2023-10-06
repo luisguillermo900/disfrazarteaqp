@@ -1,5 +1,3 @@
-
-
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
@@ -82,17 +80,36 @@
                 </li>
                 <!--END SUB-MENÚ-->
 
+                <!--MENÚ VENTAS/ALQUILERES-->
+                <!--SUB-MENÚ-->
                 <li class="nav-item">
-                    <a style="cursor: pointer;" class="nav-link"
-                        onclick="cargarContenido('vistas/ventas.php', 'content-wrapper')">
-                        <i class="nav-icon fas fa-th"></i>
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Venta/Alquiler
-
+                            <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a style="cursor: pointer;" class="nav-link"
+                                onclick="cargarContenido('vistas/ventas.php', 'content-wrapper')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Venta/Alquiler</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a style="cursor: pointer;" class="nav-link"
+                                onclick="cargarContenido('vistas/administrar_ventas.php', 'content-wrapper')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Administrar venta/alquiler</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
-                
+                <!--END SUB-MENÚ-->
+                <!--END VENTAS Y ALQUILERES-->
+
                 <li class="nav-item">
                     <a style="cursor: pointer;" class="nav-link"
                         onclick="cargarContenido('vistas/compras.php', 'content-wrapper')">
@@ -132,5 +149,5 @@
 
 
 <!--SCRIPTS-->
-<script src="vistas/assets/dist/js/aside.js"></script>    
+<script src="vistas/assets/dist/js/aside.js"></script>
 <!--END SCRIPTS-->

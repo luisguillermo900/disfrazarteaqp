@@ -79,4 +79,61 @@ class VentasModelo
             }
         }
     }
+/*
+SELECT Concat('Boleta Nro: ',v.nro_boleta,' - Total Venta: S./ ',Round(vc.total_venta,2)) as nro_boleta,
+                v.codigo_producto,
+                c.nombre_categoria,
+                p.nombre_producto,
+                v.cantidad as cantidad,                            
+                concat('S./ ',round(v.total_venta,2)) as total_venta,
+                v.fecha_venta
+                FROM venta_detalle v inner join productos p on v.codigo_producto = p.codigo_producto
+                                    inner join venta_cabecera vc on cast(vc.nro_boleta as integer) = cast(v.nro_boleta as integer)
+                                    inner join categorias c on c.id_categoria = p.id_categoria_producto
+        where DATE(v.fecha_venta) >= date(:fechaDesde) and DATE(v.fecha_venta) <= date(:fechaHasta)
+        order by v.nro_boleta asc
+*/
+
+
+    static public function mdlListarVentas($fechaDesde,$fechaHasta){
+
+        try {
+            
+            $stmt = Conexion::conectar()->prepare("SELECT 
+            CONCAT('Boleta Nro: ', v.nro_boleta, ' - Total Venta: S./ ', ROUND(vc.total_venta, 2)) AS boleta_info,
+            v.codigo_producto,
+            c.nombre_categoria,
+            p.nombre_producto,
+            v.cantidad,
+            CONCAT('S./ ', ROUND(v.total_venta, 2)) AS total_venta,
+            vc.fecha_venta
+        FROM 
+            venta_detalle v
+        INNER JOIN 
+            productos p ON v.codigo_producto = p.codigo_producto
+        INNER JOIN 
+            venta_cabecera vc ON CAST(vc.nro_boleta AS INTEGER) = CAST(v.nro_boleta AS INTEGER)
+        INNER JOIN 
+            categorias c ON c.id_categoria = p.id_categoria_producto
+        WHERE 
+            DATE(vc.fecha_venta) BETWEEN :fechaDesde AND :fechaHasta  -- Rango de fechas
+        ORDER BY 
+            vc.nro_boleta ASC;
+        ");
+
+            $stmt -> bindParam(":fechaDesde",$fechaDesde,PDO::PARAM_STR);
+            $stmt -> bindParam(":fechaHasta",$fechaHasta,PDO::PARAM_STR);
+
+            $stmt -> execute();
+
+            return $stmt->fetchAll();
+            
+        } catch (Exception $e) {
+            return 'Excepción capturada: '.  $e->getMessage(). "\n";
+        }
+        
+
+        $stmt = null;
+    }
+
 }

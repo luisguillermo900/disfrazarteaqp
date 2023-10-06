@@ -181,7 +181,8 @@ $(document).ready(function() {
             for (let i = 0; i < respuesta.length; i++) {
                 filas = '<tr>'+
                             '<td>'+ respuesta[i]["codigo_producto"] + '</td>'+
-                            '<td>'+ respuesta[i]["descripcion_producto"] + '</td>'+
+                            '<td>'+ respuesta[i]["nombre_categoria"] + '</td>'+
+                            '<td>'+ respuesta[i]["nombre_producto"] + '</td>'+
                             '<td>'+ respuesta[i]["cantidad"] + '</td>'+
                             '<td> S./ '+ respuesta[i]["total_venta"] + '</td>'+
                         '</tr>'

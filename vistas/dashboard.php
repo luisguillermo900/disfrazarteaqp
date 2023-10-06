@@ -176,7 +176,7 @@
             <div class="col-lg-6">
                 <div class="card card-info">
                     <div class="card-header">
-                        <h3 class="card-title">Los 10 productos mas vendidos</h3>
+                        <h3 class="card-title">Los 10 productos más vendidos</h3>
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                 <i class="fas fa-minus"></i>
@@ -191,10 +191,11 @@
                             <table class="table" id="tbl_productos_mas_vendidos">
                                 <thead>
                                     <tr class="text-danger">
-                                        <th>Cod. producto</th>
-                                        <th>Producto</th>
+                                        <th>Código</th>
+                                        <th>Categoría</th>
+                                        <th>Nombre</th>
                                         <th>Cantidad</th>
-                                        <th>Ventas</th>
+                                        <th>Total de venta</th>
                                     </tr>
                                 </thead>
                                 <tbody>

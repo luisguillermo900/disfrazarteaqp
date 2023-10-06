@@ -7,7 +7,8 @@
     <title>DisfrazarteAQP | Login</title>
 
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="vistas/assets/plugins/fontawesome-free/css/all.min.css">
     <!-- icheck bootstrap -->
@@ -16,7 +17,7 @@
     <link rel="stylesheet" href="vistas/assets/dist/css/adminlte.min.css">
 </head>
 
-<body class="hold-transition login-page">
+<body class="hold-transition login-page" style="background-image: url('vistas/assets/dist/img/disfrazarteAQPLogo.png'); background-size: 100%; background-repeat: no-repeat; background-position: center;">
 
     <div class="login-box">
 
@@ -34,11 +35,12 @@
 
                     <!-- USUARIO DEL SISTEMA -->
                     <div class="input-group mb-3">
-                        
-                        <input type="text" class="form-control" placeholder="Usuario del sistema" name="loginUsuario" required>
+
+                        <input type="text" class="form-control" placeholder="Usuario del sistema" name="loginUsuario"
+                            required>
 
                         <div class="input-group-append">
-                            
+
                             <div class="input-group-text">
 
                                 <span class="fas fa-user"></span>
@@ -53,11 +55,12 @@
 
                     <!-- PASSWORD DEL USUARIO DEL SISTEMA -->
                     <div class="input-group mb-3">
-                        
-                        <input type="password" class="form-control" placeholder="ingrese su password" name="loginPassword" required>
+
+                        <input type="password" class="form-control" placeholder="ingrese su password"
+                            name="loginPassword" required>
 
                         <div class="input-group-append">
-                            
+
                             <div class="input-group-text">
 
                                 <span class="fas fa-lock"></span>

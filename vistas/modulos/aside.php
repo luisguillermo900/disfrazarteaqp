@@ -1,6 +1,12 @@
+<?php
+
+    $menuUsuario = UsuarioControlador::ctrObtenerMenuUsuario($_SESSION["usuario"]->id_usuario);
+
+?>
+
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="#" class="brand-link">
         <img src="vistas/assets/dist/img/disfrazarteAQPLogo.png" alt="disfrazarteAQPLogo"
             class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Disfrazarte AQP</span>
@@ -11,135 +17,62 @@
         <!-- Sidebar user panel (CAMBIAR A FUTURO) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="vistas/assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                <img src="vistas/assets/dist/img/disfrazarteAQPLogo.png" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Luis Chirinos</a>
+                <a href="#" class="d-block"><?php echo $_SESSION["usuario"]->nombre_usuario. ' ' . $_SESSION["usuario"]->apellido_usuario ?></a>
             </div>
         </div>
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <?php foreach ($menuUsuario as $menu) : ?>
+                    <li class="nav-item">
 
-                <!--TABLERO PRINCIPAL-->
+                        <a style="cursor: pointer;" 
+                            class="nav-link <?php if($menu->vista_inicio == 1) : ?>
+                                                <?php echo 'active'; ?>
+                                            <?php endif; ?>"
+                            <?php if(!empty($menu->vista)) : ?>
+                                onclick="CargarContenido('vistas/<?php echo $menu->vista; ?>','content-wrapper')"
+                            <?php endif; ?>
+                        >
+                            <i class="nav-icon <?php echo $menu->icon_menu; ?>"></i>
+                            <p>
+                                <?php echo $menu->modulo ?>
+                                <?php if(empty($menu->vista)) : ?>
+                                    <i class="right fas fa-angle-left"></i> 
+                                <?php endif; ?>
+                            </p>
+                        </a>
 
-                <li class="nav-item">
-                    <a style="cursor: pointer;" class="nav-link active"
-                        onclick="cargarContenido('vistas/dashboard.php', 'content-wrapper')">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Tablero principal
+                        <?php if(empty($menu->vista)) : ?>
 
-                        </p>
-                    </a>
-                </li>
-                <!--END TABLERO PRINCIPAL-->
-                <li class="nav-item">
-                    <a style="cursor: pointer;" class="nav-link"
-                        onclick="cargarContenido('vistas/usuarios.php', 'content-wrapper')">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Usuarios
+                            <?php
+                                $subMenuUsuario = UsuarioControlador::ctrObtenerSubMenuUsuario($menu->id,$_SESSION["usuario"]->id_usuario);
+                            ?>
 
-                        </p>
-                    </a>
-                </li>
-                <!--SUB-MENÚ-->
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Productos
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a style="cursor: pointer;" class="nav-link"
-                                onclick="cargarContenido('vistas/productos.php', 'content-wrapper')">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Inventario</p>
-                            </a>
-                        </li>
-                        <!-- <li class="nav-item">
-                            <a style="cursor: pointer;" class="nav-link"
-                                onclick="cargarContenido('vistas/carga_masiva_productos.php', 'content-wrapper')">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Carga Masiva</p>
-                            </a>
-                        </li>-->
-                        <li class="nav-item">
-                            <a style="cursor: pointer;" class="nav-link"
-                                onclick="cargarContenido('vistas/categorias.php', 'content-wrapper')">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Categorías</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <!--END SUB-MENÚ-->
+                            <ul class="nav nav-treeview">
 
-                <!--MENÚ VENTAS/ALQUILERES-->
-                <!--SUB-MENÚ-->
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Venta/Alquiler
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a style="cursor: pointer;" class="nav-link"
-                                onclick="cargarContenido('vistas/ventas.php', 'content-wrapper')">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Venta/Alquiler</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a style="cursor: pointer;" class="nav-link"
-                                onclick="cargarContenido('vistas/administrar_ventas.php', 'content-wrapper')">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Administrar venta/alquiler</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <!--END SUB-MENÚ-->
-                <!--END VENTAS Y ALQUILERES-->
+                                <?php foreach ($subMenuUsuario as $subMenu) : ?>
 
-                <li class="nav-item">
-                    <a style="cursor: pointer;" class="nav-link"
-                        onclick="cargarContenido('vistas/compras.php', 'content-wrapper')">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Compras
+                                    <li class="nav-item">
+                                        <a style="cursor: pointer;" class="nav-link" onclick="CargarContenido('vistas/<?php echo $subMenu->vista ?>','content-wrapper')">
+                                            <i class="<?php echo $subMenu->icon_menu; ?> nav-icon"></i>
+                                            <p><?php echo $subMenu->modulo; ?></p>
+                                        </a>
+                                    </li>
 
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a style="cursor: pointer;" class="nav-link"
-                        onclick="cargarContenido('vistas/reportes.php', 'content-wrapper')">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Reportes
+                                <?php endforeach; ?>
+                                                          
+                            </ul>
 
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a style="cursor: pointer;" class="nav-link"
-                        onclick="cargarContenido('vistas/configuracion.php', 'content-wrapper')">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Configuración
+                        <?php endif; ?>
 
-                        </p>
-                    </a>
-                </li>
+                    </li>
+                <?php endforeach; ?>
+                
                 <li class="nav-item">
                      <a style="cursor: pointer;" class="nav-link" href="http://localhost/disfrazarteaqp?cerrar_sesion=1">
                          <i class="nav-icon fas fa-sign-out-alt"></i>

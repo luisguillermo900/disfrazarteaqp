@@ -648,11 +648,11 @@ $(document).ready(function () {
             $('#iptPrecioAlqNormalReg').prop('disabled', false);
             $("#iptPrecioVentaReg").val("");
             $("#iptPrecioAlqEstrenoReg").val("");
-        }else if (modalidadSeleccionada === 'Sin modalidad') {
+        } else if (modalidadSeleccionada === 'Sin modalidad') {
             $("#iptPrecioVentaReg").val("");
             $("#iptPrecioAlqEstrenoReg").val("");
             $("#iptPrecioAlqNormalReg").val("");
-        }else{
+        } else {
             $("#iptPrecioVentaReg").val("");
             $("#iptPrecioAlqEstrenoReg").val("");
             $("#iptPrecioAlqNormalReg").val("");
@@ -660,6 +660,30 @@ $(document).ready(function () {
         // Puedes agregar más condiciones para otras modalidades aquí
 
     });
-
-
+    //***************************************************************** */
+    // Función para eliminar la imagen y restablecerla a la predeterminada
+    //***************************************************************** */
+    $("#removeImageProductos").click(function (event) {
+        event.preventDefault(); // Evita la redirección o el comportamiento predeterminado
+        $("#previewImg").attr("src", "vistas/assets/imagenes/no_image.jpg");
+        // También puedes borrar el valor del input de tipo file para que no se envíe la imagen en el formulario si es necesario
+        $("#iptImagen").val('');
+    });
 })
+
+/*===================================================================*/
+//FUNCION QUE PERMITE PREVISUALIZAR LA IMAGEN
+/*===================================================================*/
+function previewFile(input) {
+    var file = $("input[type=file]").get(0).files[0];
+
+    if (file) {
+        var reader = new FileReader();
+
+        reader.onload = function () {
+            $("#previewImg").attr("src", reader.result);
+        }
+
+        reader.readAsDataURL(file);
+    }
+}

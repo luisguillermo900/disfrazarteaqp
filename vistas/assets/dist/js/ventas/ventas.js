@@ -619,13 +619,13 @@ $(document).ready(function () {
     /* ======================================================================================
     EVENTO QUE REGISTRA EL PRODUCTO EN EL LISTADO CUANDO SE INGRESA EL CODIGO DE BARRAS
     ======================================================================================*/
-    $("#iptCodigoVenta").change(function() {
-        CargarProductos();        
+    $("#iptCodigoVenta").change(function () {
+        CargarProductos();
     });
     /* =======================================================================================
     EVENTO QUE PERMITE CHECKEAR EL EFECTIVO CUANDO ES EXACTO
     =========================================================================================*/
-    $("#chkEfectivoExacto").change(function() {
+    $("#chkEfectivoExacto").change(function () {
 
         if ($("#chkEfectivoExacto").is(':checked')) {
 
@@ -641,9 +641,9 @@ $(document).ready(function () {
             vuelto = parseFloat(totalVenta) - parseFloat(EfectivoRecibido);
 
             $("#Vuelto").html(vuelto.toFixed(2));
-            
+
         } else {
-            
+
             $("#iptEfectivoRecibido").val("")
             $("#EfectivoEntregado").html("0.00");
             $("#Vuelto").html("0.00");
@@ -653,21 +653,21 @@ $(document).ready(function () {
     /* ======================================================================================
     EVENTO QUE SE DISPARA AL DIGITAR EL MONTO EN EFECTIVO ENTREGADO POR EL CLIENTE
     =========================================================================================*/
-    $("#iptEfectivoRecibido").keyup(function() {
+    $("#iptEfectivoRecibido").keyup(function () {
         actualizarVuelto();
     });
 
     /* ======================================================================================
     EVENTO PARA INICIAR EL REGISTRO DE LA VENTA
     ====================================================================================== */
-    $("#btnIniciarVenta").on('click', function() {
+    $("#btnIniciarVenta").on('click', function () {
         realizarVenta();
     })
     /*===================================================================*/
     //FUNCION PARA CARGAR EL NRO DE BOLETA
     /*===================================================================*/
     function CargarNroBoleta() {
-        
+
         $.ajax({
             async: false,
             url: "ajax/ventas.ajax.php",
@@ -676,8 +676,8 @@ $(document).ready(function () {
                 'accion': 1
             },
             dataType: 'json',
-            success: function(respuesta) {
-            
+            success: function (respuesta) {
+
                 serie_boleta = respuesta["serie_boleta"];
                 nro_boleta = respuesta["nro_venta"];
 
@@ -689,27 +689,27 @@ $(document).ready(function () {
     /*===================================================================*/
     //FUNCION PARA ACTUALIZAR EL VUELTO
     /*===================================================================*/
-    function actualizarVuelto(){
-            
-        var totalVenta = $("#totalVenta").html();        
-    
+    function actualizarVuelto() {
+
+        var totalVenta = $("#totalVenta").html();
+
         $("#chkEfectivoExacto").prop('checked', false);
-    
+
         var efectivoRecibido = $("#iptEfectivoRecibido").val();
-        
+
         if (efectivoRecibido > 0) {
-            
+
             $("#EfectivoEntregado").html(parseFloat(efectivoRecibido).toFixed(2));
-    
+
             vuelto = parseFloat(efectivoRecibido) - parseFloat(totalVenta);
-    
-            $("#Vuelto").html(vuelto.toFixed(2));
-    
+            $("#Vuelto").html(`S./ ${vuelto.toFixed(2)}`);
+
+
         } else {
-    
-            $("#EfectivoEntregado").html("0.00");
-            $("#Vuelto").html("0.00");
-    
+
+            $("#EfectivoEntregado").html("S./ 0.00");
+            $("#Vuelto").html("S./ 0.00");
+
         }
     }
 });

@@ -37,7 +37,8 @@ class ProductosControlador
         $talla_producto,
         $marca_producto,
         $modalidad,
-        $estado_producto
+        $estado_producto,
+        $imagen_producto
     ) {
 
         $registroProducto = ProductosModelo::mdlRegistrarProducto(
@@ -59,7 +60,8 @@ class ProductosControlador
             $talla_producto,
             $marca_producto,
             $modalidad,
-            $estado_producto
+            $estado_producto,
+            $imagen_producto
         );
 
         return $registroProducto;

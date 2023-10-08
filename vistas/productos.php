@@ -197,7 +197,7 @@
 
                 <!-- cuerpo del modal -->
                 <div class="modal-body">
-
+                    <!--id="frm-datos-producto"-->
                     <form class="needs-validation" novalidate>
                         <!-- Abrimos una fila -->
                         <div class="row">
@@ -363,14 +363,17 @@
                                 <div class="form-group mb-2">
                                     <div>
                                         <label for="iptImagen">
+                                            <!-- Cambia el atributo "for" a "archivo" -->
                                             <i class="fas fa-image fs-6"></i>
-                                            <span class="small">Selecciona una imagen</span>
+                                            <span class="small">Selecciona una imagen (.jpg .png .gif .jpeg
+                                                .webp)</span>
                                         </label>
                                     </div>
                                     <input type="file" class="form-control form-control-sm my-1 pb-5 mx-auto"
                                         id="iptImagen" name="iptImagen" accept="image/*" onchange="previewFile(this)">
                                 </div>
                             </div>
+
 
                             <div class="col-12 col-lg-5 my-2 mb-3">
                                 <div style="width: 100%; max-height: 280px; overflow: hidden;">

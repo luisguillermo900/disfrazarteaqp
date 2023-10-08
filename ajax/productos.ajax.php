@@ -27,6 +27,7 @@ class ajaxProductos
     public $modalidad;
     public $estado_producto;
     public $cantidad_a_comprar;
+    public $imagen_producto;
 
     public function ajaxListarProductos()
     {
@@ -43,7 +44,7 @@ class ajaxProductos
         echo json_encode($productosTallas, JSON_UNESCAPED_UNICODE);
     }
 
-    public function ajaxRegistrarProducto()
+    public function ajaxRegistrarProducto($imagen_producto = null)
     {
 
         $producto = ProductosControlador::ctrRegistrarProducto(
@@ -64,7 +65,8 @@ class ajaxProductos
             $this->talla_producto,
             $this->marca_producto,
             $this->modalidad,
-            $this->estado_producto
+            $this->estado_producto,
+            $this->imagen_producto
         );
 
         echo json_encode($producto);
@@ -85,7 +87,7 @@ class ajaxProductos
             $this->marca_producto,
             $this->estado_producto,
             $this->modalidad,
-            
+
             $this->precio_compra_producto,
             $this->precio_venta_producto,
             $this->utilidad_venta_producto,
@@ -93,12 +95,13 @@ class ajaxProductos
             $this->utilidad_alquiler_estreno_producto,
             $this->precio_alquiler_simple_producto,
             $this->utilidad_alquiler_simple_producto
-        
+
         );
 
         echo json_encode($producto, JSON_UNESCAPED_UNICODE);
     }
-    public function ajaxEliminarProducto(){
+    public function ajaxEliminarProducto()
+    {
 
         $respuesta = ProductosControlador::ctrEliminarProducto($this->codigo_producto);
 
@@ -108,7 +111,8 @@ class ajaxProductos
     /*===================================================================
     LISTAR NOMBRE DE PRODUCTOS PARA INPUT DE AUTO COMPLETADO
     ====================================================================*/
-    public function ajaxListarNombreProductos(){
+    public function ajaxListarNombreProductos()
+    {
 
         $NombreProductos = ProductosControlador::ctrListarNombreProductos();
 
@@ -118,20 +122,21 @@ class ajaxProductos
     /*===================================================================
     BUSCAR PRODUCTO POR SU CODIGO DE BARRAS
     ====================================================================*/
-    public function ajaxGetDatosProducto(){
-        
+    public function ajaxGetDatosProducto()
+    {
+
         $producto = ProductosControlador::ctrGetDatosProducto($this->codigo_producto);
 
         echo json_encode($producto);
     }
 
-    public function ajaxVerificaStockProducto(){
+    public function ajaxVerificaStockProducto()
+    {
 
-        $respuesta = ProductosControlador::ctrVerificaStockProducto($this->codigo_producto,$this->cantidad_a_comprar);
-   
-       echo json_encode($respuesta);
+        $respuesta = ProductosControlador::ctrVerificaStockProducto($this->codigo_producto, $this->cantidad_a_comprar);
+
+        echo json_encode($respuesta);
     }
-    
 }
 
 if (isset($_POST['accion']) && $_POST['accion'] == 1) { // parametro para listar productos
@@ -163,61 +168,78 @@ if (isset($_POST['accion']) && $_POST['accion'] == 1) { // parametro para listar
     $registrarProducto->modalidad = $_POST["modalidad"];
     $registrarProducto->estado_producto = $_POST["estado_producto"];
 
-    $registrarProducto->ajaxRegistrarProducto();
+    if (isset($_FILES["archivo"]["name"])) {
+
+        $imagen_producto["ubicacionTemporal"] =  $_FILES["archivo"]["tmp_name"][0];
+
+        //capturamos el nombre de la imagen
+        $info = new SplFileInfo($_FILES["archivo"]["name"][0]);
+
+        //generamos un nombre aleatorio y unico para la imagen
+        $imagen_producto["nuevoNombre"] = sprintf("%s_%d.%s", uniqid(), rand(100, 999), $info->getExtension());
+
+        $imagen_producto["folder"] = '../vistas/assets/imagenes/productos/';
+
+        $registrarProducto = new AjaxProductos();
+        $registrarProducto->ajaxRegistrarProducto($imagen_producto);
+
+    } else {
+        $registrarProducto = new AjaxProductos();
+        $registrarProducto->ajaxRegistrarProducto();
+    }
+
+
+
 } else if (isset($_POST['accion']) && $_POST['accion'] == 3) { // parametro para listar tallas
     $productosTallas = new ajaxProductos();
     $productosTallas->ajaxListarTallasProductos();
 } else if (isset($_POST['accion']) && $_POST['accion'] == 4) { // ACTUALIZAR UN PRODUCTO
-    
+
     $actualizarProducto = new ajaxProductos();
 
-    $actualizarProducto->codigo_producto=$_POST["codigo_producto"];
-    $actualizarProducto->nombre_producto=$_POST["nombre_producto"];
-    $actualizarProducto->id_categoria_producto=$_POST["id_categoria_producto"];
-    $actualizarProducto->descripcion_producto=$_POST["descripcion_producto"];
-    $actualizarProducto->numero_piezas_producto=$_POST["numero_piezas_producto"];
-    $actualizarProducto->stock_producto=$_POST["stock_producto"];
-    $actualizarProducto->talla_producto=$_POST["talla_producto"];
-    $actualizarProducto->incluye_producto=$_POST["incluye_producto"];
-    $actualizarProducto->no_incluye_producto=$_POST["no_incluye_producto"];
-    $actualizarProducto->marca_producto=$_POST["marca_producto"];
-    $actualizarProducto->estado_producto=$_POST["estado_producto"];
-    $actualizarProducto->modalidad=$_POST["modalidad"];
-    $actualizarProducto->precio_compra_producto=$_POST["precio_compra_producto"];
-    $actualizarProducto->precio_venta_producto=$_POST["precio_venta_producto"];
-    $actualizarProducto->utilidad_venta_producto=$_POST["utilidad_venta_producto"];
-    $actualizarProducto->precio_alquiler_estreno_producto=$_POST["precio_alquiler_estreno_producto"];
-    $actualizarProducto->utilidad_alquiler_estreno_producto=$_POST["utilidad_alquiler_estreno_producto"];
-    $actualizarProducto->precio_alquiler_simple_producto=$_POST["precio_alquiler_simple_producto"];
-    $actualizarProducto->utilidad_alquiler_simple_producto=$_POST["utilidad_alquiler_simple_producto"];
+    $actualizarProducto->codigo_producto = $_POST["codigo_producto"];
+    $actualizarProducto->nombre_producto = $_POST["nombre_producto"];
+    $actualizarProducto->id_categoria_producto = $_POST["id_categoria_producto"];
+    $actualizarProducto->descripcion_producto = $_POST["descripcion_producto"];
+    $actualizarProducto->numero_piezas_producto = $_POST["numero_piezas_producto"];
+    $actualizarProducto->stock_producto = $_POST["stock_producto"];
+    $actualizarProducto->talla_producto = $_POST["talla_producto"];
+    $actualizarProducto->incluye_producto = $_POST["incluye_producto"];
+    $actualizarProducto->no_incluye_producto = $_POST["no_incluye_producto"];
+    $actualizarProducto->marca_producto = $_POST["marca_producto"];
+    $actualizarProducto->estado_producto = $_POST["estado_producto"];
+    $actualizarProducto->modalidad = $_POST["modalidad"];
+    $actualizarProducto->precio_compra_producto = $_POST["precio_compra_producto"];
+    $actualizarProducto->precio_venta_producto = $_POST["precio_venta_producto"];
+    $actualizarProducto->utilidad_venta_producto = $_POST["utilidad_venta_producto"];
+    $actualizarProducto->precio_alquiler_estreno_producto = $_POST["precio_alquiler_estreno_producto"];
+    $actualizarProducto->utilidad_alquiler_estreno_producto = $_POST["utilidad_alquiler_estreno_producto"];
+    $actualizarProducto->precio_alquiler_simple_producto = $_POST["precio_alquiler_simple_producto"];
+    $actualizarProducto->utilidad_alquiler_simple_producto = $_POST["utilidad_alquiler_simple_producto"];
 
-    $actualizarProducto -> ajaxActualizarProducto();
-
-}else if(isset($_POST['accion']) && $_POST['accion'] == 5){// ACCION PARA ELIMINAR UN PRODUCTO
+    $actualizarProducto->ajaxActualizarProducto();
+} else if (isset($_POST['accion']) && $_POST['accion'] == 5) { // ACCION PARA ELIMINAR UN PRODUCTO
 
     $eliminarProducto = new ajaxProductos();
-    $eliminarProducto->codigo_producto=$_POST["codigo_producto"];
-    $eliminarProducto -> ajaxEliminarProducto();
-}else if(isset($_POST["accion"]) && $_POST["accion"] == 6){  // TRAER LISTADO DE PRODUCTOS PARA EL AUTOCOMPLETE
+    $eliminarProducto->codigo_producto = $_POST["codigo_producto"];
+    $eliminarProducto->ajaxEliminarProducto();
+} else if (isset($_POST["accion"]) && $_POST["accion"] == 6) {  // TRAER LISTADO DE PRODUCTOS PARA EL AUTOCOMPLETE
 
     $nombreProductos = new AjaxProductos();
-    $nombreProductos -> ajaxListarNombreProductos();
-
-}else if(isset($_POST["accion"]) && $_POST["accion"] == 7){ // OBTENER DATOS DE UN PRODUCTO POR SU CODIGO
+    $nombreProductos->ajaxListarNombreProductos();
+} else if (isset($_POST["accion"]) && $_POST["accion"] == 7) { // OBTENER DATOS DE UN PRODUCTO POR SU CODIGO
 
     $listaProducto = new AjaxProductos();
 
-    $listaProducto -> codigo_producto = $_POST["codigo_producto"];
-    
-    $listaProducto -> ajaxGetDatosProducto();
-	
-}else if(isset($_POST["accion"]) && $_POST["accion"] == 8){ // VERIFICAR STOCK DEL PRODUCTO
+    $listaProducto->codigo_producto = $_POST["codigo_producto"];
+
+    $listaProducto->ajaxGetDatosProducto();
+} else if (isset($_POST["accion"]) && $_POST["accion"] == 8) { // VERIFICAR STOCK DEL PRODUCTO
 
     $verificaStock = new AjaxProductos();
 
-    $verificaStock -> codigo_producto = $_POST["codigo_producto"];
-    $verificaStock -> cantidad_a_comprar = $_POST["cantidad_a_comprar"];
-    
-    $verificaStock -> ajaxVerificaStockProducto();
+    $verificaStock->codigo_producto = $_POST["codigo_producto"];
+    $verificaStock->cantidad_a_comprar = $_POST["cantidad_a_comprar"];
 
+    $verificaStock->ajaxVerificaStockProducto();
 }

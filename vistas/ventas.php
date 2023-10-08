@@ -20,170 +20,339 @@
 <div class="content">
 
     <div class="container-fluid">
+        <!-- row para criterios de busqueda -->
+        <div class="row">
 
-        <div class="row mb-3">
+            <div class="col-lg-12">
 
-            <div class="col-md-9">
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">COMPROBANTE DE PAGO</h3>
+                        <div class="card-tools">
+                        </div> <!-- ./ end card-tools -->
+                    </div> <!-- ./ end card-header -->
+                    <div class="card-body">
 
-                <div class="row">
+                        <div class="row">
 
-                    <!-- INPUT PARA INGRESO DEL CODIGO DE BARRAS O DESCRIPCION DEL PRODUCTO -->
-                    <div class="col-md-12 mb-3">
+                            <!-- NOMBRE DE LA EMPRESA - VENTA-->
+                            <div class="d-none d-md-flex col-md-9 pb-3">
+                                <div style="width: 100%;" class="form-floating mx-1">
+                                    <div style="display: flex; align-items: left; justify-content: left;">
+                                        <label for="iptNombreEmpresaVenta" style="margin: 0;">Empresa Emisora</label>
+                                    </div>
+                                    <select id="iptNombreEmpresaVenta" class="form-control" data-index="2" disabled>
+                                        <option value="">DisfrazarteAQP | El arte del disfraz</option>
 
-                        <div class="form-group mb-2">
+                                    </select>
+                                </div>
+                            </div>
 
-                            <label class="col-form-label" for="iptCodigoVenta">
-                                <i class="fas fa-barcode fs-6"></i>
-                                <span class="small">Productos</span>
-                            </label>
+                            <!-- FECHA EMISIÓN -->
+                            <div class="d-none d-md-flex col-md-3 pb-3">
+                                <div style="width: 100%;" class="form-floating mx-1">
+                                    <div style="display: flex; align-items: left; justify-content: left;">
+                                        <label for="iptFechaEmisionVenta" style="margin: 0;">Fecha emisión</label>
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text"><i
+                                                    class="far fa-calendar-alt"></i></span></div>
+                                        <input type="text" class="form-control" data-inputmask-alias="datetime"
+                                            data-inputmask-inputformat="dd/mm/yyyy" id="iptFechaEmisionVenta">
+                                    </div>
+                                </div>
+                            </div>
 
-                            <input type="text" class="form-control form-control-sm" id="iptCodigoVenta"
-                                placeholder="Ingrese el código de barras o el nombre del producto">
+                            <!-- TIPO COMPROBANTE -->
+                            <div class="d-none d-md-flex col-md-3 ">
+                                <div style="width: 100%;" class="form-floating mx-1">
+                                    <div style="display: flex; align-items: left; justify-content: left;">
+                                        <label for="selDocumentoVenta" style="margin: 0;">Tipo de Comprobante</label>
+                                    </div>
+                                    <select id="selDocumentoVenta" class="form-control" data-index="2" disabled>
+                                        <option value="">BOLETA</option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- SERIE -->
+                            <div class="d-none d-md-flex col-md-3 ">
+                                <div style="width: 100%;" class="form-floating mx-1">
+                                    <div style="display: flex; align-items: left; justify-content: left;">
+                                        <label for="iptNroSerie" style="margin: 0;">Serie</label>
+                                    </div>
+                                    <input type="text" id="iptNroSerie" class="form-control" placeholder="Num. Serie"
+                                        disabled>
+                                </div>
+                            </div>
+
+                            <!-- NUMERO DE VENTA -->
+                            <div class="d-none d-md-flex col-md-3 ">
+                                <div style="width: 100%;" class="form-floating mx-1">
+                                    <div style="display: flex; align-items: left; justify-content: left;">
+                                        <label for="iptNroVenta" style="margin: 0;">Num. Venta</label>
+                                    </div>
+                                    <input type="text" id="iptNroVenta" class="form-control" placeholder="Num. Venta"
+                                        disabled>
+                                </div>
+                            </div>
+
+                            <!-- TIPO DE MONEDA -->
+                            <div class="d-none d-md-flex col-md-3 ">
+                                <div style="width: 100%;" class="form-floating mx-1">
+                                    <div style="display: flex; align-items: left; justify-content: left;">
+                                        <label for="iptMonedaVenta" style="margin: 0;">Moneda</label>
+                                    </div>
+
+                                    <select id="iptMonedaVenta" class="form-control" disabled>
+                                        <option value="">PEN - SOLES</option>
+
+                                    </select>
+                                </div>
+                            </div>
+
                         </div>
 
-                    </div>
+                    </div> <!-- ./ end card-body -->
+                </div>
 
-                    <!-- ETIQUETA QUE MUESTRA LA SUMA TOTAL DE LOS PRODUCTOS AGREGADOS AL LISTADO -->
-                    <div class="col-md-6 mb-3">
-                        <h3>Total de venta: S./ <span id="totalVenta">0.00</span></h3> <!--IZQUIERDA-->
-                    </div>
+                <!--DATOS DEL CLIENTE-->
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">DATOS DEL CLIENTE</h3>
+                        <div class="card-tools">
+                        </div> <!-- ./ end card-tools -->
+                    </div> <!-- ./ end card-header -->
+                    <div class="card-body">
 
-                    <!-- BOTONES PARA VACIAR LISTADO Y COMPLETAR LA VENTA -->
-                    <div class="col-md-6 text-right">
-                        <button class="btn btn-primary" id="btnIniciarVenta">
-                            <i class="fas fa-shopping-cart"></i> Realizar Venta
-                        </button>
-                        <button class="btn btn-danger" id="btnVaciarListado">
-                            <i class="far fa-trash-alt"></i> Vaciar Listado
-                        </button>
-                    </div>
+                        <div class="row">
+                            <!-- TIPO DE DOCUMENTO -->
+                            <div class="d-none d-md-flex col-md-4 pb-3 ">
+                                <div style="width: 100%;" class="form-floating mx-1">
+                                    <div style="display: flex; align-items: left; justify-content: left;">
+                                        <label for="iptTipoDocumentoVenta" style="margin: 0;">Tipo Documento</label>
+                                    </div>
 
-                    <!-- LISTADO QUE CONTIENE LOS PRODUCTOS QUE SE VAN AGREGANDO PARA LA COMPRA -->
-                    <div class="col-md-12">
+                                    <select id="iptTipoDocumentoVenta" class="form-control" disabled>
+                                        <option value="L.E / DNI">LIBRETA ELECTORAL O DNI</option>
 
-                        <table id="lstProductosVenta" class="display nowrap table-striped w-100 shadow ">
-                            <thead class="bg-info text-left fs-6">
-                                <tr>
-                                    <th>Código</th>
-                                    <th>Categoría</th>
-                                    <th>Nombre</th>
-                                    <th>Talla</th>
-                                    <th>P.Venta</th>
-                                    <th>P.Alq.Estreno</th>
-                                    <th>P.Alq.Normal</th>
-                                    <th>Cantidad</th>
-                                    <th>Pre.Unit</th>
-                                    <th>Total</th>
-                                    <th class="text-center">Opciones</th>
-                                    <th>Modalidad</th>
-                                </tr>
-                            </thead>
-                            <tbody class="small text-left fs-6">
-                            </tbody>
-                        </table>
-                        <!-- / table -->
-                    </div>
-                    <!-- /.col -->
+                                    </select>
+                                </div>
+                            </div>
 
+                            <!-- NÚMERO DE DOCUMENTO DEL CLIENTE -->
+                            <div class="d-none d-md-flex col-md-4 pb-3">
+                                <div style="width: 100%;" class="form-floating mx-1">
+                                    <div style="display: flex; align-items: left; justify-content: left;">
+                                        <label for="iptNumDocumentoVenta" style="margin: 0;">Num. Documento</label>
+                                    </div>
+
+                                    <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="8"
+                                        class="form-control" id="iptNumDocumentoVenta" placeholder="12345678" required>
+                                    <div class="invalid-feedback">Digite el Num. Documento</div>
+
+
+                                </div>
+                            </div>
+
+                            <!-- NOMBRE DEL CLIENTE -->
+                            <div class="d-none d-md-flex col-md-4 pb-3">
+                                <div style="width: 100%;" class="form-floating mx-1">
+                                    <div style="display: flex; align-items: left; justify-content: left;">
+                                        <label for="iptNombreClienteVenta" style="margin: 0;">Nombre del cliente</label>
+                                    </div>
+
+                                    <input type="text" class="form-control" id="iptNombreClienteVenta"
+                                        placeholder="Apellidos / Nombres" disabled>
+                                    <div class="invalid-feedback"></div>
+
+                                </div>
+                            </div>
+
+                            <!-- DIRECCIÓN DEL CLIENTE -->
+                            <div class="d-none d-md-flex col-md-4 ">
+                                <div style="width: 100%;" class="form-floating mx-1">
+                                    <div style="display: flex; align-items: left; justify-content: left;">
+                                        <label for="iptDireccionClienteVenta" style="margin: 0;">Dirección del
+                                            cliente</label>
+                                    </div>
+
+                                    <input type="text" class="form-control" id="iptDireccionClienteVenta"
+                                        placeholder="Av. Principal 123, Distrito, Ciudad" disabled>
+                                    <div class="invalid-feedback"></div>
+
+                                </div>
+                            </div>
+
+
+                            <!-- CELULAR DEL CLIENTE -->
+                            <div class="d-none d-md-flex col-md-4 ">
+                                <div style="width: 100%;" class="form-floating mx-1">
+                                    <div style="display: flex; align-items: left; justify-content: left;">
+                                        <label for="iptCelularClienteVenta" style="margin: 0;">Celular del
+                                            Cliente</label>
+                                    </div>
+
+                                    <input type="text" class="form-control" id="iptCelularClienteVenta"
+                                        placeholder="123-456-7890" disabled>
+                                    <div class="invalid-feedback"></div>
+
+                                </div>
+                            </div>
+
+                            <!-- CORREO ELECTRÓNICO DEL CLIENTE -->
+                            <div class="d-none d-md-flex col-md-4">
+                                <div style="width: 100%;" class="form-floating mx-1">
+                                    <div style="display: flex; align-items: left; justify-content: left;">
+                                        <label for="iptCorreoClienteVenta" style="margin: 0;">Correo Electrónico del
+                                            Cliente</label>
+                                    </div>
+                                    <input type="email" class="form-control" id="iptCorreoClienteVenta"
+                                        placeholder="correo@example.com" disabled>
+                                    <div class="invalid-feedback">Debe ingresar un correo electrónico válido.</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div> <!-- ./ end card-body -->
+                </div>
+
+
+                <!--DATOS DEL LISTADO DE PRODUCTO -->
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">LISTADO DE PRODUCTOS</h3>
+                        <div class="card-tools">
+                        </div> <!-- ./ end card-tools -->
+                    </div> <!-- ./ end card-header -->
+                    <div class="card-body">
+
+                        <div class="row">
+
+                            <!-- INPUT PARA INGRESO DEL CODIGO DE BARRAS O DESCRIPCION DEL PRODUCTO -->
+                            <div class="d-none d-md-flex col-md-12 pb-3">
+                                <div style="width: 100%;" class="form-floating mx-1 mb-1">
+                                    <div style="display: flex; align-items: left; justify-content: left;">
+                                        <label for="iptCodigoVenta" style="margin: 0;">Productos</label>
+                                    </div>
+                                    <input type="text" class="form-control" id="iptCodigoVenta"
+                                        placeholder="Ingrese el código del producto">
+                                </div>
+                            </div>
+
+
+                            <!-- ETIQUETA QUE MUESTRA LA SUMA TOTAL DE LOS PRODUCTOS AGREGADOS AL LISTADO -->
+                            <div class="d-none d-md-flex col-md-6 mt-4">
+                                <div style="width: 100%;" class="form-floating mx-1">
+                                    <div class="form-control text-light bg-dark"
+                                        style="display: flex; align-items: center;">
+                                        <h3>Total de Venta: S./ <span id="totalVenta">0.00</span></h3>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SELECCIONAR FORMA DE PAGO -->
+                            <div class="d-none d-md-flex col-md-2 pb-3 ">
+                                <div style="width: 100%;" class="form-floating mx-1 mb-1">
+                                    <div style="display: flex; align-items: left; justify-content: left;">
+                                        <label for="selTipoPago" style="margin: 0;">Forma de Pago</label>
+                                    </div>
+                                    <select class="form-control" id="selTipoPago">
+                                        <option value="1" selected="true">Contado</option>
+                                        <option value="2">Yape</option>
+                                        <option value="3">Plin</option>
+                                        <option value="4">Transferencia</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- INPUT DE EFECTIVO ENTREGADO -->
+                            <div class="d-none d-md-flex col-md-2 pb-3 ">
+                                <div style="width: 100%;" class="form-floating mx-1 mb-1">
+                                    <div style="display: flex; align-items: left; justify-content: left;">
+                                        <label for="iptEfectivoRecibido" style="margin: 0;">Efectivo recibido</label>
+                                    </div>
+                                    <input type="number" min="0" name="iptEfectivo" id="iptEfectivoRecibido"
+                                        class="form-control" placeholder="Cantidad de efectivo recibida">
+                                    <!-- INPUT CHECK DE EFECTIVO EXACTO -->
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="chkEfectivoExacto">
+                                        <label class="form-check-label" for="chkEfectivoExacto">
+                                            Efectivo Exacto
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- MOSTRAR EL VUELTO -->
+
+                            <div class="d-none d-md-flex col-md-2">
+                                <div style="width: 100%;" class="form-floating mx-1 mb-1">
+                                    <div style="display: flex; align-items: left; justify-content: left;">
+                                        <label for="Vuelto" style="margin: 0;">Vuelto</label>
+                                    </div>
+
+
+                                    <div class="form-control">
+                                        <h6 class="text-start text-danger fw-bold"><span id="Vuelto">0.00</span>
+                                        </h6>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+                            <!-- LISTADO QUE CONTIENE LOS PRODUCTOS QUE SE VAN AGREGANDO PARA LA COMPRA -->
+                            <div class="col-md-12">
+
+                                <table id="lstProductosVenta" class="display nowrap table-striped w-100 shadow ">
+                                    <thead class="bg-info text-left fs-6">
+                                        <tr>
+                                            <th>Código</th>
+                                            <th>Categoría</th>
+                                            <th>Nombre</th>
+                                            <th>Talla</th>
+                                            <th>P.Venta</th>
+                                            <th>P.Alq.Estreno</th>
+                                            <th>P.Alq.Normal</th>
+                                            <th>Cantidad</th>
+                                            <th>Pre.Unit</th>
+                                            <th>Total</th>
+                                            <th class="text-center">Opciones</th>
+                                            <th>Modalidad</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="small text-left fs-6">
+                                    </tbody>
+                                </table>
+                                <!-- / table -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+
+                    </div> <!-- ./ end card-body -->
                 </div>
 
             </div>
+
+        </div>
+
+
+        <div class="row mb-3 justify-content-end align-items-end">
 
             <div class="col-md-3">
 
                 <div class="card shadow">
 
                     <h5 class="card-header py-1 bg-primary text-white text-center">
-                        Total de venta: S./ <span id="totalVentaRegistrar">0.00</span> <!--DERECHA-->
+                        Total de venta: S./ <span id="totalVentaRegistrar">0.00</span>
+                        <!--DERECHA-->
                     </h5>
 
                     <div class="card-body p-2">
-
-                        <!-- SELECCIONAR TIPO DE DOCUMENTO -->
-                        <div class="form-group mb-2">
-
-                            <label class="col-form-label d-block" for="selDocumentoVenta">
-                                <i class="fas fa-file-alt fs-6"></i>
-                                <span class="small">Documento</span><span class="text-danger">*</span>
-                            </label>
-
-                            <select class="form-select form-select-sm" aria-label=".form-select-sm example"
-                                id="selDocumentoVenta">
-                                <option value="0">Seleccione Documento</option>
-                                <option value="1" selected="true">Boleta</option>
-                                <option value="2">Factura</option>
-                                <option value="3">Ticket</option>
-                            </select>
-
-                            <span id="validate_categoria" class="text-danger small fst-italic" style="display:none">
-                                Debe Seleccione documento
-                            </span>
-
-                        </div>
-
-                        <!-- SELECCIONAR TIPO DE PAGO -->
-                        <div class="form-group mb-2">
-
-                            <label class="col-form-label d-block" for="selTipoPago">
-                                <i class="fas fa-money-bill-alt fs-6"></i>
-                                <span class="small">Tipo Pago</span><span class="text-danger">*</span>
-                            </label>
-
-                            <select class="form-select form-select-sm d-block" aria-label=".form-select-sm example"
-                                id="selTipoPago">
-                                <option value="0">Seleccione Tipo Pago</option>
-                                <option value="1" selected="true">Efectivo</option>
-                                <option value="2">Tarjeta</option>
-                                <option value="3">Yape</option>
-                                <option value="4">plin</option>
-                            </select>
-
-                            <span id="validate_categoria" class="text-danger small fst-italic" style="display:none">
-                                Debe Ingresar tipo de pago
-                            </span>
-
-                        </div>
-
-                        <!-- SERIE Y NRO DE BOLETA -->
-                        <div class="form-group">
-
-                            <div class="row">
-
-                                <div class="col-md-4">
-
-                                    <label for="iptNroSerie">Serie</label>
-
-                                    <input type="text" min="0" name="iptEfectivo" id="iptNroSerie"
-                                        class="form-control form-control-sm" placeholder="nro Serie" disabled>
-                                </div>
-
-                                <div class="col-md-8">
-
-                                    <label for="iptNroVenta">Nro Venta</label>
-
-                                    <input type="text" min="0" name="iptEfectivo" id="iptNroVenta"
-                                        class="form-control form-control-sm" placeholder="Nro Venta" disabled>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <!-- INPUT DE EFECTIVO ENTREGADO -->
-                        <div class="form-group">
-                            <label for="iptEfectivoRecibido">Efectivo recibido</label>
-                            <input type="number" min="0" name="iptEfectivo" id="iptEfectivoRecibido"
-                                class="form-control form-control-sm" placeholder="Cantidad de efectivo recibida">
-                        </div>
-
-                        <!-- INPUT CHECK DE EFECTIVO EXACTO -->
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="chkEfectivoExacto">
-                            <label class="form-check-label" for="chkEfectivoExacto">
-                                Efectivo Exacto
-                            </label>
-                        </div>
 
                         <!-- MOSTRAR MONTO EFECTIVO ENTREGADO Y EL VUELTO -->
                         <div class="row mt-2">
@@ -193,13 +362,12 @@
                                         id="EfectivoEntregado">0.00</span></h6>
                             </div>
 
-                            <div class="col-12">
+                            <!--<div class="col-12">
                                 <h6 class="text-start text-danger fw-bold">Vuelto: S./ <span id="Vuelto">0.00</span>
                                 </h6>
-                            </div>
+                            </div>-->
 
                         </div>
-
                         <!-- MOSTRAR EL SUBTOTAL, IGV Y TOTAL DE LA VENTA -->
                         <div class="row">
                             <div class="col-md-7">
@@ -225,8 +393,21 @@
                         </div>
 
                     </div><!-- ./ CARD BODY -->
-
+                    <!-- BOTONES PARA VACIAR LISTADO Y COMPLETAR LA VENTA -->
+                    <div class="row mt-2">
+                        <div class="col-md-6 text-center pb-3">
+                            <button class="btn btn-primary" id="btnIniciarVenta">
+                                <i class="fas fa-shopping-cart"></i> Realizar Venta
+                            </button>
+                        </div>
+                        <div class="col-md-6 text-center pb-3">
+                            <button class="btn btn-danger" id="btnVaciarListado">
+                                <i class="far fa-trash-alt"></i> Vaciar Listado
+                            </button>
+                        </div>
+                    </div>
                 </div><!-- ./ CARD -->
+
             </div>
 
         </div>

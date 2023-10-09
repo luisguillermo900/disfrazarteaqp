@@ -337,27 +337,7 @@
 
                                 </div>
                             </div>
-                            <!--SELECCIONAR UNA IMAGEN
-                            <div class="col-12">
-                                <div class="form-group mb-2">
-                                    <label for="iptImagen">
-                                        <i class="fas fa-image fs-6"></i>
-                                        <span class="small">Selecciona una imagen</span>
-                                    </label>
-                                    <input type="file" class="form-control form-control-sm my-1 pb-5 mx-auto"
-                                        id="iptImagen" name="iptImagen" accept="image/*" onchange="previewFile(this)">
-                                </div>
-                            </div>
-
-                            <div class="col-12 col-lg-5 my-2 mb-3">
-                                <div style="width: 100%; height: 280px;">
-                                    <img id="previewImg" src="vistas/assets/imagenes/no_image.jpg"
-                                        class="border border-secondary"
-                                        style="object-fit: cover; width: 100%; height: 100%;" alt="">
-                                </div>
-                            </div>-->
-                            <!--END SELECCIONAR UNA IMAGEN-->
-
+                    
                             <!-- SELECCIONAR UNA IMAGEN -->
                             <div class="col-12">
                                 <div class="form-group mb-2">

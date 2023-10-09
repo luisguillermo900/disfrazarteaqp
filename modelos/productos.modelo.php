@@ -63,8 +63,7 @@ class ProductosModelo
         $talla_producto,
         $marca_producto,
         $modalidad,
-        $estado_producto,
-        $imagen_producto
+        $estado_producto
     ) {
 
         try {
@@ -95,7 +94,6 @@ class ProductosModelo
                                                                         marca_producto,
                                                                         modalidad,
                                                                         estado_producto,
-                                                                        imagen_producto,
                                                                         fecha_creacion_producto,
                                                                         fecha_actualizacion_producto) 
                                                 VALUES ( 
@@ -118,7 +116,6 @@ class ProductosModelo
                                                         :marca_producto,
                                                         :modalidad,
                                                         :estado_producto,
-                                                        :imagen_producto,
                                                         :fecha_creacion_producto,
                                                         :fecha_actualizacion_producto)");
 
@@ -141,30 +138,12 @@ class ProductosModelo
             $stmt->bindParam(":marca_producto", $marca_producto, PDO::PARAM_STR);
             $stmt->bindParam(":modalidad", $modalidad, PDO::PARAM_STR);
             $stmt->bindParam(":estado_producto", $estado_producto, PDO::PARAM_STR);
-            $stmt->bindParam(":imagen_producto", $imagen_producto["nuevoNombre"], PDO::PARAM_STR);
             $stmt->bindParam(":fecha_creacion_producto", $fecha, PDO::PARAM_STR);
             $stmt->bindParam(":fecha_actualizacion_producto", $fecha, PDO::PARAM_STR);
 
+
             if ($stmt->execute()) {
-
-                //GUARDAMOS LA IMAGEN EN LA CARPETA
-                if ($imagen_producto) {
-
-                    $guardarImagen = new ProductosModelo();
-
-                    $guardarImagen->guardarImagen($imagen_producto["folder"], $imagen_producto["ubicacionTemporal"], $imagen_producto["nuevoNombre"]);
-                }else {
-                    // Manejo de error: No se proporcionó una imagen válida
-                    $resultado = "error";
-                    $mensajeError = "No se proporcionó una imagen válida.";
-                    
-                }
-
-                if ($stmt->execute()) {
-                    $resultado = "ok";
-                } else {
-                    $resultado = "error";
-                }
+                $resultado = "ok";
             } else {
                 $resultado = "error";
             }
@@ -350,10 +329,5 @@ class ProductosModelo
         $stmt->execute();
 
         return $stmt->fetch(PDO::FETCH_OBJ);
-    }
-
-
-    public function guardarImagen($folder, $ubicacionTemporal, $nuevoNombre){
-        file_put_contents(strtolower($folder.$nuevoNombre), file_get_contents($ubicacionTemporal));
     }
 }

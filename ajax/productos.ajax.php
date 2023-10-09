@@ -27,7 +27,6 @@ class ajaxProductos
     public $modalidad;
     public $estado_producto;
     public $cantidad_a_comprar;
-    public $imagen_producto;
 
     public function ajaxListarProductos()
     {
@@ -44,7 +43,7 @@ class ajaxProductos
         echo json_encode($productosTallas, JSON_UNESCAPED_UNICODE);
     }
 
-    public function ajaxRegistrarProducto($imagen_producto = null)
+    public function ajaxRegistrarProducto()
     {
 
         $producto = ProductosControlador::ctrRegistrarProducto(
@@ -65,8 +64,7 @@ class ajaxProductos
             $this->talla_producto,
             $this->marca_producto,
             $this->modalidad,
-            $this->estado_producto,
-            $this->imagen_producto
+            $this->estado_producto
         );
 
         echo json_encode($producto);
@@ -168,27 +166,7 @@ if (isset($_POST['accion']) && $_POST['accion'] == 1) { // parametro para listar
     $registrarProducto->modalidad = $_POST["modalidad"];
     $registrarProducto->estado_producto = $_POST["estado_producto"];
 
-    if (isset($_FILES["archivo"]["name"])) {
-
-        $imagen_producto["ubicacionTemporal"] =  $_FILES["archivo"]["tmp_name"][0];
-
-        //capturamos el nombre de la imagen
-        $info = new SplFileInfo($_FILES["archivo"]["name"][0]);
-
-        //generamos un nombre aleatorio y unico para la imagen
-        $imagen_producto["nuevoNombre"] = sprintf("%s_%d.%s", uniqid(), rand(100, 999), $info->getExtension());
-
-        $imagen_producto["folder"] = '../vistas/assets/imagenes/productos/';
-
-        $registrarProducto = new AjaxProductos();
-        $registrarProducto->ajaxRegistrarProducto($imagen_producto);
-
-    } else {
-        $registrarProducto = new AjaxProductos();
-        $registrarProducto->ajaxRegistrarProducto();
-    }
-
-
+    $registrarProducto->ajaxRegistrarProducto();
 
 } else if (isset($_POST['accion']) && $_POST['accion'] == 3) { // parametro para listar tallas
     $productosTallas = new ajaxProductos();

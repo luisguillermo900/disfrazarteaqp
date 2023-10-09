@@ -12,4 +12,8 @@ class Conexion{
         }
 
     }
+
+    static public function desconectar($conexion){
+        $conexion = null;
+    }
 }

@@ -318,7 +318,7 @@ $(document).ready(function () {
     //EVENTO QUE GUARDA LOS DATOS DEL PRODUCTO, PREVIA VALIDACION DEL INGRESO DE LOS DATOS OBLIGATORIOS
     /*===================================================================*/
     document.getElementById("btnGuardarProducto").addEventListener("click", function () {
-        var imagen_valida = true;
+
         // Get the forms we want to add validation styles to
         var forms = document.getElementsByClassName('needs-validation');
         // Loop over them and prevent submission
@@ -327,27 +327,6 @@ $(document).ready(function () {
             if (form.checkValidity() === true) {
 
                 console.log("Listo para registrar el producto")
-                var file = $("#iptImagen").val();
-                
-                var ext = file.substring(file.lastIndexOf("."));
-
-                if (ext != ".jpg" && ext != ".png" && ext != ".gif" && ext != ".jpeg" && ext != ".webp") {
-                    mensajeToast('error', "La extensión " + ext + " no es una imagen válida");
-                    imagen_valida = false;
-                }
-                
-
-                if (!imagen_valida) {
-                    return;
-                }
-
-                const inputImage = document.querySelector('#iptImagen');
-
-                //var formData = new FormData();
-
-                //formData.append('detalle_producto', $("#frm-datos-producto").serialize());
-                //formData.append('accion', 2)
-                //formData.append('archivo[]', inputImage.files[0])
 
                 Swal.fire({
                     title: '¿Está seguro de registrar el producto?',
@@ -384,8 +363,7 @@ $(document).ready(function () {
                         datos.append("marca_producto", $("#iptMarcaReg").val()); //ventas_producto
                         datos.append("modalidad", $("#selectModalidades").val()); //ventas_producto
                         datos.append("estado_producto", $("#selEstadoReg").val()); //ventas_producto
-                        
-                        datos.append('archivo[]', inputImage.files[0])
+
 
                         if (accion == 2) {
                             var titulo_msj = "El producto se registró correctamente"
@@ -437,9 +415,6 @@ $(document).ready(function () {
 
                                     $("#iptPrecioAlqNormalReg").val("");
                                     $("#iptUtilidadAlqNormalReg").val("");
-
-                                    $("#iptImagen").val('');                                    
-                                    $("#previewImg").attr("src", "vistas/assets/imagenes/no_image.jpg");
                                     //MODAL PARA MOSTRAR EL CÓDIGO
                                     //$("#mdlGestionarStock").modal('show'); //MOSTRAR VENTANA MODAL
                                     //$("#titulo_modal_info").html('¡CÓDIGO NUEVO!'); // CAMBIAR EL TITULO DE LA VENTANA MODAL

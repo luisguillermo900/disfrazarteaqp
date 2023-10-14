@@ -136,4 +136,31 @@ SELECT Concat('Boleta Nro: ',v.nro_boleta,' - Total Venta: S./ ',Round(vc.total_
         $stmt = null;
     }
 
+    static public function mdlObtenerDetalleVenta($nro_boleta){
+
+        try {
+            
+            $stmt = Conexion::conectar()->prepare("select concat('B001-',vc.nro_boleta) as nro_boleta,
+                                                        vc.total_venta,
+                                                        vc.fecha_venta,
+                                                        vd.codigo_producto,
+                                                        upper(p.descripcion_producto) as descripcion_producto,
+                                                        vd.cantidad,
+                                                        vd.precio_unitario_venta,
+                                                        vd.total_venta
+                                                from venta_cabecera vc inner join venta_detalle vd on vc.nro_boleta = vd.nro_boleta
+                                                                        inner join productos p on p.codigo_producto = vd.codigo_producto
+                                                where vc.nro_boleta =  :nro_boleta");
+
+            $stmt -> bindParam(":nro_boleta",$nro_boleta,PDO::PARAM_STR);
+
+            $stmt -> execute();
+
+            return $stmt->fetchAll();
+            
+        } catch (Exception $e) {
+            return 'Excepción capturada: '.  $e->getMessage(). "\n";
+        }
+
+    }
 }

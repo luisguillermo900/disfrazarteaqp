@@ -29,15 +29,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <link rel="shortcut icon" href="vistas/assets/dist/img/disfrazarteAQPLogo.png" type="image/x-icon">
 
+    <!-- ============================================================================================================= -->
+    <!-- REQUIRED CSS -->
+    <!-- ============================================================================================================= -->
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="vistas/assets/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="vistas/assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
     <!-- Jquery CSS -->
     <link rel="stylesheet" href="vistas/assets/plugins/jquery-ui/css/jquery-ui.css">

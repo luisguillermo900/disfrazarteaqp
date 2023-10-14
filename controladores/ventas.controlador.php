@@ -23,4 +23,11 @@ class VentasControlador{
 
         return $ventas;
     }
+
+    static public function ctrObtenerDetalleVenta($nro_boleta)
+    {
+        $detalle_venta = VentasModelo::mdlObtenerDetalleVenta($nro_boleta);
+
+        return $detalle_venta;
+    }
 }

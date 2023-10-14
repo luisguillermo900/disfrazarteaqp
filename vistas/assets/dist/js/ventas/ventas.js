@@ -515,12 +515,6 @@ $(document).ready(function () {
         $("#boleta_igv").html("0.00")
     }/* FIN LimpiarInputs */
 
-    /* ======================================================================================
-    EVENTO PARA INICIAR EL REGISTRO DE LA VENTA
-    ====================================================================================== */
-    $("#btnIniciarVenta").on('click', function () {
-        realizarVenta();
-    })
     /*===================================================================*/
     //REALIZAR LA VENTA
     /*===================================================================*/
@@ -551,7 +545,7 @@ $(document).ready(function () {
                 var formData = new FormData();
                 var arr = [];
 
-                table.rows().eq(0).each(function (index) {
+                table.rows().eq(0).each(function(index) {
 
                     var row = table.row(index);
 
@@ -589,6 +583,8 @@ $(document).ready(function () {
                         LimpiarInputs();
 
                         CargarNroBoleta();
+
+                        window.open('http://localhost/disfrazarteaqp/vistas/generar_ticket.php?nro_boleta='+nro_boleta);
 
                     }
                 });

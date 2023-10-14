@@ -42,6 +42,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Jquery CSS -->
     <link rel="stylesheet" href="vistas/assets/plugins/jquery-ui/css/jquery-ui.css">
 
+    <!-- Bootstrap 5 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">-->
+
+    <!-- JSTREE CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+
+    <!-- ============================================================
+    =ESTILOS PARA USO DE DATATABLES JS
+    ===============================================================-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css">
+    <!--END ESTILOS-->
+
     <!-- Theme style -->
     <link rel="stylesheet" href="vistas/assets/dist/css/adminlte.min.css">
     <!-- Estilos personzalidos -->
@@ -49,13 +63,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!--Se está referenciando los scripts-->
 
+    <!-- ============================================================================================================= -->
+    <!-- ============================================================================================================= -->
+    <!-- ============================================================================================================= -->
+    <!-- ============================================================================================================= -->
     <!-- REQUIRED SCRIPTS -->
+    <!-- ============================================================================================================= -->
+    <!-- ============================================================================================================= -->
+    <!-- ============================================================================================================= -->
+    <!-- ============================================================================================================= -->
     <!-- jQuery -->
     <script src="vistas/assets/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="vistas/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- ChartJS -->
     <script src="vistas/assets/plugins/chart.js/Chart.min.js"></script>
+
     <!-- InputMask -->
     <script src="vistas/assets/plugins/moment/moment.min.js"></script>
     <script src="vistas/assets/plugins/inputmask/jquery.inputmask.min.js"></script>
@@ -69,13 +92,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- JS Bootstrap 5 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- AdminLTE App -->
-    <script src="vistas/assets/dist/js/adminlte.min.js"></script>
+    <!-- JSTREE JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
 
     <!--end referencia de scripts-->
 
-    <!--SCRIPTS-->
-    <script src="vistas/assets/dist/js/plantilla.js"></script>
     <!-- ============================================================
     =LIBRERIAS PARA USO DE DATATABLES JS
     ===============================================================-->
@@ -90,15 +111,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.print.min.js"></script>
     <!--END SCRIPTS-->
 
-    <!--ESTILOS-->
-    <link rel="stylesheet" href="vistas/assets/dist/css/plantilla.css">
-    <!-- ============================================================
-    =ESTILOS PARA USO DE DATATABLES JS
-    ===============================================================-->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css">
-    <!--END ESTILOS-->
+    <!-- AdminLTE App -->
+    <script src="vistas/assets/dist/js/adminlte.min.js"></script>
+    <!--SCRIPTS-->
+    <script src="vistas/assets/dist/js/plantilla.js"></script>
+
 </head>
 
 <?php if (isset($_SESSION["usuario"])) : ?>
@@ -121,9 +138,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </div>
 
     <script>
-        function CargarContenido(pagina_php, contenedor) {
-            $("." + contenedor).load(pagina_php);
-        }
+    function CargarContenido(pagina_php, contenedor) {
+        $("." + contenedor).load(pagina_php);
+    }
     </script>
 
 </body>

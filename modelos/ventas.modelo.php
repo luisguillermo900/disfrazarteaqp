@@ -17,15 +17,28 @@ class VentasModelo
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
-    static public function mdlRegistrarVenta($datos, $nro_boleta, $total_venta, $descripcion_venta)
+    static public function mdlRegistrarVenta($datos, $nro_boleta, $descripcion_venta, $sub_total_venta, $igv_venta, $total_venta)
     {
 
-        $stmt = Conexion::conectar()->prepare("INSERT INTO venta_cabecera(nro_boleta,descripcion,total_venta)         
-                                                VALUES(:nro_boleta,:descripcion,:total_venta)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO venta_cabecera(
+                                                nro_boleta, 
+                                                descripcion, 
+                                                subtotal, 
+                                                igv, 
+                                                total_venta)         
+                                                VALUES(
+                                                    :nro_boleta,
+                                                    :descripcion, 
+                                                    :subtotal, 
+                                                    :igv, 
+                                                    :total_venta)");
 
         $stmt->bindParam(":nro_boleta", $nro_boleta, PDO::PARAM_STR);
         $stmt->bindParam(":descripcion", $descripcion_venta, PDO::PARAM_STR);
+        $stmt->bindParam(":subtotal", $sub_total_venta, PDO::PARAM_STR);
+        $stmt->bindParam(":igv", $igv_venta, PDO::PARAM_STR);
         $stmt->bindParam(":total_venta", $total_venta, PDO::PARAM_STR);
+        
 
 
         if ($stmt->execute()) {
@@ -42,13 +55,25 @@ class VentasModelo
 
                     $listaProductos = explode(",", $datos[$i]);
 
-                    $stmt = Conexion::conectar()->prepare("INSERT INTO venta_detalle(nro_boleta,codigo_producto, cantidad, total_venta) 
-                                                        VALUES(:nro_boleta,:codigo_producto,:cantidad,:total_venta)");
+                    $stmt = Conexion::conectar()->prepare("INSERT INTO venta_detalle(
+                                                            nro_boleta,
+                                                            codigo_producto, 
+                                                            cantidad,
+                                                            precio_unitario_venta, 
+                                                            total_venta) 
+                                                        
+                                                        VALUES(
+                                                            :nro_boleta,
+                                                            :codigo_producto,
+                                                            :cantidad, 
+                                                            :precio_unitario_venta,
+                                                            :total_venta)");
 
                     $stmt->bindParam(":nro_boleta", $nro_boleta, PDO::PARAM_STR);
                     $stmt->bindParam(":codigo_producto", $listaProductos[0], PDO::PARAM_STR);
                     $stmt->bindParam(":cantidad", $listaProductos[1], PDO::PARAM_STR);
-                    $stmt->bindParam(":total_venta", $listaProductos[2], PDO::PARAM_STR);
+                    $stmt->bindParam(":precio_unitario_venta", $listaProductos[2], PDO::PARAM_STR);
+                    $stmt->bindParam(":total_venta", $listaProductos[3], PDO::PARAM_STR);
 
 
 

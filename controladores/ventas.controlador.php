@@ -10,9 +10,9 @@ class VentasControlador{
 
     }
 
-    static public function ctrRegistrarVenta($datos,$nro_boleta,$total_venta,$descripcion_venta){
+    static public function ctrRegistrarVenta($datos,$nro_boleta,$descripcion_venta, $sub_total_venta, $igv_venta, $total_venta){
         
-        $productos = VentasModelo::mdlRegistrarVenta($datos,$nro_boleta,$total_venta,$descripcion_venta);
+        $productos = VentasModelo::mdlRegistrarVenta($datos,$nro_boleta, $descripcion_venta, $sub_total_venta, $igv_venta, $total_venta);
 
         return $productos;
 

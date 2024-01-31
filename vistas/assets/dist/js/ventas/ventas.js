@@ -523,6 +523,8 @@ $(document).ready(function () {
         var count = 0;
         var totalVenta = $("#totalVenta").html();
         var nro_boleta = $("#iptNroVenta").val();
+        var boleta_igv = $("#boleta_igv").html();
+        var boleta_subtotal = $("#boleta_subtotal").html();
 
         table.rows().eq(0).each(function (index) {
             count = count + 1;
@@ -551,14 +553,17 @@ $(document).ready(function () {
 
                     var data = row.data();
 
-                    arr[index] = data['codigo_producto'] + "," + parseFloat(data['cantidad']) + "," + data['total'].replace("S./ ", "");
-
+                    arr[index] = data['codigo_producto'] + "," + parseFloat(data['cantidad']) + "," 
+                                + data['total'].replace("S./ ", "")+ ","
+                                + data['precio_unitario'].replace("S./ ", "");
                     formData.append('arr[]', arr[index]);
 
                 });
 
                 formData.append('nro_boleta', nro_boleta);
                 formData.append('descripcion_venta', 'Venta realizada con Nro Boleta: ' + nro_boleta);
+                formData.append('sub_total_venta', parseFloat(boleta_subtotal));
+                formData.append('igv_venta', parseFloat(boleta_igv));
                 formData.append('total_venta', parseFloat(totalVenta));
 
                 $.ajax({

@@ -554,8 +554,8 @@ $(document).ready(function () {
                     var data = row.data();
 
                     arr[index] = data['codigo_producto'] + "," + parseFloat(data['cantidad']) + "," 
-                                + data['total'].replace("S./ ", "")+ ","
-                                + data['precio_unitario'].replace("S./ ", "");
+                                + data['precio_unitario'].replace("S./ ", "")+ ","
+                                + data['total'].replace("S./ ", "");
                     formData.append('arr[]', arr[index]);
 
                 });

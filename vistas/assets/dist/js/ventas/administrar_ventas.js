@@ -1,7 +1,9 @@
+
 $(document).ready(function(){
 
     var table, ventas_desde, ventas_hasta;
     var groupColumn = 0;
+
 
     $('#ventas_desde, #ventas_hasta').inputmask('dd/mm/yyyy', {
         'placeholder': 'dd/mm/yyyy'
@@ -58,12 +60,13 @@ $(document).ready(function(){
                     const data = group.split("-");
                     var nroBoleta = data[0];
                     nroBoleta = nroBoleta.split(":")[1].trim();                        
-                    console.log("🚀 ~ file: administrar_ventas.php ~ line 134 ~ nroBoleta", nroBoleta)
+                    //console.log("🚀 ~ file: administrar_ventas.php ~ line 134 ~ nroBoleta", nroBoleta)
+                   
 
                     $(rows).eq(i).before(
                         '<tr class="group">'+
                             '<td colspan="6" class="fs-6 fw-bold fst-italic bg-success text-white"> ' +
-                                '<i nroBoleta = ' + nroBoleta + ' class="fas fa-trash fs-6 text-danger mx-2 btnEliminarVenta" style="cursor:pointer;"></i> '+
+                                '<i numeroroBoleta = ' + nroBoleta + ' class="fas fa-trash fs-6 text-danger mx-2 btnEliminarVenta" style="cursor:pointer;"></i> '+
                                     group +  
                             '</td>'+
                         '</tr>'
@@ -77,6 +80,12 @@ $(document).ready(function(){
             "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
         }
     });
-
+    $('#lstVentas tbody').on('click', '.btnEliminarVenta', function () {
+        //accion = 1;
+        var nroBoleta1 = $(this).attr('numeroroBoleta');
+        //window.alert(nroBoleta1);
+        window.open('http://localhost/disfrazarteaqp/vistas/generar_ticket.php?nro_boleta='+nroBoleta1);
+    });
 
 })
+

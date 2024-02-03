@@ -15,14 +15,14 @@ var Toast = Swal.mixin({
 $(document).ready(function () {
     table = $("#lstDatosEmpresa").DataTable({
         dom: 'Bfrtip', //colocar los botones en la parte superior
-        buttons: [{ //crea las columnas
-            text: 'Agregar Empresa',
-            className: 'addNewRecord btn btn-primary',
+        buttons: [/*{ //crea las columnas Y AGREGAR EMPRESA
+            //text: 'Agregar Empresa',
+            //className: 'addNewRecord btn btn-primary',
             action: function (e, dt, node, config) { //documentación
                 $("#mdlGestionarProducto").modal('show'); //evento para abrir la ventana
                 accion = 0; //registrar
             }
-        },
+        },*/
             'excel', 'print', 'pageLength' //nombre de los botones
         ],
         pageLength: [5, 10, 15, 30, 50, 100], //coloca los valores que entran en las tablas
@@ -32,7 +32,7 @@ $(document).ready(function () {
             dataSrc: '',
             type: "POST",
             data: {
-                'accion': 1 //1: LISTAR PRODUCTOS
+                'accion': 1 //1: LISTAR EMPRESAS
             },
         },
         responsive: {
@@ -63,10 +63,10 @@ $(document).ready(function () {
             orderable: false, //No coloca la opción de ordenar
             render: function (data, type, full, meta) { //para colocar las opciones
                 return "<center>" +
-                    "<span class='btnMasInformacion text-success px-1' style='cursor:pointer;'>" +
+                    "<span class='btnMasInformacionEmpresa text-success px-1' style='cursor:pointer;'>" +
                     "<i class='fas fa-plus-circle fs-5'></i>" +
                     "</span>" +
-                    "<span class='btnEditarProducto text-primary px-1' style='cursor:pointer;'>" +
+                    "<span class='btnEditarEmpresa text-primary px-1' style='cursor:pointer;'>" +
                     "<i class='fas fa-pencil-alt fs-5'></i>" +
                     "</span>" +
                     "</center>"
@@ -101,4 +101,25 @@ $(document).ready(function () {
             url: "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
         }
     });
+
+    /* ======================================================================================
+    EVENTO AL DAR CLICK EN EL BOTON EDITAR EMPRESA
+    =========================================================================================*/
+    $('#lstDatosEmpresa tbody').on('click', '.btnEditarEmpresa', function () {
+
+        accion = 2; //seteamos la accion para editar
+
+        $("#mdlGestionarEmpresa").modal('show');
+
+        var data = table.row($(this).parents('tr')).data();
+        //console.log("🚀 ~ file: productos.php ~ line 751 ~ $ ~ data", data)
+
+        $("#iptNombreEmpresa").val(data["empresa"]);
+        $("#iptRucEmpresa").val(data["ruc"]);
+        $("#iptIgvEmpresa").val(data["IGV"]);
+        $("#iptIgvEmpresa").val(data["IGV"]);
+
+
+    })
+
 })

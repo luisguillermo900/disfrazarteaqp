@@ -13,6 +13,7 @@ class EmpresaControlador
     }
 
     static public function ctrActualizarEmpresas(
+        $id_empresa,
         $empresa, 
         $ruc,
         $igv,
@@ -24,6 +25,7 @@ class EmpresaControlador
         ){ //CONTROLADOR ACTUALIZAR PRODUCTO
         
             $actualizarEmpresa = EmpresaModelo::mdlActualizarEmpresas(
+                $id_empresa,
                 $empresa, 
                 $ruc,
                 $igv,

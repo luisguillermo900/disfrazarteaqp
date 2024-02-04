@@ -5,7 +5,7 @@ require_once "../modelos/empresa.modelo.php";
 
 class ajaxEmpresas
 {
-
+    public $id_empresa;
     public $empresa; 
     public $ruc;
     public $igv;
@@ -27,7 +27,7 @@ class ajaxEmpresas
     {
 
         $empresas = EmpresaControlador::ctrActualizarEmpresas(
-
+            $this->id_empresa,
             $this->empresa,
             $this->ruc,
             $this->igv,
@@ -50,6 +50,7 @@ if (isset($_POST['accion']) && $_POST['accion'] == 1) { // parametro para listar
 
     $actualizarEmpresa = new ajaxEmpresas();
 
+    $actualizarEmpresa->id_empresa = $_POST["id_empresa"];
     $actualizarEmpresa->empresa = $_POST["empresa"];
     $actualizarEmpresa->ruc = $_POST["ruc"];
     $actualizarEmpresa->igv = $_POST["IGV"];

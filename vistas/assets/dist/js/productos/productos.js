@@ -135,7 +135,24 @@ $(document).ready(function () {
         ],
         language: {
             url: "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
-        }
+        },
+        createdRow: function (row, data, dataIndex) {
+            if (parseFloat(data[5]) === 0) { // El índice 4 corresponde a la columna de stock
+                $(row).css({
+                    'background-color': 'rgba(255, 0, 0, 0.5)', // Cambia el fondo a rojo para las filas sin stock
+                    'color': 'white' // Cambia el color del texto a blanco para mayor legibilidad
+                    // Puedes agregar más estilos si es necesario
+                });
+            }
+    
+            // Cambia el color de fondo de la columna 2 (índice 1)
+            $(row).find('td:eq(11)').css({
+                'background-color': 'white', // Cambia el color de fondo a verde (puedes ajustar este valor)
+                'color': 'white' // Cambia el color del texto a blanco para mayor legibilidad
+                // Puedes agregar más estilos si es necesario
+            });
+        },
+        
     });
     /*===================================================================*/
     // EVENTOS PARA CRITERIOS DE BUSQUEDA (CODIGO, CATEGORIA Y PRODUCTO)

@@ -21,6 +21,7 @@ class EmpresaModelo{
     ACTUALIZAR LA LISTA DE LA EMPRESA EN EL DATATABLE
     ====================================================================*/
     static public function mdlActualizarEmpresas(
+        $id_empresa,
         $empresa, 
         $ruc,
         $igv,
@@ -43,6 +44,7 @@ class EmpresaModelo{
             WHERE id_empresa = :id_empresa");
 
             // Vincular los valores de los parámetros
+            $stmt->bindParam(":id_empresa", $id_empresa, PDO::PARAM_STR);
             $stmt->bindParam(":empresa", $empresa, PDO::PARAM_STR);
             $stmt->bindParam(":ruc", $ruc, PDO::PARAM_STR);
             $stmt->bindParam(":igv", $igv, PDO::PARAM_STR);

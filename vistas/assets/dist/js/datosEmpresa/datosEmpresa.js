@@ -1,7 +1,7 @@
 var table;
 var accion;
 var operacion_stock = 0;
-
+var idNombre;
 /*===================================================================*/
 //INICIALIZAMOS EL MENSAJE DE TIPO TOAST (EMERGENTE EN LA PARTE SUPERIOR)
 /*===================================================================*/
@@ -122,7 +122,8 @@ $(document).ready(function () {
         var data = table.row($(this).parents('tr')).data();
         //console.log("🚀 ~ file: productos.php ~ line 751 ~ $ ~ data", data)
 
-        $("#iptIDEmpresa").val(data["id_empresa"]);
+        //$("#iptIDEmpresa").val(data["id_empresa"]);
+        idNombre = data["id_empresa"];
         $("#iptNombreEmpresa").val(data["empresa"]);
         
         $("#iptRucEmpresa").val(data["ruc"]);
@@ -132,6 +133,7 @@ $(document).ready(function () {
         $("#iptDescripcionEmpresa").val(data["descripcion"]);
         $("#iptSerieEmpresa").val(data["serie_boleta"]);
         $("#iptNumCorrelativoEmpresa").val(data["nro_correlativo_venta"]);
+ 
     })
 
 /*===================================================================*/
@@ -163,7 +165,7 @@ $(document).ready(function () {
                         var datos = new FormData();
                         //ESTOS DATOS SON ENVÍADOS MEDIANTE EL MÉTODO POST
                         datos.append("accion", accion);
-                        datos.append("id_empresa", $("#iptIDEmpresa").val()); //ID empresa
+                        datos.append("id_empresa", idNombre); //ID empresa
                         datos.append("empresa", $("#iptNombreEmpresa").val());
                         datos.append("ruc", $("#iptRucEmpresa").val());
                         datos.append("IGV", $("#iptIgvEmpresa").val());
@@ -198,7 +200,7 @@ $(document).ready(function () {
                                     table.ajax.reload();
 
                                     $("#mdlGestionarEmpresa").modal('hide');
-                                    $("#iptIDEmpresa").val("");
+                                    //$("#iptIDEmpresa").val("");
                                     $("#iptNombreEmpresa").val("");
                                     $("#iptRucEmpresa").val("");
                                     $("#iptIgvEmpresa").val("");

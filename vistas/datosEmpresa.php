@@ -112,7 +112,7 @@
                         
 
                         <!-- Columna para el nombre de la empresa -->
-                        <div class="col-12 col-lg-11">
+                        <div class="col-12 col-lg-12">
                             <div class="form-group mb-2">
                                 <label class="" for="iptNombreEmpresa"><i class="fas fa-file-signature fs-6"></i>
                                     <span class="small">Nombre de la empresa</span><span
@@ -123,7 +123,7 @@
                             </div>
                         </div>
 
-                        <!-- ID -->
+                        <!-- ID 
                         <div class="col-12 col-lg-1">
                             <div class="form-group mb-2">
                                 <label class="" for="iptIDEmpresa"><i class="fas fa-file-signature fs-6"></i>
@@ -133,7 +133,7 @@
                                     placeholder="ID" disabled>
                                 
                             </div>
-                        </div>
+                        </div>-->
 
                 
 
